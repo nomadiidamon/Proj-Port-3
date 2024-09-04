@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &876683211043303226
+--- !u!1 &3672504965784739243
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,47 +8,68 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 531787667151041920}
-  - component: {fileID: 3516908361896933925}
-  - component: {fileID: 1669259640273587951}
-  - component: {fileID: 7600483731261163294}
+  - component: {fileID: 1303721147275988407}
+  - component: {fileID: 6137804768986008481}
+  - component: {fileID: 6007677850969510277}
+  - component: {fileID: 6049542541767414335}
+  - component: {fileID: 6926749573497585329}
+  - component: {fileID: 5484130771770589537}
   m_Layer: 0
-  m_Name: ThrowingRockExample
+  m_Name: Bullet - Golem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &531787667151041920
+--- !u!4 &1303721147275988407
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 876683211043303226}
+  m_GameObject: {fileID: 3672504965784739243}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -6.09764, y: 0.314991, z: -69.89037}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &3516908361896933925
+--- !u!114 &6137804768986008481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3672504965784739243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bd65ec4b9ad47349b1b757980895315, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 3
+  rb: {fileID: 6926749573497585329}
+  targetHitEffect: {fileID: 8672298416351423396, guid: 212ef1a41838ce044a9ac54994866708, type: 3}
+  damageAmount: 2
+  damageDelay: 0
+  speed: 25
+  destroyTime: 3
+--- !u!33 &6007677850969510277
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 876683211043303226}
+  m_GameObject: {fileID: 3672504965784739243}
   m_Mesh: {fileID: 3928995543910888902, guid: 3aea19d119561984e9d6a457a2075a37, type: 3}
---- !u!23 &1669259640273587951
+--- !u!23 &6049542541767414335
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 876683211043303226}
+  m_GameObject: {fileID: 3672504965784739243}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -84,13 +105,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &7600483731261163294
+--- !u!54 &6926749573497585329
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 876683211043303226}
+  m_GameObject: {fileID: 3672504965784739243}
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
@@ -103,7 +124,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
@@ -111,3 +132,24 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!135 &5484130771770589537
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3672504965784739243}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 64
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.4603835
+  m_Center: {x: 0.045715004, y: 0, z: 0.015021503}

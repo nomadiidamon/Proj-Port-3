@@ -16,6 +16,9 @@ public class enemyGolem : MonoBehaviour, IDamage
     [Range(0, 1)][SerializeField] float deathSoundVol;
     [SerializeField] Image hpbar;
     [SerializeField] GameObject projectile;
+    [SerializeField] CapsuleCollider leftArm;
+    [SerializeField] CapsuleCollider rightArm;
+
 
     [Header("-----Attributes-----")]
     private int HP;
@@ -60,7 +63,7 @@ public class enemyGolem : MonoBehaviour, IDamage
 
     void Update()
     {
-        float agentSpeed = agent.velocity.normalized.magnitude;
+        //float agentSpeed = agent.velocity.normalized.magnitude;
 
         if (playerInRange && !canSeePlayer())
         {
@@ -77,6 +80,7 @@ public class enemyGolem : MonoBehaviour, IDamage
     IEnumerator roam()
     {
         isRoaming = true;
+        Debug.Log("Starting to roam");
         yield return new WaitForSeconds(roamTimer);
 
         agent.stoppingDistance = 0;
@@ -92,6 +96,8 @@ public class enemyGolem : MonoBehaviour, IDamage
 
     bool canSeePlayer()
     {
+        Debug.Log("Do I see you??");
+
         playerDir = gameManager.instance.player.transform.position - headPos.position;
         angleToPlayer = Vector3.Angle(playerDir, transform.forward);
 
@@ -103,6 +109,22 @@ public class enemyGolem : MonoBehaviour, IDamage
                 Debug.Log("I see you!");
 
                 agent.SetDestination(gameManager.instance.player.transform.position);
+
+
+
+
+                //if (agent.remainingDistance >= agent.stoppingDistance)
+                //{
+                //    //perform shooting/throwing
+                //}
+                //else if (agent.remainingDistance <= agent.stoppingDistance +1)
+                //{
+                //    // perfrom melee
+                //}
+
+
+
+
                 if (!isThrowing)
                     StartCoroutine(Throw());
 
@@ -113,7 +135,7 @@ public class enemyGolem : MonoBehaviour, IDamage
                 return true;
             }
         }
-        agent.stoppingDistance = 0;
+        //agent.stoppingDistance = 0;
         return false;
 
     }
@@ -171,7 +193,11 @@ public class enemyGolem : MonoBehaviour, IDamage
     IEnumerator Throw()
     {
         isThrowing = true;
- 
+        Vector3 direction = gameManager.instance.player.transform.position - projectilePos.transform.position;
+        direction.Normalize();
+        Quaternion projectileRotation = Quaternion.LookRotation(direction);
+        Instantiate(projectile, projectilePos.transform.position, projectileRotation);
+
         yield return new WaitForSeconds(projectileShootRate);
         isThrowing = false;
     }
