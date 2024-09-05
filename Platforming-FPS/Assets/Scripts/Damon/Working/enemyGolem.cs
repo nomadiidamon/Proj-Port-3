@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -16,39 +17,49 @@ public class enemyGolem : MonoBehaviour, IDamage
     [Range(0, 1)][SerializeField] float deathSoundVol;
     [SerializeField] Image hpbar;
     [SerializeField] GameObject projectile;
-    [SerializeField] CapsuleCollider leftArm;
-    [SerializeField] CapsuleCollider rightArm;
 
 
     [Header("-----Attributes-----")]
     private int HP;
-    [Range(0, 10)][SerializeField] int startingHealth;
+    [Range(0, 20)][SerializeField] int startingHealth;
 
     [Header("-----Factors-----")]
     [SerializeField] int viewAngle;
     [SerializeField] int facePlayerSpeed;
     [SerializeField] int roamDistance;
-    [SerializeField] int roamTimer;
+    [SerializeField] float roamTimer;
     [SerializeField] int animSpeedTrans;
     [SerializeField] float projectileShootRate;
     [SerializeField] int projectileDistance;
+    [SerializeField] float meleeAttackRate;
+    [SerializeField] float movementSpeed;
+
 
 
     bool isInMeleeRange;
     bool isThrowing;
+    bool isStomping;
+    bool isSwiping;
     bool isDefending;
     bool playerInRange;
     bool isRoaming;
+    bool isSearching;
+    bool isPursuing;
     bool isPlayingSteps;
     bool isDead = false;
+    bool sprintModActive;
 
     float angleToPlayer;
+    float distanceToPlayer;
     float stoppingDistanceOriginal;
 
     Vector3 playerDir;
     Vector3 startingPosition;
 
     Color colorOrig;
+
+    string currentAnimation = "";
+
 
 
     void Start()
@@ -59,30 +70,69 @@ public class enemyGolem : MonoBehaviour, IDamage
         stoppingDistanceOriginal = agent.stoppingDistance;
         startingPosition = transform.position;
         updateHPBar();
+        ChangeAnimation("Golem_idle");
+        agent.speed = movementSpeed;
+
+
     }
 
     void Update()
     {
-        //float agentSpeed = agent.velocity.normalized.magnitude;
+        distanceToPlayer = Vector3.Distance(this.transform.position, agent.destination);
+
 
         if (playerInRange && !canSeePlayer())
         {
             if (!isRoaming && agent.remainingDistance < 0.05f)
+            {
                 StartCoroutine(roam());
+
+            }
         }
         else if (!playerInRange)
         {
             if (!isRoaming && agent.remainingDistance < 0.05f)
+            {
                 StartCoroutine(roam());
+
+            }
+        }
+
+        Debug.DrawLine(headPos.transform.position, gameManager.instance.player.transform.position);
+
+        //if (currentAnimation == "Golem_runForward")
+        //{
+        
+        //    agent.speed += movementSpeed;
+        //    sprintModActive = true;
+        //    if (distanceToPlayer <= 5.5f)
+        //    {
+        //        agent.speed -= movementSpeed;
+        //    }
+        //}
+        //else
+        //{
+        //    agent.speed = movementSpeed;
+        //}
+
+    }
+
+    private void ChangeAnimation(string targetAnim, float crossFade = 0.2f)
+    {
+        if (currentAnimation != targetAnim)
+        {
+            currentAnimation = targetAnim;
+            animator.CrossFade(targetAnim, crossFade);
+            Debug.Log("Playing the " + targetAnim + " animation");
         }
     }
 
     IEnumerator roam()
     {
         isRoaming = true;
-        Debug.Log("Starting to roam");
         yield return new WaitForSeconds(roamTimer);
-
+        ChangeAnimation("Golem_walkForward");
+    
         agent.stoppingDistance = 0;
         Vector3 randomDistance = Random.insideUnitSphere * roamDistance;
         randomDistance += startingPosition;
@@ -91,13 +141,31 @@ public class enemyGolem : MonoBehaviour, IDamage
         NavMesh.SamplePosition(randomDistance, out hit, roamDistance, 1);
         agent.SetDestination(hit.position);
 
+        StartCoroutine(Searching());
+
+        agent.stoppingDistance = stoppingDistanceOriginal;
         isRoaming = false;
     }
 
+    IEnumerator Searching()
+    {
+        isSearching = true;
+        //Debug.Log("looking around");
+
+        agent.isStopped = true;
+        ChangeAnimation("Golem_lookAround");
+        AnimatorClipInfo[] info = animator.GetCurrentAnimatorClipInfo(0);
+        yield return new WaitForSeconds(info[0].clip.length);
+        agent.isStopped = false;
+        isSearching = false;
+        ChangeAnimation("Golem_walkForward");
+
+
+    }
+
+
     bool canSeePlayer()
     {
-        Debug.Log("Do I see you??");
-
         playerDir = gameManager.instance.player.transform.position - headPos.position;
         angleToPlayer = Vector3.Angle(playerDir, transform.forward);
 
@@ -106,27 +174,33 @@ public class enemyGolem : MonoBehaviour, IDamage
         {
             if (hit.collider.CompareTag("Player") && angleToPlayer <= viewAngle)
             {
+                isPursuing = true;
+                isSearching = false;
+                StopCoroutine(roam());
+                ChangeAnimation("Golem_runForward");
                 Debug.Log("I see you!");
-
                 agent.SetDestination(gameManager.instance.player.transform.position);
 
+                if (isInMeleeRange && distanceToPlayer <= 1.75f)
+                {
+
+                    // perfrom melee
+                    if (!isStomping)
+                    {
+                        Debug.Log("stomping starting");
+                        StartCoroutine(Stomp());
+
+                    }
+                }
+                
+                if (!isInMeleeRange)
+                {
+                    //perform shooting/throwing
+                    if (!isThrowing)
+                        StartCoroutine(Throw());
+                }
 
 
-
-                //if (agent.remainingDistance >= agent.stoppingDistance)
-                //{
-                //    //perform shooting/throwing
-                //}
-                //else if (agent.remainingDistance <= agent.stoppingDistance +1)
-                //{
-                //    // perfrom melee
-                //}
-
-
-
-
-                if (!isThrowing)
-                    StartCoroutine(Throw());
 
                 if (agent.remainingDistance <= agent.stoppingDistance)
                     facePlayer();
@@ -134,8 +208,8 @@ public class enemyGolem : MonoBehaviour, IDamage
                 agent.stoppingDistance = stoppingDistanceOriginal;
                 return true;
             }
+            isPursuing = false;
         }
-        //agent.stoppingDistance = 0;
         return false;
 
     }
@@ -151,6 +225,10 @@ public class enemyGolem : MonoBehaviour, IDamage
     public void takeDamage(int amount)
     {
         if (isDead) return;
+        string prevAnim = currentAnimation;
+        Debug.Log(prevAnim + " was the last animation");
+        ChangeAnimation("Golem_takeDamage");
+
 
         HP -= amount;
         agent.SetDestination(gameManager.instance.player.transform.position);
@@ -174,6 +252,7 @@ public class enemyGolem : MonoBehaviour, IDamage
 
             StartCoroutine(destroyAfterSound());
         }
+        ChangeAnimation(prevAnim);
     }
 
     IEnumerator destroyAfterSound()
@@ -202,6 +281,15 @@ public class enemyGolem : MonoBehaviour, IDamage
         isThrowing = false;
     }
 
+    IEnumerator Stomp()
+    {
+        isStomping = true;
+        ChangeAnimation("Golem_stompAttack");
+        yield return new WaitForSeconds(meleeAttackRate);
+
+        isStomping = false;
+    }
+
 
     public void createProjectile()
     {
@@ -210,21 +298,36 @@ public class enemyGolem : MonoBehaviour, IDamage
         Quaternion bulletRotation = Quaternion.LookRotation(direction);
         Instantiate(projectile, projectilePos.transform.position, bulletRotation);
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Player in range");
-
+            //Debug.Log("Player in shooting range");
             playerInRange = true;
+
+            SphereCollider coll = GetComponent<SphereCollider>();
+            if (distanceToPlayer <= coll.radius / 3)
+            {
+                isInMeleeRange = true;
+            }
+            else
+            {
+                isInMeleeRange = false;
+            }
+
         }
     }
+
+
+
+
 
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Player out of range");
+           //Debug.Log("Player out of range");
 
             playerInRange = false;
             agent.stoppingDistance = 0;

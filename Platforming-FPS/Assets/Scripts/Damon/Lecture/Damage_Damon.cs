@@ -98,6 +98,9 @@ public class Damage : MonoBehaviour
                 int delfectDamage = this.GetDamageAmount();
                 this.tag = "Player Bullet";
                 this.gameObject.layer = 3;
+                this.rb.excludeLayers = 0;
+                SphereCollider coll = this.GetComponent<SphereCollider>();
+                coll.excludeLayers = 0;
                 SetDamageAmount(delfectDamage);
 
             }
