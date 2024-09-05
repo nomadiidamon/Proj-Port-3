@@ -63,27 +63,28 @@ public class Damage : MonoBehaviour
             Instantiate(gameManager.instance.playerScript.GetGunList()[gameManager.instance.playerScript.selectedGun].hitEffect, this.transform.position, Quaternion.identity);
             if (gameManager.instance.playerScript.isCreator)
             {
+                RaycastHit hit;
+                Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 100, gameManager.instance.player.layer);
                 if (other.CompareTag("Ground"))
                 {
+
                     GameObject groundObject = gameManager.instance.playerScript.objectHeld;
-                    float halfHeight = groundObject.transform.localScale.y / 2;
-
-                    //GameObject thing2 = Instantiate(thing, new Vector3(this.transform.position.x, thing.transform.localScale.y * 1.5f, this.transform.position.z),
-                    //    Quaternion.Euler(0, 0, this.transform.rotation.z));
-                    //thing2.transform.LookAt(gameManager.instance.player.transform);
                     
-                    GameObject newGroundObject = Instantiate(groundObject, new Vector3(this.transform.position.x, halfHeight, this.transform.position.z),
-                        Quaternion.Euler(0, 0, this.transform.rotation.z));
-                    newGroundObject.transform.LookAt(gameManager.instance.player.transform);
+                    GameObject newGroundObject = Instantiate(groundObject, hit.point + new Vector3 (0, groundObject.transform.position.y, 0), Quaternion.identity);
 
+                    Vector3 directionToPlayer = gameManager.instance.player.transform.position - newGroundObject.transform.position;
+
+                    directionToPlayer.y = 0;
+
+                    newGroundObject.transform.rotation = Quaternion.LookRotation(directionToPlayer);
                 }
                 else
                 { 
                     GameObject wallObject = gameManager.instance.playerScript.objectHeld;
 
-                   GameObject newWallObject = Instantiate(gameManager.instance.playerScript.objectHeld,
-                       this.transform.position - new Vector3(0, 0, gameManager.instance.playerScript.objectHeld.transform.localScale.z / 2), this.transform.rotation);
-                    newWallObject.transform.rotation = Quaternion.AngleAxis(180, Vector3.up);
+                   GameObject newWallObject = Instantiate(gameManager.instance.playerScript.objectHeld, hit.point, this.transform.rotation);
+
+                    newWallObject.transform.rotation = Quaternion.LookRotation(hit.normal); 
                 }
             }
             Destroy(gameObject);
