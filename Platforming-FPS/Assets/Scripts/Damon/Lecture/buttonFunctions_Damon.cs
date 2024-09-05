@@ -64,12 +64,16 @@ public class buttonFunctions : MonoBehaviour
         
     }
 
+    
+
     public void closeSettings()
     {
         gameManager.instance.menuSettings.SetActive(false);
         gameManager.instance.menuActive = gameManager.instance.menuPause;
         gameManager.instance.menuPause.SetActive(true);
     }
+
+    
 
 
 
