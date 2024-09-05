@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Hiry/Main Menu.unity
+    guid: 305c57a7b7bd786449f88678f1977b0d
+  - enabled: 1
     path: Assets/Scenes/Final Prototype Scenes/LinearPath.unity
     guid: fab9c7f3f895d0c478fbc750213e5127
   m_configObjects: {}
