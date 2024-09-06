@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Threading;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
@@ -13,6 +14,8 @@ public class enemyGolem : MonoBehaviour, IDamage
     [SerializeField] Animator animator;
     [SerializeField] Transform projectilePos;
     [SerializeField] Transform headPos;
+    [SerializeField] Transform stompPosition;
+    [SerializeField] ParticleSystem stompEffect;
     [SerializeField] AudioClip[] deathSound;
     [Range(0, 1)][SerializeField] float deathSoundVol;
     [SerializeField] Image hpbar;
@@ -33,6 +36,8 @@ public class enemyGolem : MonoBehaviour, IDamage
     [SerializeField] int projectileDistance;
     [SerializeField] float meleeAttackRate;
     [SerializeField] float movementSpeed;
+    [SerializeField] float sprintSpeed;
+    [SerializeField] float meleeRange;
 
 
 
@@ -52,6 +57,10 @@ public class enemyGolem : MonoBehaviour, IDamage
     float angleToPlayer;
     float distanceToPlayer;
     float stoppingDistanceOriginal;
+    //[SerializeField] myTimer timer;
+    //public float timeStart;
+    //public float timeEnd;
+    //float currentTimeOnTimer;
 
     Vector3 playerDir;
     Vector3 startingPosition;
@@ -72,48 +81,48 @@ public class enemyGolem : MonoBehaviour, IDamage
         updateHPBar();
         ChangeAnimation("Golem_idle");
         agent.speed = movementSpeed;
-
+        sprintSpeed = movementSpeed * 2;
+        //timer = new myTimer();
+        //timer.startingTime = timeStart;
+        //timer.targetTime = timeEnd;
+        Rigidbody rb = projectile.GetComponent<Rigidbody>();
+        rb.useGravity = false;
 
     }
 
     void Update()
     {
-        distanceToPlayer = Vector3.Distance(this.transform.position, agent.destination);
+        distanceToPlayer = Vector3.Distance(this.transform.position, gameManager.instance.player.transform.position);
+
+        if (distanceToPlayer <= meleeRange)
+        {
+            //Debug.Log("Player in melee range");
+            isInMeleeRange = true;
+        }
+        else
+        {
+            isInMeleeRange = false;
+        }
 
 
         if (playerInRange && !canSeePlayer())
         {
             if (!isRoaming && agent.remainingDistance < 0.05f)
             {
+                //ChangeAnimation("Golem_walkForward");
                 StartCoroutine(roam());
-
             }
         }
         else if (!playerInRange)
         {
             if (!isRoaming && agent.remainingDistance < 0.05f)
             {
+                //ChangeAnimation("Golem_walkForward");
                 StartCoroutine(roam());
-
             }
         }
 
         Debug.DrawLine(headPos.transform.position, gameManager.instance.player.transform.position);
-
-        //if (currentAnimation == "Golem_runForward")
-        //{
-        
-        //    agent.speed += movementSpeed;
-        //    sprintModActive = true;
-        //    if (distanceToPlayer <= 5.5f)
-        //    {
-        //        agent.speed -= movementSpeed;
-        //    }
-        //}
-        //else
-        //{
-        //    agent.speed = movementSpeed;
-        //}
 
     }
 
@@ -133,16 +142,28 @@ public class enemyGolem : MonoBehaviour, IDamage
         yield return new WaitForSeconds(roamTimer);
         ChangeAnimation("Golem_walkForward");
     
-        agent.stoppingDistance = 0;
         Vector3 randomDistance = Random.insideUnitSphere * roamDistance;
         randomDistance += startingPosition;
 
         NavMeshHit hit;
-        NavMesh.SamplePosition(randomDistance, out hit, roamDistance, 1);
-        agent.SetDestination(hit.position);
-
+        NavMesh.SamplePosition(randomDistance, out hit, roamDistance, NavMesh.AllAreas);
+        float apart = Vector3.Distance(hit.position, agent.transform.position);
+        if (apart <= 3.75f)
+        {
+            NavMesh.SamplePosition(randomDistance, out hit, roamDistance, NavMesh.AllAreas);
+            apart = Vector3.Distance(hit.position, agent.transform.position);
+            if (apart <= 3.75f)
+            {
+                agent.SetDestination(startingPosition);
+            }
+            else 
+                agent.SetDestination(startingPosition);
+        }
+        else
+        {
+            agent.SetDestination(hit.position);
+        }
         StartCoroutine(Searching());
-
         agent.stoppingDistance = stoppingDistanceOriginal;
         isRoaming = false;
     }
@@ -150,17 +171,12 @@ public class enemyGolem : MonoBehaviour, IDamage
     IEnumerator Searching()
     {
         isSearching = true;
-        //Debug.Log("looking around");
-
         agent.isStopped = true;
         ChangeAnimation("Golem_lookAround");
-        AnimatorClipInfo[] info = animator.GetCurrentAnimatorClipInfo(0);
-        yield return new WaitForSeconds(info[0].clip.length);
+        yield return new WaitForSeconds(1.5f);
         agent.isStopped = false;
         isSearching = false;
         ChangeAnimation("Golem_walkForward");
-
-
     }
 
 
@@ -175,31 +191,43 @@ public class enemyGolem : MonoBehaviour, IDamage
             if (hit.collider.CompareTag("Player") && angleToPlayer <= viewAngle)
             {
                 isPursuing = true;
+                //ChangeAnimation("Golem_runForward");
                 isSearching = false;
                 StopCoroutine(roam());
-                ChangeAnimation("Golem_runForward");
-                Debug.Log("I see you!");
                 agent.SetDestination(gameManager.instance.player.transform.position);
-
-                if (isInMeleeRange && distanceToPlayer <= 1.75f)
+                if (isInMeleeRange && distanceToPlayer <= meleeRange)
                 {
-
+                    isPursuing = false;
+                    agent.isStopped = true;
+                    agent.SetDestination(this.transform.position);
                     // perfrom melee
                     if (!isStomping)
                     {
-                        Debug.Log("stomping starting");
+                        //stopPursuing();
+                        ChangeAnimation("Golem_stompAttack");
+                        agent.isStopped = true;
+                        agent.SetDestination(this.transform.position);
                         StartCoroutine(Stomp());
+                        //ChangeAnimation("Golem_walkForward");
+
+                        //createStompEffect();
 
                     }
                 }
-                
-                if (!isInMeleeRange)
-                {
-                    //perform shooting/throwing
-                    if (!isThrowing)
-                        StartCoroutine(Throw());
-                }
+                agent.isStopped = false;
+                agent.SetDestination(gameManager.instance.player.transform.position);
 
+                //if (!isInMeleeRange)
+                //{
+                //    //perform shooting/throwing
+                //    if (!isThrowing)
+                //    {
+                //        StartCoroutine(Throw());
+                //    }
+                //}
+
+
+                Debug.Log(currentAnimation);
 
 
                 if (agent.remainingDistance <= agent.stoppingDistance)
@@ -208,10 +236,24 @@ public class enemyGolem : MonoBehaviour, IDamage
                 agent.stoppingDistance = stoppingDistanceOriginal;
                 return true;
             }
-            isPursuing = false;
+            //isPursuing = false;
         }
         return false;
 
+    }
+
+    public void startPursuing()
+    {
+        agent.SetDestination(gameManager.instance.player.transform.position);
+        isPursuing = true;
+        //ChangeAnimation("Golem_runForward");
+    }
+
+    public void stopPursuing()
+    {
+        agent.SetDestination(this.transform.position);
+        isPursuing = false;
+        //ChangeAnimation("");
     }
 
 
@@ -219,21 +261,23 @@ public class enemyGolem : MonoBehaviour, IDamage
     {
         Quaternion rot = Quaternion.LookRotation(playerDir);
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * facePlayerSpeed);
+        Debug.Log(currentAnimation);
+
     }
 
 
     public void takeDamage(int amount)
     {
         if (isDead) return;
-        string prevAnim = currentAnimation;
-        Debug.Log(prevAnim + " was the last animation");
-        ChangeAnimation("Golem_takeDamage");
+        //string prevAnim = currentAnimation;
+        //Debug.Log(prevAnim + " was the last animation");
+        //ChangeAnimation("Golem_takeDamage");
 
 
         HP -= amount;
         agent.SetDestination(gameManager.instance.player.transform.position);
         StopCoroutine(roam());
-
+        canSeePlayer();
         Debug.Log("Golem took " + amount + " damage");
         updateHPBar();
         StartCoroutine(flashRed());
@@ -252,31 +296,44 @@ public class enemyGolem : MonoBehaviour, IDamage
 
             StartCoroutine(destroyAfterSound());
         }
-        ChangeAnimation(prevAnim);
+        Debug.Log(currentAnimation);
+
     }
 
     IEnumerator destroyAfterSound()
     {
-        yield return new WaitForSeconds(deathSound[0].length);
+        yield return new WaitForSeconds(deathSound[0].length / 2);
+        GameObject rubble = projectile;
+        Rigidbody rb = rubble.GetComponent<Rigidbody>();
+        rb.useGravity = true;
+        rb.velocity = Vector3.zero;
+        Instantiate(rubble, this.transform.position, Quaternion.identity);
+        Instantiate(rubble, this.transform.position, Quaternion.identity);
+
         Destroy(gameObject);
     }
 
 
     IEnumerator flashRed()
     {
+        Debug.Log("Flashing from damage");
         model.material.color = Color.red;
         yield return new WaitForSeconds(0.1f);
         model.material.color = colorOrig;
+        Debug.Log(currentAnimation);
+
     }
 
     IEnumerator Throw()
     {
+        //ChangeAnimation("Golem_throwAttack");
+        agent.isStopped = true;
         isThrowing = true;
         Vector3 direction = gameManager.instance.player.transform.position - projectilePos.transform.position;
         direction.Normalize();
         Quaternion projectileRotation = Quaternion.LookRotation(direction);
         Instantiate(projectile, projectilePos.transform.position, projectileRotation);
-
+        agent.isStopped = false;
         yield return new WaitForSeconds(projectileShootRate);
         isThrowing = false;
     }
@@ -284,12 +341,27 @@ public class enemyGolem : MonoBehaviour, IDamage
     IEnumerator Stomp()
     {
         isStomping = true;
+        agent.isStopped = true;
+        agent.SetDestination(this.transform.position);
         ChangeAnimation("Golem_stompAttack");
-        yield return new WaitForSeconds(meleeAttackRate);
-
+        yield return new WaitForSeconds(1.5f);
         isStomping = false;
+        agent.isStopped = false;
+        
+        if (distanceToPlayer >= meleeRange)
+        {
+            agent.SetDestination(gameManager.instance.player.transform.position);
+
+        }
+        ChangeAnimation("Golem_walkForward");
+        Debug.Log(currentAnimation);
+
     }
 
+    public void createStompEffect()
+    {
+        Instantiate(stompEffect, stompPosition.transform.position, this.transform.rotation);
+    }
 
     public void createProjectile()
     {
@@ -305,17 +377,6 @@ public class enemyGolem : MonoBehaviour, IDamage
         {
             //Debug.Log("Player in shooting range");
             playerInRange = true;
-
-            SphereCollider coll = GetComponent<SphereCollider>();
-            if (distanceToPlayer <= coll.radius / 3)
-            {
-                isInMeleeRange = true;
-            }
-            else
-            {
-                isInMeleeRange = false;
-            }
-
         }
     }
 

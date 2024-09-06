@@ -50,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 3
   rb: {fileID: 6926749573497585329}
-  targetHitEffect: {fileID: 8672298416351423396, guid: 212ef1a41838ce044a9ac54994866708, type: 3}
+  targetHitEffect: {fileID: 198220379293217532, guid: d8f0099df63275647a8bcf646df1ca00, type: 3}
   damageAmount: 2
   damageDelay: 0
   speed: 25
