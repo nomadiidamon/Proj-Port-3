@@ -29,6 +29,8 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] int shootDist;
     [SerializeField] float shootRate;
     [SerializeField] float deflectionSpeed;
+    [SerializeField] float blastForce;
+    
 
     [Header("-----Sounds-----")]
     [SerializeField] AudioClip[] audJump;
@@ -216,21 +218,22 @@ public class playerController : MonoBehaviour, IDamage
 
     IEnumerator shoot()
     {
-        if (!gunList[selectedGun].isShield)
+        if (!gunList[selectedGun].isShield && !gunList[selectedGun].isBlast)
         {
             isShooting = true;
 
-            StartCoroutine(flashMuzzle());
-            gameManager.instance.PlayAud(gunList[selectedGun].shootSound[Random.Range(0, gunList[selectedGun].shootSound.Length)], gunList[selectedGun].shootVolume);
-            Instantiate(bullet, shootPos.position, shootPos.rotation);
-            yield return new WaitForSeconds(shootRate);
-            isShooting = false;
+                StartCoroutine(flashMuzzle());
+                gameManager.instance.PlayAud(gunList[selectedGun].shootSound[Random.Range(0, gunList[selectedGun].shootSound.Length)], gunList[selectedGun].shootVolume);
+                Instantiate(bullet, shootPos.position, shootPos.rotation);
+                yield return new WaitForSeconds(shootRate);
+                isShooting = false;
+           
         }
-        else
+        else if (gunList[selectedGun].isShield)
         {
             isDeflecting = true;
             isShooting = true;
-           
+
             StartCoroutine(Deflecting(myCollider));
             StartCoroutine(flashDeflection());
             bool isPlayingDeflection = true;
@@ -239,11 +242,23 @@ public class playerController : MonoBehaviour, IDamage
             {
                 yield return new WaitForSeconds(0.5f);
                 isPlayingDeflection = false;
-            }        
+            }
             isShooting = false;
             isDeflecting = false;
             yield return new WaitForSeconds(0);
         }
+
+        else if (gunList[selectedGun].isBlast)
+        {
+            isShooting = true;
+            gunBlast();
+            StartCoroutine(flashMuzzle());
+            gameManager.instance.PlayAud(gunList[selectedGun].shootSound[Random.Range(0, gunList[selectedGun].shootSound.Length)], gunList[selectedGun].shootVolume);
+            yield return new WaitForSeconds(shootRate);
+            isShooting = false;
+
+        }
+
     }
 
     IEnumerator Deflecting(BoxCollider coll)
@@ -360,6 +375,8 @@ public class playerController : MonoBehaviour, IDamage
 
         gunModel.GetComponent<MeshFilter>().sharedMesh = gun.gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gun.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
+
+        gunModel.transform.localScale = gun.gunScale;
     }
 
     void selectGun()
@@ -443,4 +460,42 @@ public class playerController : MonoBehaviour, IDamage
                 }
             }
     }
-}
+
+    void gunBlast()
+    {
+
+        Vector3 cameraForward = Camera.main.transform.forward;
+        Vector3 backwardDirection = -cameraForward.normalized;
+
+        StartCoroutine(pushback(backwardDirection));
+
+       
+    }
+
+    IEnumerator pushback(Vector3 direction)
+    {
+        float pushDuration = 0.3f; 
+        float elapsed = 0f;
+
+        if (controller.isGrounded)
+        {
+            playerVel.y = 0.5f; 
+        }
+
+        while (elapsed < pushDuration)
+        {
+            Vector3 pushbackForce = direction * blastForce * Time.deltaTime;
+
+            controller.Move(pushbackForce);
+
+            elapsed += Time.deltaTime;
+            yield return null; 
+        }
+    }
+
+    }
+
+
+
+
+

@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dac4c15d63ca800489dada8a320fe87c, type: 3}
+  m_Name: Gun - BlastGun
+  m_EditorClassIdentifier: 
+  gunModel: {fileID: 6838604388318766294, guid: 7452065c3f80858478604f8d202cdb13, type: 3}
+  shootDamage: 1
+  shootRate: 3
+  shootDistance: 1
+  ammoCur: 0
+  ammoMax: 25
+  gunScale: {x: 2, y: 2, z: 2}
+  hitEffect: {fileID: 3249809072487309720, guid: 47096eff328e11a418ace7db2d72aa97, type: 3}
+  shootSound:
+  - {fileID: 8300000, guid: f15c552e0d2904a48bdad9891b8cc7fb, type: 3}
+  shootVolume: 0.5
+  pickupSound:
+  - {fileID: 8300000, guid: 018c78509679a90459a221ffd4f10ebf, type: 3}
+  pickupVolume: 0.5
+  switchSound:
+  - {fileID: 8300000, guid: b7b77edb97d70114e8b2bd9b49cbd722, type: 3}
+  switchVolume: 0.5
+  isCreator: 0
+  isShield: 0
+  isBlast: 1

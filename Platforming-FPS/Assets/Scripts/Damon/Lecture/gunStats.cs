@@ -14,6 +14,8 @@ public class gunStats : ScriptableObject
     public int shootDistance;
     public int ammoCur, ammoMax;
 
+    public Vector3 gunScale = Vector3.one;
+
     public ParticleSystem hitEffect;
     public AudioClip[] shootSound;
     public float shootVolume;
@@ -24,5 +26,6 @@ public class gunStats : ScriptableObject
 
     public bool isCreator;
     public bool isShield;
+    public bool isBlast;
 
 }
