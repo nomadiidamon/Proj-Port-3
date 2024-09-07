@@ -939,7 +939,7 @@ NavMeshAgent:
   m_Acceleration: 4
   avoidancePriority: 50
   m_AngularSpeed: 360
-  m_StoppingDistance: 4.5
+  m_StoppingDistance: 6.5
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -972,7 +972,7 @@ MonoBehaviour:
   hpbar: {fileID: 6256239124601512118}
   projectile: {fileID: 3672504965784739243, guid: 0691bc8c83cd5ec40810e03e56dbb637, type: 3}
   startingHealth: 20
-  viewAngle: 55
+  viewAngle: 100
   facePlayerSpeed: 1000
   roamDistance: 10
   roamTimer: 0.65
@@ -982,7 +982,7 @@ MonoBehaviour:
   meleeAttackRate: 3
   movementSpeed: 1.5
   sprintSpeed: 0
-  meleeRange: 5.5
+  meleeRange: 7
 --- !u!1001 &621013205
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6377,7 +6377,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7912685596475692159, guid: 89c27f129871ce846af830d1864f4b65, type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

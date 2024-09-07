@@ -40,7 +40,7 @@ public class enemyGolem : MonoBehaviour, IDamage
     [SerializeField] float meleeRange;
 
 
-
+    bool isFighting;
     bool isInMeleeRange;
     bool isThrowing;
     bool isStomping;
@@ -57,6 +57,7 @@ public class enemyGolem : MonoBehaviour, IDamage
     float angleToPlayer;
     float distanceToPlayer;
     float stoppingDistanceOriginal;
+    Vector3 currentTarget;
     //[SerializeField] myTimer timer;
     //public float timeStart;
     //public float timeEnd;
@@ -93,29 +94,33 @@ public class enemyGolem : MonoBehaviour, IDamage
 
         if (distanceToPlayer <= meleeRange)
         {
-            //Debug.Log("Player in melee range");
             isInMeleeRange = true;
             agent.isStopped = true;
-            //agent.SetDestination(this.transform.position);
         }
         else if (distanceToPlayer >= meleeRange)
         {
             isInMeleeRange = false;
             agent.isStopped = false;
-
-            //if (playerInRange && !isInMeleeRange)
-            //{
-            //    //agent.speed = sprintSpeed;
-            //}
-
         }
 
+        if (isPursuing)
+        {
+            agent.speed = sprintSpeed;
+        }
+        else if (!isPursuing)
+        {
+            agent.speed = movementSpeed;
+        }
+
+        //if (currentAnimation == "Golem_lookAround")
+        //{
+        //    stopPursuing();
+        //}
 
         if (playerInRange && !canSeePlayer())
         {
             if (!isRoaming && agent.remainingDistance < 0.05f)
             {
-                //ChangeAnimation("Golem_walkForward");
                 StartCoroutine(roam());
             }
         }
@@ -123,7 +128,6 @@ public class enemyGolem : MonoBehaviour, IDamage
         {
             if (!isRoaming && agent.remainingDistance < 0.05f)
             {
-                //ChangeAnimation("Golem_walkForward");
                 StartCoroutine(roam());
             }
         }
@@ -144,6 +148,11 @@ public class enemyGolem : MonoBehaviour, IDamage
 
     IEnumerator roam()
     {
+        if (isFighting)
+        {
+            yield break;
+            
+        }
         isRoaming = true;
         yield return new WaitForSeconds(roamTimer);
         ChangeAnimation("Golem_walkForward");
@@ -170,25 +179,20 @@ public class enemyGolem : MonoBehaviour, IDamage
             agent.SetDestination(hit.position);
         }
 
-        //StartCoroutine(Searching());
-        // start of searching code
-
-
         isSearching = true;
         agent.isStopped = true;
-        //agent.SetDestination(this.transform.position);
         ChangeAnimation("Golem_lookAround");
         agent.speed = 0;
+        Vector3 lastPos = agent.destination;
+        stopMoving();
         yield return new WaitForSeconds(2.5f);
+        agent.SetDestination(lastPos);
+
         agent.speed = movementSpeed;
         agent.isStopped = false;
         isSearching = false;
         ChangeAnimation("Golem_walkForward");
 
-
-        // end of searching code
-
-        //yield return new WaitForSeconds(2.5f);
         agent.stoppingDistance = stoppingDistanceOriginal;
         isRoaming = false;
     }
@@ -215,8 +219,8 @@ public class enemyGolem : MonoBehaviour, IDamage
         {
             if (hit.collider.CompareTag("Player") && angleToPlayer <= viewAngle)
             {
+                isFighting = true;
                 isPursuing = true;
-                //ChangeAnimation("Golem_runForward");
                 isSearching = false;
                 StopCoroutine(roam());
                 StopCoroutine(Searching());
@@ -224,25 +228,30 @@ public class enemyGolem : MonoBehaviour, IDamage
                 agent.SetDestination(gameManager.instance.player.transform.position);
                 if (isInMeleeRange && distanceToPlayer <= meleeRange)
                 {
-                    isPursuing = false;
-                    agent.isStopped = true;
-                    agent.SetDestination(this.transform.position);
+                    stopPursuing();
+
                     // perfrom melee
                     if (!isStomping)
                     {
-                        //stopPursuing();
-                        ChangeAnimation("Golem_stompAttack");
-                        agent.isStopped = true;
-                        agent.SetDestination(this.transform.position);
-                        StartCoroutine(Stomp());
-                        //ChangeAnimation("Golem_walkForward");
 
-                        //createStompEffect();
+                        isStomping = true;
+                        ChangeAnimation("Golem_stompAttack");
+                        isStomping = false;
+                    }
+                    else if (isStomping)
+                    {
+                        ChangeAnimation("Golem_intimidateOne");
+                    }
+
+
+                }
+                    if (!isInMeleeRange)
+                    {
+                        ChangeAnimation("Golem_walkForward");
 
                     }
-                }
-                agent.isStopped = false;
-                agent.SetDestination(gameManager.instance.player.transform.position);
+                //agent.isStopped = false;
+                //agent.SetDestination(gameManager.instance.player.transform.position);
 
                 //if (!isInMeleeRange)
                 //{
@@ -254,16 +263,17 @@ public class enemyGolem : MonoBehaviour, IDamage
                 //}
 
 
-                Debug.Log(currentAnimation);
 
 
                 if (agent.remainingDistance <= agent.stoppingDistance)
                     facePlayer();
 
                 agent.stoppingDistance = stoppingDistanceOriginal;
+
                 return true;
             }
             //isPursuing = false;
+            isFighting = false;
         }
         return false;
 
@@ -273,14 +283,30 @@ public class enemyGolem : MonoBehaviour, IDamage
     {
         agent.SetDestination(gameManager.instance.player.transform.position);
         isPursuing = true;
-        //ChangeAnimation("Golem_runForward");
+        agent.speed = sprintSpeed;
+        agent.isStopped = false;
+    }
+
+    public void startRoaming()
+    {
+        isRoaming = true;
+        agent.speed = movementSpeed;
+        agent.isStopped = false;
     }
 
     public void stopPursuing()
     {
         agent.SetDestination(this.transform.position);
-        //isPursuing = false;
-        //ChangeAnimation("");
+        isPursuing = false;
+        agent.speed = 0;
+        agent.isStopped = true;
+    }
+
+    public void stopMoving()
+    {
+        agent.SetDestination(this.transform.position);
+        agent.speed = 0;
+        agent.isStopped = true;
     }
 
 
