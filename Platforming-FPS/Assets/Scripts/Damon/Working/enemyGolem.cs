@@ -82,9 +82,6 @@ public class enemyGolem : MonoBehaviour, IDamage
         ChangeAnimation("Golem_idle");
         agent.speed = movementSpeed;
         sprintSpeed = movementSpeed * 2;
-        //timer = new myTimer();
-        //timer.startingTime = timeStart;
-        //timer.targetTime = timeEnd;
         Rigidbody rb = projectile.GetComponent<Rigidbody>();
         rb.useGravity = false;
 
@@ -98,10 +95,19 @@ public class enemyGolem : MonoBehaviour, IDamage
         {
             //Debug.Log("Player in melee range");
             isInMeleeRange = true;
+            agent.isStopped = true;
+            //agent.SetDestination(this.transform.position);
         }
-        else
+        else if (distanceToPlayer >= meleeRange)
         {
             isInMeleeRange = false;
+            agent.isStopped = false;
+
+            //if (playerInRange && !isInMeleeRange)
+            //{
+            //    //agent.speed = sprintSpeed;
+            //}
+
         }
 
 
@@ -163,7 +169,26 @@ public class enemyGolem : MonoBehaviour, IDamage
         {
             agent.SetDestination(hit.position);
         }
-        StartCoroutine(Searching());
+
+        //StartCoroutine(Searching());
+        // start of searching code
+
+
+        isSearching = true;
+        agent.isStopped = true;
+        //agent.SetDestination(this.transform.position);
+        ChangeAnimation("Golem_lookAround");
+        agent.speed = 0;
+        yield return new WaitForSeconds(2.5f);
+        agent.speed = movementSpeed;
+        agent.isStopped = false;
+        isSearching = false;
+        ChangeAnimation("Golem_walkForward");
+
+
+        // end of searching code
+
+        //yield return new WaitForSeconds(2.5f);
         agent.stoppingDistance = stoppingDistanceOriginal;
         isRoaming = false;
     }
@@ -173,7 +198,7 @@ public class enemyGolem : MonoBehaviour, IDamage
         isSearching = true;
         agent.isStopped = true;
         ChangeAnimation("Golem_lookAround");
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2.5f);
         agent.isStopped = false;
         isSearching = false;
         ChangeAnimation("Golem_walkForward");
@@ -194,6 +219,8 @@ public class enemyGolem : MonoBehaviour, IDamage
                 //ChangeAnimation("Golem_runForward");
                 isSearching = false;
                 StopCoroutine(roam());
+                StopCoroutine(Searching());
+
                 agent.SetDestination(gameManager.instance.player.transform.position);
                 if (isInMeleeRange && distanceToPlayer <= meleeRange)
                 {
@@ -252,7 +279,7 @@ public class enemyGolem : MonoBehaviour, IDamage
     public void stopPursuing()
     {
         agent.SetDestination(this.transform.position);
-        isPursuing = false;
+        //isPursuing = false;
         //ChangeAnimation("");
     }
 

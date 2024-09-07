@@ -972,7 +972,7 @@ MonoBehaviour:
   hpbar: {fileID: 6256239124601512118}
   projectile: {fileID: 3672504965784739243, guid: 0691bc8c83cd5ec40810e03e56dbb637, type: 3}
   startingHealth: 20
-  viewAngle: 65
+  viewAngle: 55
   facePlayerSpeed: 1000
   roamDistance: 10
   roamTimer: 0.65
