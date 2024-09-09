@@ -120,7 +120,7 @@ public class playerController : MonoBehaviour, IDamage
         {
             jumpCount++;
             playerVel.y = jumpSpeed;
-            gameManager.instance.PlayAud(audJump[Random.Range(0, audJump.Length)], audJumpVol);
+            audioManager.instance.PlayAud(audJump[Random.Range(0, audJump.Length)], audJumpVol);
         }
 
         if (Input.GetButtonDown("Save Object"))
@@ -152,7 +152,7 @@ public class playerController : MonoBehaviour, IDamage
     {
         isPlayingSteps = true;
 
-        gameManager.instance.PlayAud(audSteps[Random.Range(0, audSteps.Length)], audStepsVol);
+        audioManager.instance.PlayAud(audSteps[Random.Range(0, audSteps.Length)], audStepsVol);
         if (!isSprinting)
         {
             yield return new WaitForSeconds(0.5f);
@@ -223,7 +223,7 @@ public class playerController : MonoBehaviour, IDamage
             isShooting = true;
 
                 StartCoroutine(flashMuzzle());
-                gameManager.instance.PlayAud(gunList[selectedGun].shootSound[Random.Range(0, gunList[selectedGun].shootSound.Length)], gunList[selectedGun].shootVolume);
+                audioManager.instance.PlayAud(gunList[selectedGun].shootSound[Random.Range(0, gunList[selectedGun].shootSound.Length)], gunList[selectedGun].shootVolume);
                 Instantiate(bullet, shootPos.position, shootPos.rotation);
                 yield return new WaitForSeconds(shootRate);
                 isShooting = false;
@@ -237,7 +237,7 @@ public class playerController : MonoBehaviour, IDamage
             StartCoroutine(Deflecting(myCollider));
             StartCoroutine(flashDeflection());
             bool isPlayingDeflection = true;
-            gameManager.instance.PlayAud(gunList[selectedGun].shootSound[Random.Range(0, gunList[selectedGun].shootSound.Length)], gunList[selectedGun].shootVolume);
+            audioManager.instance.PlayAud(gunList[selectedGun].shootSound[Random.Range(0, gunList[selectedGun].shootSound.Length)], gunList[selectedGun].shootVolume);
             if (isPlayingDeflection)
             {
                 yield return new WaitForSeconds(0.5f);
@@ -253,7 +253,7 @@ public class playerController : MonoBehaviour, IDamage
             isShooting = true;
             gunBlast();
             StartCoroutine(flashMuzzle());
-            gameManager.instance.PlayAud(gunList[selectedGun].shootSound[Random.Range(0, gunList[selectedGun].shootSound.Length)], gunList[selectedGun].shootVolume);
+            audioManager.instance.PlayAud(gunList[selectedGun].shootSound[Random.Range(0, gunList[selectedGun].shootSound.Length)], gunList[selectedGun].shootVolume);
             yield return new WaitForSeconds(shootRate);
             isShooting = false;
 
@@ -299,7 +299,7 @@ public class playerController : MonoBehaviour, IDamage
         //Debug.Log("Ouch!");
         if (HP < 0) { HP = 0; }
 
-        gameManager.instance.PlayAud(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
+        audioManager.instance.PlayAud(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
 
         updatePlayerUI();
         StartCoroutine(flashDamage());
@@ -363,7 +363,7 @@ public class playerController : MonoBehaviour, IDamage
 
     public void getGunStats(gunStats gun)
     {
-        gameManager.instance.PlayAud(audWeapPickup, audWeapPickupVol);
+        audioManager.instance.PlayAud(audWeapPickup, audWeapPickupVol);
         gunList.Add(gun);
         selectedGun = gunList.Count - 1;
         shootDamage = gun.shootDamage;
@@ -405,7 +405,7 @@ public class playerController : MonoBehaviour, IDamage
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
 
-        gameManager.instance.PlayAud(gunList[selectedGun].switchSound[Random.Range(0, gunList[selectedGun].switchSound.Length)], gunList[selectedGun].switchVolume);
+        audioManager.instance.PlayAud(gunList[selectedGun].switchSound[Random.Range(0, gunList[selectedGun].switchSound.Length)], gunList[selectedGun].switchVolume);
 
     }
 

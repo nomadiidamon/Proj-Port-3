@@ -34,7 +34,7 @@ public class meleeAI_Dylan : MonoBehaviour, IDamage
     {
         HP = startingHealth;
         colorOrig = model.material.color;
-        gameManager.instance.updateGameGoal(1);
+        enemyManager.instance.updateEnemyCount(1);
 
         updateHPBar();
     }
@@ -99,7 +99,7 @@ public class meleeAI_Dylan : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
-            gameManager.instance.updateGameGoal(-1);
+            enemyManager.instance.updateEnemyCount(-1);
             Destroy(gameObject);
         }
     }

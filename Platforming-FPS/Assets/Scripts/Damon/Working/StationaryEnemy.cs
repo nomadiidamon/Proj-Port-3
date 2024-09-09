@@ -39,7 +39,7 @@ public class StationaryEnemy : MonoBehaviour, IDamage
         HP_Original = HP;
         colorOrig = model.material.color;
 
-        gameManager.instance.updateGameGoal(1);
+        enemyManager.instance.updateEnemyCount(1);
         player = gameManager.instance.player;
 
         updateHPBar();
@@ -95,7 +95,7 @@ public class StationaryEnemy : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
-            gameManager.instance.updateGameGoal(-1);
+            enemyManager.instance.updateEnemyCount(-1);
             Destroy(gameObject);
         }
     }

@@ -76,7 +76,7 @@ public class enemyGolem : MonoBehaviour, IDamage
     {
         HP = startingHealth;
         colorOrig = model.sharedMaterial.color;
-        gameManager.instance.updateGameGoal(1);
+        enemyManager.instance.updateEnemyCount(1);
         stoppingDistanceOriginal = agent.stoppingDistance;
         startingPosition = transform.position;
         updateHPBar();
@@ -339,13 +339,13 @@ public class enemyGolem : MonoBehaviour, IDamage
         {
             isDead = true;
 
-            gameManager.instance.updateGameGoal(-1);
+            enemyManager.instance.updateEnemyCount(-1);
 
             agent.isStopped = true;
             animator.enabled = false;
             this.enabled = false;
 
-            gameManager.instance.PlayAud(deathSound[Random.Range(0, deathSound.Length)], deathSoundVol);
+            audioManager.instance.PlayAud(deathSound[Random.Range(0,deathSound.Length)], deathSoundVol);
 
             StartCoroutine(destroyAfterSound());
         }

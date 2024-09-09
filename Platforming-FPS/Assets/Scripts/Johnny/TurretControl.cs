@@ -12,6 +12,7 @@ public class TurretControl : MonoBehaviour, IDamage
     private int startingHealth;
     [SerializeField] int viewAngle;
     [SerializeField] int facePlayerSpeed;
+    [SerializeField] Canvas hpFrame;
     [SerializeField] Image hpbar;
     [SerializeField] int damage;
     [SerializeField] GameObject bullet;
@@ -25,6 +26,7 @@ public class TurretControl : MonoBehaviour, IDamage
     float angleToPlayer;
     Vector3 playerDir;
     Color colorOriginal;
+    Vector3 playerPos;
 
     // Start is called before the first frame update
     void Start()
@@ -32,7 +34,7 @@ public class TurretControl : MonoBehaviour, IDamage
         startingHealth = health;
         colorOriginal = model.material.color;
         UpdateHealthBar();
-        gameManager.instance.updateGameGoal(1);
+        enemyManager.instance.updateEnemyCount(1);
         bullet.GetComponent<Damage>().SetDamageAmount(damage);
 
     }
@@ -44,6 +46,17 @@ public class TurretControl : MonoBehaviour, IDamage
         {
             
         }
+        healthBarFacePlayer();
+    }
+
+    void healthBarFacePlayer()
+    {
+        playerPos = enemyManager.instance.playerPosition;
+        Quaternion rot = Quaternion.LookRotation(playerPos);
+
+        hpbar.canvas.transform.rotation = Quaternion.Lerp(hpbar.transform.rotation, rot, Time.deltaTime * facePlayerSpeed);
+
+
     }
 
     void UpdateHealthBar()
@@ -65,7 +78,7 @@ public class TurretControl : MonoBehaviour, IDamage
 
         if (health <= 0)
         {
-            gameManager.instance.updateGameGoal(-1);
+            enemyManager.instance.updateEnemyCount(-1);
 
             Destroy(gameObject);
         }

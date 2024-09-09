@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac4c15d63ca800489dada8a320fe87c, type: 3}
   m_Name: Gun - BlastGun
   m_EditorClassIdentifier: 
-  gunModel: {fileID: 6838604388318766294, guid: 7452065c3f80858478604f8d202cdb13, type: 3}
+  gunModel: {fileID: 8666491934486968174, guid: 76ddb46e095303c409e9cd36f50b57f6, type: 3}
   shootDamage: 1
   shootRate: 3
   shootDistance: 1
   ammoCur: 0
   ammoMax: 25
-  gunScale: {x: 2, y: 2, z: 2}
+  gunScale: {x: 1, y: 1, z: 1}
   hitEffect: {fileID: 3249809072487309720, guid: 47096eff328e11a418ace7db2d72aa97, type: 3}
   shootSound:
   - {fileID: 8300000, guid: f15c552e0d2904a48bdad9891b8cc7fb, type: 3}
