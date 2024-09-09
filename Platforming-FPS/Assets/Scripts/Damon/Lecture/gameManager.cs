@@ -8,12 +8,10 @@ public class gameManager : MonoBehaviour
 {
     public static gameManager instance;
 
-    [SerializeField] AudioSource audPlayer;
-
     public GameObject menuActive;
     public GameObject menuPause;
-    [SerializeField] GameObject menuWin;
-    [SerializeField] GameObject menuLose;
+    [SerializeField] public GameObject menuWin;
+    [SerializeField] public GameObject menuLose;
     public GameObject menuSettings;
 
     
@@ -30,7 +28,6 @@ public class gameManager : MonoBehaviour
     public bool CheckpointReached;
 
     public Image playersHealthPool;
-    [SerializeField] TMP_Text enemyCountText;
     [SerializeField] TMP_Text RespawnCount;
     [SerializeField] TMP_Text uiPrompt;
 
@@ -50,7 +47,6 @@ public class gameManager : MonoBehaviour
 
     private GameObject currentDoor;
 
-    // Start is called before the first frame update
     void Awake()
     {
 
@@ -64,7 +60,6 @@ public class gameManager : MonoBehaviour
         worldGravity = instance.playerScript.GetGravity();                          // setting resting gravity of the world
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetButtonDown("Cancel"))
@@ -124,23 +119,6 @@ public class gameManager : MonoBehaviour
         RespawnCount.text = respawns.ToString("F0");
     }
 
-    public void updateGameGoal(int amount)
-    {
-        enemyCount += amount;
-        enemyCountText.text = enemyCount.ToString("F0");
-
-        if (enemyCount <= 0)
-        {
-            Debug.Log("You Win");
-
-            // you win!
-            statePause();
-            menuActive = menuWin;
-            menuActive.SetActive(isPaused);
-
-        }
-    }
-
     public void youLose()
     {
         Debug.Log("You Lose");
@@ -182,12 +160,6 @@ public class gameManager : MonoBehaviour
         return uiPrompt.enabled;
 
 
-    }
-
-
-    public void PlayAud(AudioClip sound, float vol)
-    {
-        audPlayer.PlayOneShot(sound, vol);
     }
 
 }

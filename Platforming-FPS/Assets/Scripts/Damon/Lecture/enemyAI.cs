@@ -52,7 +52,7 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         HP = startingHealth;
         colorOrig = model.material.color;
-        gameManager.instance.updateGameGoal(1);
+        enemyManager.instance.updateEnemyCount(1);
         stoppingDistanceOriginal = agent.stoppingDistance;
         startingPosition = transform.position;
         updateHPBar();
@@ -149,7 +149,7 @@ public class enemyAI : MonoBehaviour, IDamage
         {
             isDead = true;
 
-            gameManager.instance.updateGameGoal(-1);
+            enemyManager.instance.updateEnemyCount(-1);
 
             agent.isStopped = true;
             animator.enabled = false;
