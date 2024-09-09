@@ -276,6 +276,7 @@ public class flashColor : MonoBehaviour
 
         myLight.color = lightColor;
         myLight.intensity = lightLerp;
+        rend.sharedMaterial.SetColor("_EmissionColor", lightColor * lightLerp);
         if (flashRange)
         {
             currentRange = Mathf.Lerp(minRange, maxRange, rangeLerp);
