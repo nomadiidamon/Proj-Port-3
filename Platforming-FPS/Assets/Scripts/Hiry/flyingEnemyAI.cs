@@ -33,7 +33,7 @@ public class flyingEnemyAI : MonoBehaviour, IDamage
     {
         HP = startingHealth;
         colorOrig = model.material.color;
-        gameManager.instance.updateGameGoal(1);
+        enemyManager.instance.updateEnemyCount(1);
         updateHPBar();
     }
 
@@ -113,7 +113,7 @@ public class flyingEnemyAI : MonoBehaviour, IDamage
         if (HP <= 0)
         {
             isDead = true;
-            gameManager.instance.updateGameGoal(-1);
+            enemyManager.instance.updateEnemyCount(-1);
             this.enabled = false;
             playDeathAudio(deathSound[Random.Range(0, deathSound.Length)], deathSoundVol);
             StartCoroutine(destroyAfterSound());
