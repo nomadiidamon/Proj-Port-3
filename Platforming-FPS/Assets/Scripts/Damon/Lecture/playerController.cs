@@ -11,7 +11,7 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] GameObject shield;
 
     [Header("-----Attributes-----")]
-    [Range(0, 10)] [SerializeField] int HP;
+    [Range(0, 100)] [SerializeField] int HP;
     [Range(1, 50)] [SerializeField] int speed;
     [Range(2, 10)] [SerializeField] int sprintMod;
     [Range(1, 3)] [SerializeField] int jumpMax;
@@ -66,6 +66,7 @@ public class playerController : MonoBehaviour, IDamage
     private BoxCollider myCollider;
 
     public GameObject objectHeld;           // object ready to shoot
+    [SerializeField] Transform objectHeldContainer;
 
     public List<gunStats> GetGunList() { return gunList; }
 
@@ -139,7 +140,7 @@ public class playerController : MonoBehaviour, IDamage
             audioManager.instance.PlayAud(audJump[Random.Range(0, audJump.Length)], audJumpVol);
         }
 
-        if (Input.GetButtonDown("Save Object"))
+        if (Input.GetButtonDown("Save Object") && isCreator)
         {
             saveObjectBullet();
         }
@@ -472,7 +473,14 @@ public class playerController : MonoBehaviour, IDamage
                 Debug.Log(hit.collider.name);
                 if (hit.collider.CompareTag("Creatable"))
                 {
-                    objectHeld = hit.collider.gameObject;            // instantiate object for Object Holder here probably
+                if (objectHeld)
+                {
+                    Destroy(objectHeld);
+                }
+                    objectHeld = Instantiate(hit.collider.gameObject, objectHeldContainer.position, Quaternion.identity);            // instantiate object for Object Holder here probably
+                objectHeld.transform.parent = objectHeldContainer;
+                objectHeld.GetComponent<Collider>().enabled = false;           // shut off all colliders; foreach?
+                objectHeld.transform.localScale *= 0.1f;
                 }
             }
     }
