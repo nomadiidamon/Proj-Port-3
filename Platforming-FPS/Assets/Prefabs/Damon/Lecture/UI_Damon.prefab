@@ -529,8 +529,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1159841779166180431}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.47058824, y: 0}
-  m_AnchorMax: {x: 0.47058824, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -868,7 +868,7 @@ RectTransform:
   m_Father: {fileID: 6467400948459610823}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.47058824, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1075,8 +1075,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 238170607101285341}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.47058824, y: 0}
-  m_AnchorMax: {x: 0.47058824, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2851,7 +2851,7 @@ RectTransform:
   m_Father: {fileID: 2301813471390349919}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.47058824, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4613,7 +4613,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f5341f73166b7b4ca464a825cb58a89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audPlayer: {fileID: 4232771677383160623}
   menuActive: {fileID: 0}
   menuPause: {fileID: 68401831589066027}
   menuWin: {fileID: 4292888127461263188}
@@ -4628,7 +4627,6 @@ MonoBehaviour:
   checkPointMenu: {fileID: 4329168847347616602}
   CheckpointReached: 0
   playersHealthPool: {fileID: 9171209080167684621}
-  enemyCountText: {fileID: 3653566422451555927}
   RespawnCount: {fileID: 7129572748241510608}
   uiPrompt: {fileID: 8384181117690848029}
   player: {fileID: 0}
