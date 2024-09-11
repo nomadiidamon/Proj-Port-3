@@ -456,7 +456,7 @@ public class playerController : MonoBehaviour, IDamage
                 Debug.Log(hit.collider.name);
                 if (hit.collider.CompareTag("Creatable"))
                 {
-                    objectHeld = hit.collider.gameObject;
+                    objectHeld = hit.collider.gameObject;            // instantiate object for Object Holder here probably
                 }
             }
     }
