@@ -17,6 +17,7 @@ public class playerController : MonoBehaviour, IDamage
     [Range(1, 3)] [SerializeField] int jumpMax;
     [Range(8, 20)] [SerializeField] int jumpSpeed;
     [Range(15, 30)] [SerializeField] int gravity;
+    [SerializeField] float fallDeathLevel = -50f;
 
     [Header("-----Guns-----")]
     [SerializeField] List<gunStats> gunList = new List<gunStats>();
@@ -98,7 +99,22 @@ public class playerController : MonoBehaviour, IDamage
             selectGun();
         }
         sprint();
+
+        fallDeath();
     }
+
+    void fallDeath()
+    {
+        if (transform.position.y < fallDeathLevel)
+        {
+            HP = 0;
+            updatePlayerUI();
+            gameManager.instance.isPaused = false;
+            gameManager.instance.youLose();
+        }
+    }
+
+
 
     void movement()
     {
@@ -494,8 +510,3 @@ public class playerController : MonoBehaviour, IDamage
     }
 
     }
-
-
-
-
-

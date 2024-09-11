@@ -44,14 +44,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 8016048949092535783}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c646ed1d7b6a9a49945cef17f785278, type: 3}
+  m_Script: {fileID: 11500000, guid: 5f5341f73166b7b4ca464a825cb58a89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  rb: {fileID: 321238960857309566}
-  damageAmount: 1
-  speed: 25
-  destroyTime: 3
+  menuActive: {fileID: 0}
+  menuPause: {fileID: 0}
+  menuWin: {fileID: 0}
+  menuLose: {fileID: 0}
+  menuSettings: {fileID: 0}
+  playerSpawnPosition: {fileID: 0}
+  flashDamageScreen: {fileID: 0}
+  underwaterOverlay: {fileID: 0}
+  restoreHealthScreen: {fileID: 0}
+  increaseDamageScreen: {fileID: 0}
+  raiseSpeedScreen: {fileID: 0}
+  checkPointMenu: {fileID: 0}
+  CheckpointReached: 0
+  playersHealthPool: {fileID: 0}
+  RespawnCount: {fileID: 0}
+  uiPrompt: {fileID: 0}
+  player: {fileID: 0}
+  worldGravity: 0
+  playerScript: {fileID: 0}
+  respawns: 0
+  isPaused: 0
 --- !u!135 &4568458166508073963
 SphereCollider:
   m_ObjectHideFlags: 0
