@@ -519,10 +519,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy 1_Damon
       objectReference: {fileID: 0}
-    - target: {fileID: 930245684390607350, guid: 36a9d438805eaea4ab68a8c87bda3544, type: 3}
-      propertyPath: m_TagString
-      value: Creatable
-      objectReference: {fileID: 0}
     - target: {fileID: 8837204978625838430, guid: 36a9d438805eaea4ab68a8c87bda3544, type: 3}
       propertyPath: m_LocalPosition.x
       value: 36.37833

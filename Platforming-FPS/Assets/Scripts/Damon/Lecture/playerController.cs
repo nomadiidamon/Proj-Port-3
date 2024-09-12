@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class playerController : MonoBehaviour, IDamage
@@ -472,11 +473,12 @@ public class playerController : MonoBehaviour, IDamage
 
     public void saveObjectBullet()
     {
+        Creatable creatable = GetComponent<Creatable>();
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 50, ~ignoreMask))
         {
             Debug.Log(hit.collider.name);
-            if (hit.collider.CompareTag("Creatable"))
+            if (hit.collider.CompareTag("Creatable") || hit.collider.CompareTag("Enemy"))
             {
                 if (objectHeld)
                 {
@@ -485,11 +487,17 @@ public class playerController : MonoBehaviour, IDamage
                 objectHeld = Instantiate(hit.collider.gameObject, objectHeldContainer.position, Quaternion.identity);            // create a copy of the chosen object and assign it to objectHeld
                 objectHeldOriginalSize = objectHeld.transform.localScale;                    // save the original size of the copied object before its shrunken to fit in the object container
                 objectHeld.transform.parent = objectHeldContainer;                           // set the parent of the objectHeld to the conainter so it stays in it
+                enemyAI enemyAI = objectHeld.GetComponent<enemyAI>();
+                if (enemyAI != null)
+                {
+                    Destroy(enemyAI);
+                }
                 disableGameObject(objectHeld);
                 objectHeld.transform.localScale *= 0.1f;
             }
         }
     }
+
     public void disableGameObject(GameObject gameObject)
     {
         foreach (Component component in gameObject.GetComponents<Component>())
@@ -506,8 +514,10 @@ public class playerController : MonoBehaviour, IDamage
     {
         foreach (Component component in gameObject.GetComponents<Component>())
         {
-            if (component is Behaviour behaviour)
-            { behaviour.enabled = true; }
+            if (component is Behaviour behaviour && component is not enemyAI)
+            { 
+                behaviour.enabled = true; 
+            }
         }
         foreach (Collider collider in gameObject.GetComponents<Collider>())
         {

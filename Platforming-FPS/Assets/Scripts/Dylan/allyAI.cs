@@ -5,7 +5,7 @@ using UnityEngine.AI;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
-public class enemyAI : MonoBehaviour, IDamage, Creatable
+public class allyAI : MonoBehaviour, IDamage
 {
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Renderer model;
@@ -18,11 +18,9 @@ public class enemyAI : MonoBehaviour, IDamage, Creatable
     private int HP;
     [SerializeField] int startingHealth;
     [SerializeField] int viewAngle;
-    [SerializeField] int facePlayerSpeed;
+    [SerializeField] int faceEnemySpeed;
 
     [SerializeField] Image hpbar;
-    [SerializeField] int roamDistance;
-    [SerializeField] int roamTimer;
     [SerializeField] int animSpeedTrans;
 
     [SerializeField] GameObject bullet;
@@ -34,16 +32,15 @@ public class enemyAI : MonoBehaviour, IDamage, Creatable
     [Range(0, 1)][SerializeField] float deathSoundVol;
 
     bool isShooting;
-    bool playerInRange;
-    bool isRoaming;
     bool isPlayingSteps;
     private bool isDead = false;
 
     float angleToPlayer;
-    float stoppingDistanceOriginal;
 
-    Vector3 playerDir;
+    Vector3 enemyDirection;
     Vector3 startingPosition;
+
+    Vector3 enemyPosition;
 
     Color colorOrig;
 
@@ -52,8 +49,6 @@ public class enemyAI : MonoBehaviour, IDamage, Creatable
     {
         HP = startingHealth;
         colorOrig = model.material.color;
-        enemyManager.instance.updateEnemyCount(1);
-        stoppingDistanceOriginal = agent.stoppingDistance;
         startingPosition = transform.position;
         updateHPBar();
     }
@@ -61,35 +56,27 @@ public class enemyAI : MonoBehaviour, IDamage, Creatable
     // Update is called once per frame
     void Update()
     {
+        enemyPosition = FindAnyObjectByType<enemyAI>().GetComponent<CapsuleCollider>().ClosestPoint(shootPos.position);
+
         float agentSpeed = agent.velocity.normalized.magnitude;
         animator.SetFloat("Speed", Mathf.Lerp(animator.GetFloat("Speed"), agentSpeed, Time.deltaTime * animSpeedTrans));
 
-        if (playerInRange && !canSeePlayer())
+        Debug.Log(canSeeEnemy());
+
+        if (canSeeEnemy())
         {
-            if (!isRoaming && agent.remainingDistance < 0.05f)
-                StartCoroutine(roam());
+            agent.SetDestination(enemyPosition);
+            if (!isShooting)
+                StartCoroutine(shoot());
+
+            if (agent.remainingDistance <= agent.stoppingDistance)
+                faceEnemy();
         }
-        else if (!playerInRange)
+        else
         {
-            if (!isRoaming && agent.remainingDistance < 0.05f)
-                StartCoroutine(roam());
+            agent.stoppingDistance = 3;
+            agent.SetDestination(gameManager.instance.player.transform.position);
         }
-    }
-
-    IEnumerator roam()
-    {
-        isRoaming = true;
-        yield return new WaitForSeconds(roamTimer);
-
-        agent.stoppingDistance = 0;
-        Vector3 randomDistance = Random.insideUnitSphere * roamDistance;
-        randomDistance += startingPosition;
-
-        NavMeshHit hit;
-        NavMesh.SamplePosition(randomDistance, out hit, roamDistance, 1);
-        agent.SetDestination(hit.position);
-
-        isRoaming = false;
     }
 
     int getHealth()
@@ -97,40 +84,26 @@ public class enemyAI : MonoBehaviour, IDamage, Creatable
         return HP;
     }
 
-    bool canSeePlayer()
+    bool canSeeEnemy()
     {
-        playerDir = gameManager.instance.player.transform.position - headPos.position;
-        angleToPlayer = Vector3.Angle(playerDir, transform.forward);
-
-        //Debug.Log(angleToPlayer);
-        //Debug.DrawRay(headPos.position, playerDir);
+        enemyDirection = enemyPosition - headPos.position;
 
         RaycastHit hit;
-        if (Physics.Raycast(headPos.position, playerDir, out hit))
-        {
-            if (hit.collider.CompareTag("Player") && angleToPlayer <= viewAngle)
+        Physics.Raycast(headPos.position, enemyDirection, out hit);
+        Debug.DrawRay(headPos.position, enemyDirection);
+        if (hit.collider.CompareTag("Enemy"))
             {
-                agent.SetDestination(gameManager.instance.player.transform.position);
-                if (!isShooting)
-                    StartCoroutine(shoot());
-
-                if (agent.remainingDistance <= agent.stoppingDistance)
-                    facePlayer();
-
-                agent.stoppingDistance = stoppingDistanceOriginal;
                 return true;
             }
-        }
-        agent.stoppingDistance = 0;
         return false;
 
     }
 
 
-    void facePlayer()
+    void faceEnemy()
     {
-        Quaternion rot = Quaternion.LookRotation(playerDir);
-        transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * facePlayerSpeed);
+        Quaternion rot = Quaternion.LookRotation(enemyDirection);
+        transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * faceEnemySpeed);
     }
 
     public void takeDamage(int amount)
@@ -139,7 +112,6 @@ public class enemyAI : MonoBehaviour, IDamage, Creatable
 
         HP -= amount;
         agent.SetDestination(gameManager.instance.player.transform.position);
-        StopCoroutine(roam());
 
         Debug.Log("Soldier took " + amount + " damage");
         updateHPBar();
@@ -148,8 +120,6 @@ public class enemyAI : MonoBehaviour, IDamage, Creatable
         if (HP <= 0)
         {
             isDead = true;
-
-            enemyManager.instance.updateEnemyCount(-1);
 
             agent.isStopped = true;
             animator.enabled = false;
@@ -190,7 +160,7 @@ public class enemyAI : MonoBehaviour, IDamage, Creatable
 
     public void createProjectile()
     {
-        Vector3 direction = gameManager.instance.player.transform.position - shootPos.transform.position;
+        Vector3 direction = enemyPosition - shootPos.transform.position;
         direction.Normalize();
         Quaternion bulletRotation = Quaternion.LookRotation(direction);
         //Debug.Log("Pew!");
@@ -207,23 +177,6 @@ public class enemyAI : MonoBehaviour, IDamage, Creatable
     //    meleeCollider.enabled = false;
 
     //}
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerInRange = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerInRange = false;
-            agent.stoppingDistance = 0;
-        }
-    }
 
     void updateHPBar()
     {

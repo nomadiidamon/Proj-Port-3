@@ -528,6 +528,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8837204978625838430}
   - component: {fileID: 991210694362122776}
+  - component: {fileID: 7125080052642704932}
   - component: {fileID: 3279710370638521175}
   - component: {fileID: 2176174365748436954}
   - component: {fileID: 8391915189165973476}
@@ -535,7 +536,7 @@ GameObject:
   - component: {fileID: 5849967986925197964}
   m_Layer: 0
   m_Name: Enemy 1_Damon
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -589,6 +590,33 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8e5745ff523fd904fb323cf6eec504a9, type: 3}
   - {fileID: 8300000, guid: 09084bed31b0a0f41ae058f4a84fbf4f, type: 3}
   deathSoundVol: 1
+--- !u!114 &7125080052642704932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930245684390607350}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5db642ff0b05be54cbb76d875934e53e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 3279710370638521175}
+  model: {fileID: 3399873149566495825}
+  animator: {fileID: 2176174365748436954}
+  shootPos: {fileID: 4680150978469414437}
+  headPos: {fileID: 7103974935042376568}
+  audEnemy: {fileID: 5849967986925197964}
+  startingHealth: 8
+  viewAngle: 90
+  faceEnemySpeed: 5
+  hpbar: {fileID: 942767710059875622}
+  animSpeedTrans: 3
+  bullet: {fileID: 3121373984394139885, guid: b18ac85634ea36a438f60d9b104e933c, type: 3}
+  shootRate: 0.5
+  deathSound: []
+  deathSoundVol: 0
 --- !u!195 &3279710370638521175
 NavMeshAgent:
   m_ObjectHideFlags: 0
