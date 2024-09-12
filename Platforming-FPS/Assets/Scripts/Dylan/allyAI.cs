@@ -17,7 +17,6 @@ public class allyAI : MonoBehaviour, IDamage
 
     private int HP;
     [SerializeField] int startingHealth;
-    [SerializeField] int viewAngle;
     [SerializeField] int faceEnemySpeed;
 
     [SerializeField] Image hpbar;
@@ -89,12 +88,15 @@ public class allyAI : MonoBehaviour, IDamage
         enemyDirection = enemyPosition - headPos.position;
 
         RaycastHit hit;
-        Physics.Raycast(headPos.position, enemyDirection, out hit);
+        Physics.Raycast(headPos.position, enemyDirection, out hit, gameManager.instance.playerScript.allyHeldAggroRange);
         Debug.DrawRay(headPos.position, enemyDirection);
-        if (hit.collider.CompareTag("Enemy"))
+        if (hit.collider != null)
+        {
+            if (hit.collider.CompareTag("Enemy"))
             {
                 return true;
             }
+        }
         return false;
 
     }

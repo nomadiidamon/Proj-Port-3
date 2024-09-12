@@ -69,6 +69,8 @@ public class playerController : MonoBehaviour, IDamage
     public GameObject objectHeld;           // object ready to shoot
     [SerializeField] Transform objectHeldContainer;
     Vector3 objectHeldOriginalSize;
+    public float allyHeldAggroRange;
+
     public Vector3 GetObjectHeldOriginalSize()
     {
         return objectHeldOriginalSize;
@@ -508,6 +510,7 @@ public class playerController : MonoBehaviour, IDamage
                 enemyAI enemyAI = objectHeld.GetComponent<enemyAI>();
                 if (enemyAI != null)
                 {
+                    allyHeldAggroRange = enemyAI.GetComponent<SphereCollider>().radius;
                     Destroy(enemyAI);
                 }
                 disableGameObject(objectHeld);

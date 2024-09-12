@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3536201500387809014
 Transform:
   m_ObjectHideFlags: 0
@@ -890,6 +890,7 @@ MonoBehaviour:
   isHoldingShield: 0
   objectHeld: {fileID: 0}
   objectHeldContainer: {fileID: 3536201500387809014}
+  allyHeldAggroRange: 0
 --- !u!143 &3413670455078086860
 CharacterController:
   m_ObjectHideFlags: 0
