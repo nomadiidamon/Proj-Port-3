@@ -68,6 +68,10 @@ public class playerController : MonoBehaviour, IDamage
 
     public GameObject objectHeld;           // object ready to shoot
     [SerializeField] Transform objectHeldContainer;
+    [Range(3,10)] [SerializeField] int maxObjectsCreated;
+    [Range(1,3)] [SerializeField] int maxAlliesCreated;
+    public List<GameObject> objectsCreated;
+    public List<GameObject> alliesCreated;
     Vector3 objectHeldOriginalSize;
     public float allyHeldAggroRange;
 
@@ -499,6 +503,10 @@ public class playerController : MonoBehaviour, IDamage
             Debug.Log(hit.collider.name);
             if (hit.collider.CompareTag("Creatable") || hit.collider.CompareTag("Enemy"))
             {
+                if(hit.collider.CompareTag("Enemy"))
+                {
+                    hit.collider.tag = "Ally";
+                }
                 if (objectHeld)
                 {
                     Destroy(objectHeld);    // if an object is already held, destroy it for the next one to replace it
@@ -570,5 +578,34 @@ public class playerController : MonoBehaviour, IDamage
             elapsedTime += Time.deltaTime;
             yield return null;
         }
+    }
+
+    public void addToCreatedLists(GameObject createdObject)
+    {
+        if (createdObject.CompareTag("Ally"))
+        {
+            alliesCreated.Add(createdObject);
+            if (objectsCreated.Count > maxAlliesCreated)
+            {
+                Destroy(alliesCreated[0]);
+                for (int allyIndex = 0; allyIndex < maxAlliesCreated; allyIndex++)
+                {
+                    alliesCreated[allyIndex] = alliesCreated[allyIndex + 1];
+                }
+            }
+        }
+        else
+        {
+            objectsCreated.Add(createdObject);
+            if (objectsCreated.Count > maxObjectsCreated)
+            {
+                Destroy(objectsCreated[0]);
+                for (int objectIndex = 0; objectIndex < maxObjectsCreated; objectIndex++)
+                {
+                    objectsCreated[objectIndex] = objectsCreated[objectIndex + 1];
+                }
+            }
+        }
+        
     }
 }

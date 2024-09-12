@@ -60,7 +60,8 @@ public class Damage : MonoBehaviour
         }
         if (type == damageType.bullet)
         {
-            Instantiate(gameManager.instance.playerScript.GetGunList()[gameManager.instance.playerScript.selectedGun].hitEffect, this.transform.position, Quaternion.identity);
+            Instantiate(gameManager.instance.playerScript.GetGunList()[gameManager.instance.playerScript.selectedGun].hitEffect, this.transform.position, Quaternion.identity);  
+
             if (gameManager.instance.playerScript.isCreator)
             {
                 RaycastHit hit;
@@ -71,6 +72,8 @@ public class Damage : MonoBehaviour
                     GameObject groundObject = gameManager.instance.playerScript.objectHeld;
                     
                     GameObject newGroundObject = Instantiate(groundObject, hit.point + new Vector3 (0, groundObject.transform.position.y, 0), Quaternion.identity);
+
+                    gameManager.instance.playerScript.addToCreatedLists(newGroundObject);                   // add object to list to enforce max created objects
 
                     Vector3 directionToPlayer = gameManager.instance.player.transform.position - newGroundObject.transform.position;
 
@@ -87,6 +90,8 @@ public class Damage : MonoBehaviour
                     GameObject wallObject = gameManager.instance.playerScript.objectHeld;
 
                    GameObject newWallObject = Instantiate(gameManager.instance.playerScript.objectHeld, hit.point, this.transform.rotation);
+
+                    gameManager.instance.playerScript.addToCreatedLists(wallObject);                       // add object to list to enforce max created objects
 
                     newWallObject.transform.localScale = gameManager.instance.playerScript.GetObjectHeldOriginalSize();
 

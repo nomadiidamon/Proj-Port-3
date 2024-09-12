@@ -13,7 +13,7 @@ TagManager:
   - Shield
   - Player Bullet
   - Enemy
-  - Eyes
+  - Ally
   layers:
   - Default
   - TransparentFX
