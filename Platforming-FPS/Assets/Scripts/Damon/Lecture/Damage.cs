@@ -76,7 +76,11 @@ public class Damage : MonoBehaviour
 
                     directionToPlayer.y = 0;
 
+                    newGroundObject.transform.localScale = gameManager.instance.playerScript.GetObjectHeldOriginalSize();
+
                     newGroundObject.transform.rotation = Quaternion.LookRotation(directionToPlayer);
+
+                    gameManager.instance.playerScript.enableGameObject(newGroundObject);
                 }
                 else
                 { 
@@ -84,7 +88,11 @@ public class Damage : MonoBehaviour
 
                    GameObject newWallObject = Instantiate(gameManager.instance.playerScript.objectHeld, hit.point, this.transform.rotation);
 
-                    newWallObject.transform.rotation = Quaternion.LookRotation(hit.normal); 
+                    newWallObject.transform.localScale = gameManager.instance.playerScript.GetObjectHeldOriginalSize();
+
+                    newWallObject.transform.rotation = Quaternion.LookRotation(hit.normal);
+
+                    gameManager.instance.playerScript.enableGameObject(newWallObject);
                 }
             }
             Destroy(gameObject);
