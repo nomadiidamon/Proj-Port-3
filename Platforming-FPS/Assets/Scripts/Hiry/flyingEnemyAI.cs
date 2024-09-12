@@ -42,37 +42,18 @@ public class flyingEnemyAI : MonoBehaviour, IDamage
     {
         if (playerInRange)
         {
-            if (canSeePlayer())
-            {
-                // Continuously face the player
+            
                 facePlayer();
 
-                // Start shooting if not already shooting
                 if (!isShooting)
                 {
                     StartCoroutine(shoot());
                 }
             }
         }
-    }
+    
 
-    bool canSeePlayer()
-    {
-        playerDir = gameManager.instance.player.transform.position - headPos.position;
-        float angleToPlayer = Vector3.Angle(playerDir, transform.forward);
-
-        if (angleToPlayer <= viewAngle)
-        {
-            if (Physics.Raycast(headPos.position, playerDir, out RaycastHit hit, Mathf.Infinity, detectionLayerMask))
-            {
-                if (hit.collider.CompareTag("Player"))
-                {
-                    return true; // Player is detected
-                }
-            }
-        }
-        return false; // Player not detected
-    }
+   
 
     void facePlayer()
     {
@@ -82,7 +63,7 @@ public class flyingEnemyAI : MonoBehaviour, IDamage
         Debug.Log($"Current Rotation: {transform.rotation.eulerAngles}");
         Debug.Log($"Target Rotation: {targetRotation.eulerAngles}");
 
-        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, facePlayerSpeed * Time.deltaTime);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, facePlayerSpeed * Time.deltaTime);
     }
 
     IEnumerator shoot()
