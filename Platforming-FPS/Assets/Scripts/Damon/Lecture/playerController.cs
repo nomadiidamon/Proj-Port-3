@@ -11,12 +11,12 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] GameObject shield;
 
     [Header("-----Attributes-----")]
-    [Range(0, 100)] [SerializeField] int HP;
-    [Range(1, 50)] [SerializeField] int speed;
-    [Range(2, 10)] [SerializeField] int sprintMod;
-    [Range(1, 3)] [SerializeField] int jumpMax;
-    [Range(8, 20)] [SerializeField] int jumpSpeed;
-    [Range(15, 30)] [SerializeField] int gravity;
+    [Range(0, 100)][SerializeField] int HP;
+    [Range(1, 50)][SerializeField] int speed;
+    [Range(2, 10)][SerializeField] int sprintMod;
+    [Range(1, 3)][SerializeField] int jumpMax;
+    [Range(8, 20)][SerializeField] int jumpSpeed;
+    [Range(15, 30)][SerializeField] int gravity;
     [SerializeField] float fallDeathLevel = -50f;
 
     [Header("-----Guns-----")]
@@ -31,7 +31,7 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] float shootRate;
     [SerializeField] float deflectionSpeed;
     [SerializeField] float blastForce;
-    
+
 
     [Header("-----Sounds-----")]
     [SerializeField] AudioClip[] audJump;
@@ -50,7 +50,7 @@ public class playerController : MonoBehaviour, IDamage
 
     int jumpCount;
     public int HPOrig;
-    public int GetOriginalHpAmount() {  return HPOrig; }
+    public int GetOriginalHpAmount() { return HPOrig; }
     bool isSprinting;
     bool isShooting;
     bool isPlayingSteps;
@@ -150,12 +150,12 @@ public class playerController : MonoBehaviour, IDamage
 
         if (gunList.Count < 1)
         {
-            
+
         }
         else
         {
             if (Input.GetButton("Shoot") && !isShooting)
-            StartCoroutine(shoot());
+                StartCoroutine(shoot());
 
         }
 
@@ -165,7 +165,7 @@ public class playerController : MonoBehaviour, IDamage
         }
     }
 
-    IEnumerator playStep() 
+    IEnumerator playStep()
     {
         isPlayingSteps = true;
 
@@ -196,7 +196,7 @@ public class playerController : MonoBehaviour, IDamage
                 else if (!isSprinting)
                 {
                     isSprinting = true;
-                }             
+                }
             }
             if (Input.GetButtonDown("Sprint") && isSprinting)
             {
@@ -239,12 +239,12 @@ public class playerController : MonoBehaviour, IDamage
         {
             isShooting = true;
 
-                StartCoroutine(flashMuzzle());
-                audioManager.instance.PlayAud(gunList[selectedGun].shootSound[Random.Range(0, gunList[selectedGun].shootSound.Length)], gunList[selectedGun].shootVolume);
-                Instantiate(bullet, shootPos.position, shootPos.rotation);
-                yield return new WaitForSeconds(shootRate);
-                isShooting = false;
-           
+            StartCoroutine(flashMuzzle());
+            audioManager.instance.PlayAud(gunList[selectedGun].shootSound[Random.Range(0, gunList[selectedGun].shootSound.Length)], gunList[selectedGun].shootVolume);
+            Instantiate(bullet, shootPos.position, shootPos.rotation);
+            yield return new WaitForSeconds(shootRate);
+            isShooting = false;
+
         }
         else if (gunList[selectedGun].isShield)
         {
@@ -298,7 +298,7 @@ public class playerController : MonoBehaviour, IDamage
 
     IEnumerator flashDeflection()
     {
-        
+
         deflectionFlash.SetActive(true);
         yield return new WaitForSeconds(.05f);
         deflectionFlash.SetActive(false);
@@ -320,7 +320,7 @@ public class playerController : MonoBehaviour, IDamage
 
         updatePlayerUI();
         StartCoroutine(flashDamage());
-        
+
         // I'm dead!
         if (HP <= 0)
         {
@@ -452,7 +452,7 @@ public class playerController : MonoBehaviour, IDamage
     }
     public int GetGravity()
     {
-        return gravity; 
+        return gravity;
     }
     public void SetGravity(int amount)
     {
@@ -467,54 +467,48 @@ public class playerController : MonoBehaviour, IDamage
 
     public void saveObjectBullet()
     {
-            RaycastHit hit;
-            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 50, ~ignoreMask))
+        RaycastHit hit;
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 50, ~ignoreMask))
+        {
+            Debug.Log(hit.collider.name);
+            if (hit.collider.CompareTag("Creatable"))
             {
-                Debug.Log(hit.collider.name);
-                if (hit.collider.CompareTag("Creatable"))
-                {
                 if (objectHeld)
                 {
                     Destroy(objectHeld);
                 }
-                    objectHeld = Instantiate(hit.collider.gameObject, objectHeldContainer.position, Quaternion.identity);            // instantiate object for Object Holder here probably
+                objectHeld = Instantiate(hit.collider.gameObject, objectHeldContainer.position, Quaternion.identity);            // instantiate object for Object Holder here probably
                 objectHeld.transform.parent = objectHeldContainer;
                 objectHeld.GetComponent<Collider>().enabled = false;           // shut off all colliders; foreach?
                 objectHeld.transform.localScale *= 0.1f;
-                }
             }
+        }
     }
 
     void gunBlast()
     {
-
         Vector3 cameraForward = Camera.main.transform.forward;
         Vector3 backwardDirection = -cameraForward.normalized;
 
-        StartCoroutine(pushback(backwardDirection));
+        playerVel += backwardDirection * blastForce;
 
-       
+        if (controller.isGrounded)
+        {
+            playerVel.y = Mathf.Max(playerVel.y, 0.5f); 
+        }
+
+        StartCoroutine(pushback(backwardDirection));
     }
 
     IEnumerator pushback(Vector3 direction)
     {
-        float pushDuration = 0.3f; 
-        float elapsed = 0f;
-
-        if (controller.isGrounded)
+        float pushDuration = 0.2f;
+        float elapsedTime = 0f;
+        while (elapsedTime < pushDuration)
         {
-            playerVel.y = 0.5f; 
-        }
-
-        while (elapsed < pushDuration)
-        {
-            Vector3 pushbackForce = direction * blastForce * Time.deltaTime;
-
-            controller.Move(pushbackForce);
-
-            elapsed += Time.deltaTime;
-            yield return null; 
+            controller.Move(direction * (blastForce / 10) * Time.deltaTime);
+            elapsedTime += Time.deltaTime;
+            yield return null;
         }
     }
-
-    }
+}
