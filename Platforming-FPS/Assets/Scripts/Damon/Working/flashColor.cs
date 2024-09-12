@@ -407,6 +407,28 @@ public class flashColor : MonoBehaviour
     public void flashTwo()
     {
 
+        time += Time.deltaTime * flashSpeed;
+        float colorLerp = Mathf.PingPong(time, flashSpeed);
+        float intensityLerp = Mathf.PingPong(time, maxIntensity);
+        float rangeLerp = Mathf.PingPong(time, maxRange);
+
+        Color modelColor = Color.Lerp(color1, color2, colorLerp);
+        rend.material.color = modelColor;
+        Color lightColor = Color.Lerp(color1, modelColor, colorLerp);
+
+
+        myLight.color = lightColor;
+        myLight.intensity = intensityLerp;
+
+
+        rend.sharedMaterial.SetColor("_EmissionColor", lightColor * intensityLerp);
+        if (flashRange)
+        {
+            currentRange = Mathf.Lerp(minRange, maxRange, rangeLerp);
+            myLight.range = currentRange;
+        }
+
+
     }
 
     public void ThreeColors()
