@@ -396,6 +396,15 @@ public class playerController : MonoBehaviour, IDamage
         isCreator = gun.isCreator;
         isHoldingShield = gun.isShield;
 
+        if (isCreator)
+        {
+            objectHeldContainer.gameObject.SetActive(true);
+        }
+        else
+        {
+            objectHeldContainer.gameObject.SetActive(false);
+        }
+
         gunModel.GetComponent<MeshFilter>().sharedMesh = gun.gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gun.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
 
@@ -424,6 +433,15 @@ public class playerController : MonoBehaviour, IDamage
         shootRate = gunList[selectedGun].shootRate;
         isCreator = gunList[selectedGun].isCreator;
         isHoldingShield = gunList[selectedGun].isShield;
+
+        if (isCreator)
+        {
+            objectHeldContainer.gameObject.SetActive(true);
+        }
+        else
+        {
+            objectHeldContainer.gameObject.SetActive(false);
+        }
 
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
