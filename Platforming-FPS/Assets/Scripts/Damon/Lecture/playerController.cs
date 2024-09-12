@@ -67,6 +67,11 @@ public class playerController : MonoBehaviour, IDamage
 
     public GameObject objectHeld;           // object ready to shoot
     [SerializeField] Transform objectHeldContainer;
+    Vector3 objectHeldOriginalSize;
+    public Vector3 GetObjectHeldOriginalSize()
+    {
+        return objectHeldOriginalSize;
+    }
 
     public List<gunStats> GetGunList() { return gunList; }
 
@@ -475,13 +480,38 @@ public class playerController : MonoBehaviour, IDamage
             {
                 if (objectHeld)
                 {
-                    Destroy(objectHeld);
+                    Destroy(objectHeld);    // if an object is already held, destroy it for the next one to replace it
                 }
-                objectHeld = Instantiate(hit.collider.gameObject, objectHeldContainer.position, Quaternion.identity);            // instantiate object for Object Holder here probably
-                objectHeld.transform.parent = objectHeldContainer;
-                objectHeld.GetComponent<Collider>().enabled = false;           // shut off all colliders; foreach?
+                objectHeld = Instantiate(hit.collider.gameObject, objectHeldContainer.position, Quaternion.identity);            // create a copy of the chosen object and assign it to objectHeld
+                objectHeldOriginalSize = objectHeld.transform.localScale;                    // save the original size of the copied object before its shrunken to fit in the object container
+                objectHeld.transform.parent = objectHeldContainer;                           // set the parent of the objectHeld to the conainter so it stays in it
+                disableGameObject(objectHeld);
                 objectHeld.transform.localScale *= 0.1f;
             }
+        }
+    }
+    public void disableGameObject(GameObject gameObject)
+    {
+        foreach (Component component in gameObject.GetComponents<Component>())
+        {
+            if (component is Behaviour behaviour)
+            { behaviour.enabled = false; }
+        }
+        foreach (Collider collider in gameObject.GetComponents<Collider>())
+        {
+            collider.enabled = false;
+        }
+    } 
+    public void enableGameObject(GameObject gameObject)
+    {
+        foreach (Component component in gameObject.GetComponents<Component>())
+        {
+            if (component is Behaviour behaviour)
+            { behaviour.enabled = true; }
+        }
+        foreach (Collider collider in gameObject.GetComponents<Collider>())
+        {
+            collider.enabled = true;
         }
     }
 
