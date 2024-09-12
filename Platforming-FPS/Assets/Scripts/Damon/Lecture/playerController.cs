@@ -493,7 +493,6 @@ public class playerController : MonoBehaviour, IDamage
 
     public void saveObjectBullet()
     {
-        Creatable creatable = GetComponent<Creatable>();
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 50, ~ignoreMask))
         {

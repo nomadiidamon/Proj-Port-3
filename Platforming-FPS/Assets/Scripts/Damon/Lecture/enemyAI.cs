@@ -5,7 +5,7 @@ using UnityEngine.AI;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
-public class enemyAI : MonoBehaviour, IDamage, Creatable
+public class enemyAI : MonoBehaviour, IDamage
 {
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Renderer model;
