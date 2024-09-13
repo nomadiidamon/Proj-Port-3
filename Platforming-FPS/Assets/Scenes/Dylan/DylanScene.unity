@@ -519,6 +519,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy 1_Damon
       objectReference: {fileID: 0}
+    - target: {fileID: 7125080052642704932, guid: 36a9d438805eaea4ab68a8c87bda3544, type: 3}
+      propertyPath: deathSoundVol
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7125080052642704932, guid: 36a9d438805eaea4ab68a8c87bda3544, type: 3}
+      propertyPath: deathSound.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7125080052642704932, guid: 36a9d438805eaea4ab68a8c87bda3544, type: 3}
+      propertyPath: deathSound.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 8e5745ff523fd904fb323cf6eec504a9, type: 3}
+    - target: {fileID: 7125080052642704932, guid: 36a9d438805eaea4ab68a8c87bda3544, type: 3}
+      propertyPath: deathSound.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 09084bed31b0a0f41ae058f4a84fbf4f, type: 3}
     - target: {fileID: 8837204978625838430, guid: 36a9d438805eaea4ab68a8c87bda3544, type: 3}
       propertyPath: m_LocalPosition.x
       value: 36.37833
@@ -713,6 +729,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3342679326824184376, guid: 9ddd8b6b53a72aa4e9efdfc4702c0973, type: 3}
+      propertyPath: cameraController_Damon
+      value: 
+      objectReference: {fileID: 1030346690}
+    - target: {fileID: 3342679326824184376, guid: 9ddd8b6b53a72aa4e9efdfc4702c0973, type: 3}
+      propertyPath: playerController_Damon
+      value: 
+      objectReference: {fileID: 1475049422}
     - target: {fileID: 4153333014056894699, guid: 9ddd8b6b53a72aa4e9efdfc4702c0973, type: 3}
       propertyPath: m_Name
       value: UI_Damon
@@ -1122,6 +1146,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a052909bd6f2a9438d5cfd13e4abeda, type: 3}
+--- !u!114 &1030346690 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3807142087558244944, guid: 89c27f129871ce846af830d1864f4b65, type: 3}
+  m_PrefabInstance: {fileID: 5694387821547668804}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da98fde594583ed45a3e6195b64505cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &1165665731
 Mesh:
   m_ObjectHideFlags: 0
@@ -1453,6 +1488,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c67ed6360e72a9848a4bc876f41e5c51, type: 3}
+--- !u!114 &1475049422 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7696987937344138000, guid: 89c27f129871ce846af830d1864f4b65, type: 3}
+  m_PrefabInstance: {fileID: 5694387821547668804}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b318dc9689203a46a9aa239f00673db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1621584377
 PrefabInstance:
   m_ObjectHideFlags: 0

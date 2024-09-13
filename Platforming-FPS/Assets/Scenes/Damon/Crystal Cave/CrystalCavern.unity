@@ -9960,14 +9960,6 @@ PrefabInstance:
       propertyPath: playerController_Damon
       value: 
       objectReference: {fileID: 1561612792}
-    - target: {fileID: 3672363736077994182, guid: 9ddd8b6b53a72aa4e9efdfc4702c0973, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -954.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3672363736077994182, guid: 9ddd8b6b53a72aa4e9efdfc4702c0973, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 67.5
-      objectReference: {fileID: 0}
     - target: {fileID: 4153333014056894699, guid: 9ddd8b6b53a72aa4e9efdfc4702c0973, type: 3}
       propertyPath: m_Name
       value: UI_Damon

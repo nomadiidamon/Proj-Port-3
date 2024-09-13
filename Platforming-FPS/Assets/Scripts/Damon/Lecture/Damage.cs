@@ -98,7 +98,7 @@ public class Damage : MonoBehaviour
 
                         newWallObject.transform.rotation = Quaternion.LookRotation(hit.normal);
 
-                        gameManager.instance.playerScript.addToCreatedLists(wallObject);                       // add object to list to enforce max created objects
+                        gameManager.instance.playerScript.addToCreatedLists(newWallObject);                       // add object to list to enforce max created objects
 
                         gameManager.instance.playerScript.enableGameObject(newWallObject);
                     }

@@ -169,6 +169,11 @@ public class playerController : MonoBehaviour, IDamage
             saveObjectBullet();
         }
 
+        if (Input.GetButtonDown("Reset Created Objects"))
+        {
+            clearObjectsCreated();
+        }
+
         controller.Move(playerVel * Time.deltaTime);
         playerVel.y -= gravity * Time.deltaTime;
 
@@ -599,32 +604,19 @@ public class playerController : MonoBehaviour, IDamage
         {
             if (alliesCreated.Count < maxAlliesCreated)
             alliesCreated.Add(createdObject);
-
-
-            //if (objectsCreated.Count > maxAlliesCreated)
-            //{
-            //    Destroy(alliesCreated[0]);
-            //    objectsCreated.RemoveAt(0);
-            //    for (int allyIndex = 0; allyIndex < maxAlliesCreated; allyIndex++)
-            //    {
-            //        alliesCreated[allyIndex] = alliesCreated[allyIndex + 1];
-            //    }
-            //}
         }
         else
         {           
             if (objectsCreated.Count < maxObjectsCreated)
             objectsCreated.Add(createdObject);              
-            //if (objectsCreated.Count > maxObjectsCreated)   
-            //{
-            //    Destroy(objectsCreated[0]);
-            //    objectsCreated.RemoveAt(0);
-            //    for (int objectIndex = 0; objectsCreated[objectIndex + 1] != null; objectIndex++)
-            //    {
-            //        objectsCreated[objectIndex] = objectsCreated[objectIndex + 1];
-            //    }
-            //}
         }
-        
+    }
+    public void clearObjectsCreated()
+    {
+        foreach (GameObject objectCreated in objectsCreated)
+        {
+            Destroy(objectCreated);
+        }
+        objectsCreated.Clear();
     }
 }

@@ -137,6 +137,7 @@ public class allyAI : MonoBehaviour, IDamage
     {
         yield return new WaitForSeconds(deathSound[0].length);
         Destroy(gameObject);
+        gameManager.instance.playerScript.alliesCreated.Remove(gameObject);
     }
 
     IEnumerator flashRed()
