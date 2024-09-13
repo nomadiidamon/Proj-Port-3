@@ -94,6 +94,8 @@ public class Damage : MonoBehaviour
 
                         GameObject newWallObject = Instantiate(gameManager.instance.playerScript.objectHeld, hit.point, this.transform.rotation);
 
+                        lowerObject(other.gameObject.transform, 3f, 10);       // 10 is the ground layer
+
                         newWallObject.transform.localScale = gameManager.instance.playerScript.GetObjectHeldOriginalSize();
 
                         newWallObject.transform.rotation = Quaternion.LookRotation(hit.normal);
@@ -129,5 +131,16 @@ public class Damage : MonoBehaviour
             }
         }
 
+    }
+    public void lowerObject(Transform objectHit, float speedDown, LayerMask groundLayer)
+    {
+        Debug.Log(LayerMask.LayerToName(groundLayer));
+        RaycastHit groundHit;
+        if (Physics.Raycast(objectHit.position, Vector3.down, out groundHit, Mathf.Infinity, groundLayer))
+        {
+            Vector3 targetPosition = new Vector3(objectHit.position.x, groundHit.point.y, objectHit.position.z);
+
+            objectHit.position = Vector3.Lerp(objectHit.position, targetPosition, speedDown * Time.deltaTime);
+        }
     }
 }

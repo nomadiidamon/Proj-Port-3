@@ -84,8 +84,6 @@ public class playerController : MonoBehaviour, IDamage
     public bool isHoldingShield;
     private BoxCollider myCollider;
 
-   
-
     public Vector3 GetObjectHeldOriginalSize()
     {
         return objectHeldOriginalSize;
@@ -520,7 +518,6 @@ public class playerController : MonoBehaviour, IDamage
             Debug.Log(hit.collider.name);
             if (hit.collider.CompareTag("Creatable") || hit.collider.CompareTag("Enemy"))
             {
-                
                 if (objectHeld)
                 {
                     Destroy(objectHeld);    // if an object is already held, destroy it for the next one to replace it
