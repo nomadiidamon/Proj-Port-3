@@ -64,40 +64,44 @@ public class Damage : MonoBehaviour
 
             if (gameManager.instance.playerScript.isCreator)
             {
-                RaycastHit hit;
+                if ((gameManager.instance.playerScript.objectHeld.CompareTag("Creatable") && gameManager.instance.playerScript.objectsCreated.Count < gameManager.instance.playerScript.GetMaxObjectsCreated())
+                    ||
+                    (gameManager.instance.playerScript.objectHeld.CompareTag("Ally") && gameManager.instance.playerScript.alliesCreated.Count < gameManager.instance.playerScript.GetMaxAlliesCreated()))
+               { 
+                    RaycastHit hit;
                 Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 100, gameManager.instance.player.layer);
-                if (other.CompareTag("Ground"))
-                {
+                    if (other.CompareTag("Ground"))
+                    {
+                        GameObject groundObject = gameManager.instance.playerScript.objectHeld;
 
-                    GameObject groundObject = gameManager.instance.playerScript.objectHeld;
-                    
-                    GameObject newGroundObject = Instantiate(groundObject, hit.point + new Vector3 (0, groundObject.transform.position.y, 0), Quaternion.identity);
+                        GameObject newGroundObject = Instantiate(groundObject, hit.point + new Vector3(0, groundObject.transform.position.y, 0), Quaternion.identity);
 
-                    Vector3 directionToPlayer = gameManager.instance.player.transform.position - newGroundObject.transform.position;
+                        Vector3 directionToPlayer = gameManager.instance.player.transform.position - newGroundObject.transform.position;
 
-                    directionToPlayer.y = 0;
+                        directionToPlayer.y = 0;
 
-                    newGroundObject.transform.localScale = gameManager.instance.playerScript.GetObjectHeldOriginalSize();
+                        newGroundObject.transform.localScale = gameManager.instance.playerScript.GetObjectHeldOriginalSize();
 
-                    newGroundObject.transform.rotation = Quaternion.LookRotation(directionToPlayer);
+                        newGroundObject.transform.rotation = Quaternion.LookRotation(directionToPlayer);
 
-                    gameManager.instance.playerScript.addToCreatedLists(newGroundObject);                   // add object to list to enforce max created objects
+                        gameManager.instance.playerScript.addToCreatedLists(newGroundObject);                   // add object to list to enforce max created objects
 
-                    gameManager.instance.playerScript.enableGameObject(newGroundObject);
-                }
-                else
-                { 
-                    GameObject wallObject = gameManager.instance.playerScript.objectHeld;
+                        gameManager.instance.playerScript.enableGameObject(newGroundObject);
+                    }
+                    else
+                    {
+                        GameObject wallObject = gameManager.instance.playerScript.objectHeld;
 
-                   GameObject newWallObject = Instantiate(gameManager.instance.playerScript.objectHeld, hit.point, this.transform.rotation);
+                        GameObject newWallObject = Instantiate(gameManager.instance.playerScript.objectHeld, hit.point, this.transform.rotation);
 
-                    newWallObject.transform.localScale = gameManager.instance.playerScript.GetObjectHeldOriginalSize();
+                        newWallObject.transform.localScale = gameManager.instance.playerScript.GetObjectHeldOriginalSize();
 
-                    newWallObject.transform.rotation = Quaternion.LookRotation(hit.normal);
+                        newWallObject.transform.rotation = Quaternion.LookRotation(hit.normal);
 
-                    gameManager.instance.playerScript.addToCreatedLists(wallObject);                       // add object to list to enforce max created objects
+                        gameManager.instance.playerScript.addToCreatedLists(wallObject);                       // add object to list to enforce max created objects
 
-                    gameManager.instance.playerScript.enableGameObject(newWallObject);
+                        gameManager.instance.playerScript.enableGameObject(newWallObject);
+                    }
                 }
             }
             Destroy(gameObject);

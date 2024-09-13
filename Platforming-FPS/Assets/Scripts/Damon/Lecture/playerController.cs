@@ -44,6 +44,24 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] AudioClip audWeapPickup;
     [Range(0, 1)][SerializeField] float audWeapPickupVol;
 
+    [Header("-----Creator Gun-----")]
+    public GameObject objectHeld;           // object ready to shoot
+    [SerializeField] Transform objectHeldContainer;
+    [Range(3, 10)][SerializeField] int maxObjectsCreated;
+    [Range(1, 3)][SerializeField] int maxAlliesCreated;
+    public List<GameObject> objectsCreated;
+    public List<GameObject> alliesCreated;
+    Vector3 objectHeldOriginalSize;
+    public float allyHeldAggroRange;
+
+    public int GetMaxObjectsCreated()
+    {
+        return maxObjectsCreated;
+    }
+    public int GetMaxAlliesCreated()
+    {
+        return maxAlliesCreated;
+    }
 
     Vector3 move;
     Vector3 playerVel;
@@ -66,14 +84,7 @@ public class playerController : MonoBehaviour, IDamage
     public bool isHoldingShield;
     private BoxCollider myCollider;
 
-    public GameObject objectHeld;           // object ready to shoot
-    [SerializeField] Transform objectHeldContainer;
-    [Range(3,10)] [SerializeField] int maxObjectsCreated;
-    [Range(1,3)] [SerializeField] int maxAlliesCreated;
-    public List<GameObject> objectsCreated;
-    public List<GameObject> alliesCreated;
-    Vector3 objectHeldOriginalSize;
-    public float allyHeldAggroRange;
+   
 
     public Vector3 GetObjectHeldOriginalSize()
     {
@@ -586,29 +597,33 @@ public class playerController : MonoBehaviour, IDamage
     {
         if (createdObject.CompareTag("Ally"))
         {
+            if (alliesCreated.Count < maxAlliesCreated)
             alliesCreated.Add(createdObject);
-            if (objectsCreated.Count > maxAlliesCreated)
-            {
-                Destroy(alliesCreated[0]);
-                objectsCreated.RemoveAt(0);
-                for (int allyIndex = 0; allyIndex < maxAlliesCreated; allyIndex++)
-                {
-                    alliesCreated[allyIndex] = alliesCreated[allyIndex + 1];
-                }
-            }
+
+
+            //if (objectsCreated.Count > maxAlliesCreated)
+            //{
+            //    Destroy(alliesCreated[0]);
+            //    objectsCreated.RemoveAt(0);
+            //    for (int allyIndex = 0; allyIndex < maxAlliesCreated; allyIndex++)
+            //    {
+            //        alliesCreated[allyIndex] = alliesCreated[allyIndex + 1];
+            //    }
+            //}
         }
         else
-        {                                                   
+        {           
+            if (objectsCreated.Count < maxObjectsCreated)
             objectsCreated.Add(createdObject);              
-            if (objectsCreated.Count > maxObjectsCreated)   
-            {
-                Destroy(objectsCreated[0]);
-                objectsCreated.RemoveAt(0);
-                for (int objectIndex = 0; objectsCreated[objectIndex + 1] != null; objectIndex++)
-                {
-                    objectsCreated[objectIndex] = objectsCreated[objectIndex + 1];
-                }
-            }
+            //if (objectsCreated.Count > maxObjectsCreated)   
+            //{
+            //    Destroy(objectsCreated[0]);
+            //    objectsCreated.RemoveAt(0);
+            //    for (int objectIndex = 0; objectsCreated[objectIndex + 1] != null; objectIndex++)
+            //    {
+            //        objectsCreated[objectIndex] = objectsCreated[objectIndex + 1];
+            //    }
+            //}
         }
         
     }
