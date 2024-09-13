@@ -124,6 +124,7 @@ public class playerController : MonoBehaviour, IDamage
             updatePlayerUI();
             gameManager.instance.isPaused = false;
             gameManager.instance.youLose();
+            
         }
     }
 
