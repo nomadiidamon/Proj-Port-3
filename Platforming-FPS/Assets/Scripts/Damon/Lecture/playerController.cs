@@ -503,10 +503,7 @@ public class playerController : MonoBehaviour, IDamage
             Debug.Log(hit.collider.name);
             if (hit.collider.CompareTag("Creatable") || hit.collider.CompareTag("Enemy"))
             {
-                if(hit.collider.CompareTag("Enemy"))
-                {
-                    hit.collider.tag = "Ally";
-                }
+                
                 if (objectHeld)
                 {
                     Destroy(objectHeld);    // if an object is already held, destroy it for the next one to replace it
@@ -517,6 +514,10 @@ public class playerController : MonoBehaviour, IDamage
                 enemyAI enemyAI = objectHeld.GetComponent<enemyAI>();
                 if (enemyAI != null)
                 {
+                    if (hit.collider.CompareTag("Enemy"))
+                    {
+                        objectHeld.tag = "Ally";
+                    }
                     allyHeldAggroRange = enemyAI.GetComponent<SphereCollider>().radius;
                     Destroy(enemyAI);
                 }
@@ -588,6 +589,7 @@ public class playerController : MonoBehaviour, IDamage
             if (objectsCreated.Count > maxAlliesCreated)
             {
                 Destroy(alliesCreated[0]);
+                objectsCreated.RemoveAt(0);
                 for (int allyIndex = 0; allyIndex < maxAlliesCreated; allyIndex++)
                 {
                     alliesCreated[allyIndex] = alliesCreated[allyIndex + 1];
@@ -595,12 +597,13 @@ public class playerController : MonoBehaviour, IDamage
             }
         }
         else
-        {
-            objectsCreated.Add(createdObject);
-            if (objectsCreated.Count > maxObjectsCreated)
+        {                                                   
+            objectsCreated.Add(createdObject);              
+            if (objectsCreated.Count > maxObjectsCreated)   
             {
                 Destroy(objectsCreated[0]);
-                for (int objectIndex = 0; objectIndex < maxObjectsCreated; objectIndex++)
+                objectsCreated.RemoveAt(0);
+                for (int objectIndex = 0; objectsCreated[objectIndex + 1] != null; objectIndex++)
                 {
                     objectsCreated[objectIndex] = objectsCreated[objectIndex + 1];
                 }

@@ -73,8 +73,6 @@ public class Damage : MonoBehaviour
                     
                     GameObject newGroundObject = Instantiate(groundObject, hit.point + new Vector3 (0, groundObject.transform.position.y, 0), Quaternion.identity);
 
-                    gameManager.instance.playerScript.addToCreatedLists(newGroundObject);                   // add object to list to enforce max created objects
-
                     Vector3 directionToPlayer = gameManager.instance.player.transform.position - newGroundObject.transform.position;
 
                     directionToPlayer.y = 0;
@@ -82,6 +80,8 @@ public class Damage : MonoBehaviour
                     newGroundObject.transform.localScale = gameManager.instance.playerScript.GetObjectHeldOriginalSize();
 
                     newGroundObject.transform.rotation = Quaternion.LookRotation(directionToPlayer);
+
+                    gameManager.instance.playerScript.addToCreatedLists(newGroundObject);                   // add object to list to enforce max created objects
 
                     gameManager.instance.playerScript.enableGameObject(newGroundObject);
                 }
@@ -91,11 +91,11 @@ public class Damage : MonoBehaviour
 
                    GameObject newWallObject = Instantiate(gameManager.instance.playerScript.objectHeld, hit.point, this.transform.rotation);
 
-                    gameManager.instance.playerScript.addToCreatedLists(wallObject);                       // add object to list to enforce max created objects
-
                     newWallObject.transform.localScale = gameManager.instance.playerScript.GetObjectHeldOriginalSize();
 
                     newWallObject.transform.rotation = Quaternion.LookRotation(hit.normal);
+
+                    gameManager.instance.playerScript.addToCreatedLists(wallObject);                       // add object to list to enforce max created objects
 
                     gameManager.instance.playerScript.enableGameObject(newWallObject);
                 }
