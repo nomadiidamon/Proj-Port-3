@@ -12,7 +12,7 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] GameObject shield;
 
     [Header("-----Attributes-----")]
-    [Range(0, 100)][SerializeField] int HP;
+    [Range(0, 100)][SerializeField] public int HP;
     [Range(1, 50)][SerializeField] int speed;
     //[Range(2, 10)][SerializeField] int sprintMod;
     [Range(1, 3)][SerializeField] int jumpMax;
@@ -653,4 +653,18 @@ public class playerController : MonoBehaviour, IDamage
         }
         objectsCreated.Clear();
     }
+
+    public gunStats getGunName(string gunName)
+    {
+        foreach (gunStats gun in gunList)
+        {
+            if (gun.gunName.Equals(gunName, System.StringComparison.OrdinalIgnoreCase))
+            {
+                return gun;
+            }
+        }
+        Debug.LogWarning($"Gun with name {gunName} not found!");
+        return null;
+    }
+
 }

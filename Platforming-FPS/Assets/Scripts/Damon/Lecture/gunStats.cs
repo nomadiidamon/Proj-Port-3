@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class gunStats : ScriptableObject
 {
+    public string gunName;
     public GameObject gunModel;
     //private BoxCollider collider;
     public int shootDamage;

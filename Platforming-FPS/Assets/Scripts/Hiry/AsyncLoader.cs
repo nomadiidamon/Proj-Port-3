@@ -35,6 +35,10 @@ public class AsyncLoader : MonoBehaviour
             loadingSlider.value = progressValue;
             yield return null;
 
+            //if (gameManager.instance != null && gameManager.instance.isPaused) {
+               // gameManager.instance.stateUnpause();
+            //}
+
         }
 
 
@@ -57,12 +61,7 @@ public class AsyncLoader : MonoBehaviour
         menuMain.SetActive(true);
     }
 
-    public void loadLevel1()
-    {
-        menuLevel.SetActive(false);
-        SceneManager.LoadSceneAsync(1);
-
-    }
+    
 
    
 

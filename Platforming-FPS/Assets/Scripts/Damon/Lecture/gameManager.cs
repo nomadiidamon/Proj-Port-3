@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class gameManager : MonoBehaviour
 {
@@ -50,7 +51,6 @@ public class gameManager : MonoBehaviour
 
     void Awake()
     {
-
         instance = this;
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponentInParent<playerController>();
@@ -113,6 +113,27 @@ public class gameManager : MonoBehaviour
 
 
         }
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+
+        
+        if (isPaused)
+        {
+            stateUnpause();
+        }
+
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     public void statePause()
@@ -187,5 +208,46 @@ public class gameManager : MonoBehaviour
 
 
     }
+
+    
+
+    /*public void savePlayerData()
+    {
+        playerController playerScript = GetComponent<playerController>();
+        if (player != null)
+        {
+            playerData data = new playerData(playerScript, respawns); 
+            data.savePlayer(); 
+        }
+        else
+        {
+            Debug.LogError("playerController not found on player");
+        }
+    }
+
+    public IEnumerator loadPlayerData()
+    {
+
+        yield return new WaitForEndOfFrame();
+
+        playerController playerScript = GetComponent<playerController>(); 
+        if (playerScript != null)
+        {
+            playerData data = new playerData(playerScript, respawns); 
+            data.loadPlayer(playerScript); 
+        }
+        else
+        {
+            Debug.LogError("playerController not found on playerGameObject.");
+        }
+
+    }
+
+    private void OnApplicationQuit()
+    {
+        savePlayerData();
+    }
+    */
+
 
 }

@@ -9,6 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Hiry/Main Menu.unity
     guid: 305c57a7b7bd786449f88678f1977b0d
   - enabled: 1
-    path: Assets/Scenes/Final Prototype Scenes/LinearPath.unity
-    guid: fab9c7f3f895d0c478fbc750213e5127
+    path: Assets/Scenes/Damon/Crystal Cave/CrystalCavern.unity
+    guid: 025e3b79507338c41bd0e795066ef63d
+  - enabled: 1
+    path: Assets/Scenes/Dylan/MoonScene.unity
+    guid: b6fda8c8f73960940a5f7e3a1b4e4525
+  - enabled: 1
+    path: Assets/Scenes/Hiry/SkyScene.unity
+    guid: 9478d142a8f75f748a43f51aff2bc6dd
   m_configObjects: {}

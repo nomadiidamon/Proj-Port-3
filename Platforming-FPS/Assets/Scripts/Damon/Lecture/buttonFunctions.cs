@@ -41,11 +41,18 @@ public class buttonFunctions : MonoBehaviour
     {
         Debug.Log("Quitting");
 
+        if (gameManager.instance.menuActive == gameManager.instance.menuLose)
+        {
+            gameManager.instance.playerScript.HP = gameManager.instance.playerScript.HPOrig;
+            Debug.Log("Player's HP reset to original HP");
+        }
+
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
-    #else
+#else
+    //gameManager.instance.savePlayerData();
         Application.Quit();
-    #endif
+#endif
     }
 
     public void openSettings()
@@ -73,7 +80,11 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.menuPause.SetActive(true);
     }
 
-    
+    public void loadMainMenu()
+    {
+        
+        SceneManager.LoadScene("Main Menu");
+    }
 
 
 
