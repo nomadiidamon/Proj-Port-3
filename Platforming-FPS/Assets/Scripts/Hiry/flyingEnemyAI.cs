@@ -25,8 +25,12 @@ public class flyingEnemyAI : MonoBehaviour, IDamage
     bool playerInRange;
     private bool isDead = false;
 
+    
+
     Vector3 playerDir;
     Color colorOrig;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -42,18 +46,18 @@ public class flyingEnemyAI : MonoBehaviour, IDamage
     {
         if (playerInRange)
         {
-            
-                facePlayer();
 
-                if (!isShooting)
-                {
-                    StartCoroutine(shoot());
-                }
+            facePlayer();
+
+            if (!isShooting)
+            {
+                StartCoroutine(shoot());
             }
         }
-    
+    }
 
-   
+
+
 
     void facePlayer()
     {
@@ -80,6 +84,11 @@ public class flyingEnemyAI : MonoBehaviour, IDamage
         direction.Normalize();
         Quaternion bulletRotation = Quaternion.LookRotation(direction);
         Instantiate(bullet, shootPos.transform.position, bulletRotation);
+
+        Instantiate(bullet, shootPos.transform.position, bulletRotation);
+
+        
+    
     }
 
     public void takeDamage(int amount)
