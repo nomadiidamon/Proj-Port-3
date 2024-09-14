@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class gameManager : MonoBehaviour
 {
     public static gameManager instance;
+    public QuestTracker questTracker;
 
     public GameObject menuActive;
     public GameObject menuPause;
@@ -58,6 +59,31 @@ public class gameManager : MonoBehaviour
         playerScript.updatePlayerUI();
         playerSpawnPosition = GameObject.FindWithTag("Player Spawn Position");
         worldGravity = instance.playerScript.GetGravity();                          // setting resting gravity of the world
+
+        questTracker = new QuestTracker();
+
+        Quest questTest = new Quest(1337);
+        questTracker.AddQuest(questTest);
+    }
+
+    public void CompleteQuest(int questId)
+    {
+        questTracker.CompleteQuest(questId);
+    }
+
+    public void AbandonQuest(int questId)
+    {
+        questTracker.AbandonQuest(questId);
+    }
+
+    public int GetCompleteQuestCount()
+    {
+        return questTracker.GetCompletedQuestCount();
+    }
+
+    public bool IsQuestComplete(int questId)
+    {
+        return questTracker.IsQuestCompleted(questId); 
     }
 
     void Update()
