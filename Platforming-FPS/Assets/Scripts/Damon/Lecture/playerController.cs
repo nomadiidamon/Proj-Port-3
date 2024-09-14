@@ -14,11 +14,17 @@ public class playerController : MonoBehaviour, IDamage
     [Header("-----Attributes-----")]
     [Range(0, 100)][SerializeField] int HP;
     [Range(1, 50)][SerializeField] int speed;
-    [Range(2, 10)][SerializeField] int sprintMod;
+    //[Range(2, 10)][SerializeField] int sprintMod;
     [Range(1, 3)][SerializeField] int jumpMax;
     [Range(8, 20)][SerializeField] int jumpSpeed;
     [Range(15, 30)][SerializeField] int gravity;
     [SerializeField] float fallDeathLevel = -50f;
+    [SerializeField] float footStepRate = 0.3f;
+
+    [Header("-----Dodge-----")]
+    [SerializeField] float dodgeSpeed = 20f;
+    [SerializeField] float dodgeDuration = 0.2f;
+    [SerializeField] float dodgeCooldown = 1f;
 
     [Header("-----Guns-----")]
     [SerializeField] List<gunStats> gunList = new List<gunStats>();
@@ -66,16 +72,20 @@ public class playerController : MonoBehaviour, IDamage
     Vector3 move;
     Vector3 playerVel;
 
+    private bool isDodging = false;
+    private float dodgeTime = 0f;
+    private float prevDodgeTime = -100f;
+
 
     int jumpCount;
     public int HPOrig;
     public int GetOriginalHpAmount() { return HPOrig; }
-    bool isSprinting;
+    //bool isSprinting;
     bool isShooting;
     bool isPlayingSteps;
 
-    public bool sprintToggle;
-    bool sprintingPressed;
+    //public bool sprintToggle;
+    //bool sprintingPressed;
 
     public int selectedGun;
     public bool isCreator;
@@ -101,6 +111,32 @@ public class playerController : MonoBehaviour, IDamage
         myCollider.enabled = false;
     }
 
+    void Dodge()
+    {
+        if (Input.GetButtonDown("Dodge") && Time.time > prevDodgeTime + dodgeCooldown && !isDodging)
+        {
+            StartCoroutine(DoDodge());
+        }
+    }
+
+    IEnumerator DoDodge()
+    {
+        isDodging = true;
+        dodgeTime = dodgeDuration;
+        prevDodgeTime = Time.time;
+
+        Vector3 dodgeDirection = move.normalized;
+
+        while (dodgeTime > 0)
+        {
+            controller.Move(dodgeDirection * dodgeSpeed * Time.deltaTime);
+            dodgeTime -= Time.deltaTime;
+            yield return null;
+        }
+
+        isDodging = false;
+    }
+
     public void spawnPlayer()
     {
         HP = HPOrig;
@@ -119,8 +155,9 @@ public class playerController : MonoBehaviour, IDamage
         {
             movement();
             selectGun();
+            Dodge();
         }
-        sprint();
+        //sprint();
 
         fallDeath();
     }
@@ -197,68 +234,68 @@ public class playerController : MonoBehaviour, IDamage
         isPlayingSteps = true;
 
         audioManager.instance.PlayAud(audSteps[Random.Range(0, audSteps.Length)], audStepsVol);
-        if (!isSprinting)
-        {
-            yield return new WaitForSeconds(0.5f);
-        }
-        else
-        {
-            yield return new WaitForSeconds(0.3f);
-        }
+        //if (!isSprinting)
+        //{
+        //    yield return new WaitForSeconds(0.5f);
+        //}
+        //else
+        //{
+        yield return new WaitForSeconds(footStepRate);
+        //}
 
         isPlayingSteps = false;
 
     }
 
-    void sprint()
-    {
-        if (sprintToggle)
-        {
-            if (Input.GetButtonDown("Sprint"))
-            {
-                if (isSprinting)
-                {
-                    isSprinting = false;
-                }
-                else if (!isSprinting)
-                {
-                    isSprinting = true;
-                }
-            }
-            if (Input.GetButtonDown("Sprint") && isSprinting)
-            {
-                speed *= sprintMod;
-            }
-            else if (Input.GetButtonDown("Sprint") && !isSprinting)
-            {
-                speed /= sprintMod;
-            }
-        }
-        else
-        {
-            if (Input.GetButtonDown("Sprint"))
-            {
-                speed *= sprintMod;
-                isSprinting = true;
-            }
-            else if (Input.GetButtonUp("Sprint"))
-            {
-                speed /= sprintMod;
-                isSprinting = false;
-            }
-        }
-    }
+    //void sprint()
+    //{
+    //    if (sprintToggle)
+    //    {
+    //        if (Input.GetButtonDown("Sprint"))
+    //        {
+    //            if (isSprinting)
+    //            {
+    //                isSprinting = false;
+    //            }
+    //            else if (!isSprinting)
+    //            {
+    //                isSprinting = true;
+    //            }
+    //        }
+    //        if (Input.GetButtonDown("Sprint") && isSprinting)
+    //        {
+    //            speed *= sprintMod;
+    //        }
+    //        else if (Input.GetButtonDown("Sprint") && !isSprinting)
+    //        {
+    //            speed /= sprintMod;
+    //        }
+    //    }
+    //    else
+    //    {
+    //        if (Input.GetButtonDown("Sprint"))
+    //        {
+    //            speed *= sprintMod;
+    //            isSprinting = true;
+    //        }
+    //        else if (Input.GetButtonUp("Sprint"))
+    //        {
+    //            speed /= sprintMod;
+    //            isSprinting = false;
+    //        }
+    //    }
+    //}
 
-    public void SetSprintToggle(bool toggle)
-    {
-        sprintToggle = toggle;
+    //public void SetSprintToggle(bool toggle)
+    //{
+    //    sprintToggle = toggle;
 
-        if (!sprintToggle && isSprinting)
-        {
-            speed /= sprintMod;
-            isSprinting = false;
-        }
-    }
+    //    if (!sprintToggle && isSprinting)
+    //    {
+    //        speed /= sprintMod;
+    //        isSprinting = false;
+    //    }
+    //}
 
     IEnumerator shoot()
     {

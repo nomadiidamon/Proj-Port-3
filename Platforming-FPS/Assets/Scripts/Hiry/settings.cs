@@ -9,7 +9,7 @@ public class settings : MonoBehaviour
     [SerializeField] playerController playerController_Damon;
 
     [SerializeField] Slider sensSlider;
-    [SerializeField] Toggle sprintToggle;
+    //[SerializeField] Toggle sprintToggle;
     [SerializeField] Toggle invertYToggle;
     [SerializeField] Slider fovSlider;
 
@@ -20,9 +20,9 @@ public class settings : MonoBehaviour
     {
 
         cameraController_Damon.SetInvertY(false);
-        playerController_Damon.SetSprintToggle(false);
+        //playerController_Damon.SetSprintToggle(false);
         invertYToggle.isOn = false;
-        sprintToggle.isOn = false;
+        //sprintToggle.isOn = false;
 
         sensSlider.value = cameraController_Damon.sens;
         sensSlider.onValueChanged.AddListener(cameraController_Damon.setSens);
@@ -30,8 +30,8 @@ public class settings : MonoBehaviour
         invertYToggle.isOn = cameraController_Damon.invertY;
         invertYToggle.onValueChanged.AddListener(cameraController_Damon.SetInvertY);
 
-        sprintToggle.isOn = playerController_Damon.sprintToggle;
-        sprintToggle.onValueChanged.AddListener(playerController_Damon.SetSprintToggle);
+        //sprintToggle.isOn = playerController_Damon.sprintToggle;
+        //sprintToggle.onValueChanged.AddListener(playerController_Damon.SetSprintToggle);
 
         fovSlider.minValue = cameraController_Damon.minFOV;
         fovSlider.maxValue = cameraController_Damon.maxFOV;
