@@ -466,6 +466,7 @@ public class playerController : MonoBehaviour, IDamage
         shootRate = gun.shootRate;
         isCreator = gun.isCreator;
         isHoldingShield = gun.isShield;
+        bullet = gun.bullet;
 
         if (isCreator)
         {

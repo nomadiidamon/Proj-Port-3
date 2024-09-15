@@ -17,6 +17,8 @@ public class gunStats : ScriptableObject
 
     public Vector3 gunScale = Vector3.one;
 
+    public GameObject bullet;
+
     public ParticleSystem hitEffect;
     public AudioClip[] shootSound;
     public float shootVolume;
