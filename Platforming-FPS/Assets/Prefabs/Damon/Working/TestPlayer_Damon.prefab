@@ -53,14 +53,49 @@ MonoBehaviour:
   ignoreMask:
     serializedVersion: 2
     m_Bits: 8
+  shield: {fileID: 0}
+  HP: 0
   speed: 5
-  sprintMod: 3
   jumpMax: 2
   jumpSpeed: 12
   gravity: 28
+  fallDeathLevel: -50
+  footStepRate: 0.3
+  dodgeSpeed: 20
+  dodgeDuration: 0.2
+  dodgeCooldown: 1
+  gunList: []
+  gunModel: {fileID: 0}
+  muzzleFlash: {fileID: 0}
+  deflectionFlash: {fileID: 0}
+  bullet: {fileID: 0}
+  shootPos: {fileID: 0}
   shootDamage: 1
   shootDist: 500
   shootRate: 0.5
+  deflectionSpeed: 0
+  blastForce: 0
+  audJump: []
+  audJumpVol: 0
+  audHurt: []
+  audHurtVol: 0
+  audSteps: []
+  audStepsVol: 0
+  audWeapPickup: {fileID: 0}
+  audWeapPickupVol: 0
+  objectHeld: {fileID: 0}
+  objectHeldContainer: {fileID: 0}
+  maxObjectsCreated: 3
+  maxAlliesCreated: 1
+  objectsCreated: []
+  alliesCreated: []
+  allyHeldAggroRange: 0
+  HPOrig: 0
+  selectedGun: 0
+  isCreator: 0
+  isSwimming: 0
+  isDeflecting: 0
+  isHoldingShield: 0
 --- !u!143 &8927814358010947412
 CharacterController:
   m_ObjectHideFlags: 0
@@ -210,6 +245,9 @@ MonoBehaviour:
   lockVertMin: -90
   lockVertMax: 90
   invertY: 0
+  playerCamera: {fileID: 0}
+  minFOV: 30
+  maxFOV: 300
 --- !u!20 &7150381538584074412
 Camera:
   m_ObjectHideFlags: 0

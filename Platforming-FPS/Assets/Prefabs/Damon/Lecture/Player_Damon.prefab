@@ -97,6 +97,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollSpeedX: 0.1
+  scrollSpeedY: 0.1
+  horizontal: 0
+  vertical: 0
 --- !u!1 &5407094676096073254
 GameObject:
   m_ObjectHideFlags: 0
@@ -818,6 +821,7 @@ Transform:
   m_Children:
   - {fileID: 4830564121183331150}
   - {fileID: 6718281247922782724}
+  - {fileID: 984660246716668632}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!114 &7696987937344138000
@@ -839,11 +843,14 @@ MonoBehaviour:
   shield: {fileID: 5594909959243809031}
   HP: 100
   speed: 3
-  sprintMod: 3
   jumpMax: 2
   jumpSpeed: 14
   gravity: 28
   fallDeathLevel: -50
+  footStepRate: 0.3
+  dodgeSpeed: 20
+  dodgeDuration: 0.2
+  dodgeCooldown: 1
   gunList: []
   gunModel: {fileID: 7912685596475692159}
   muzzleFlash: {fileID: 6888947675050280122}
@@ -881,16 +888,19 @@ MonoBehaviour:
   audStepsVol: 0.2
   audWeapPickup: {fileID: 8300000, guid: cf58eab19a3fc784facdb4bd23251b0e, type: 3}
   audWeapPickupVol: 1
+  objectHeld: {fileID: 0}
+  objectHeldContainer: {fileID: 3536201500387809014}
+  maxObjectsCreated: 3
+  maxAlliesCreated: 1
+  objectsCreated: []
+  alliesCreated: []
+  allyHeldAggroRange: 0
   HPOrig: 0
-  sprintToggle: 1
   selectedGun: 0
   isCreator: 0
   isSwimming: 0
   isDeflecting: 0
   isHoldingShield: 0
-  objectHeld: {fileID: 0}
-  objectHeldContainer: {fileID: 3536201500387809014}
-  allyHeldAggroRange: 0
 --- !u!143 &3413670455078086860
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1251,6 +1261,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &8197140694307665226
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 984660246716668632}
+  m_Layer: 3
+  m_Name: PlayerCenter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &984660246716668632
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8197140694307665226}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6083180464367101227}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9113293924071138674
 GameObject:
   m_ObjectHideFlags: 0
