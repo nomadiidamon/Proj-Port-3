@@ -51,7 +51,7 @@ public class TurretControl : MonoBehaviour, IDamage
 
     void healthBarFacePlayer()
     {
-        playerPos = enemyManager.instance.playerPosition;
+        playerPos = enemyManager.instance.playerPosition.position;
         Quaternion rot = Quaternion.LookRotation(playerPos);
 
         hpbar.canvas.transform.rotation = Quaternion.Lerp(hpbar.transform.rotation, rot, Time.deltaTime * facePlayerSpeed);

@@ -890,7 +890,7 @@ MonoBehaviour:
   audWeapPickupVol: 1
   objectHeld: {fileID: 0}
   objectHeldContainer: {fileID: 3536201500387809014}
-  maxObjectsCreated: 3
+  maxObjectsCreated: 10
   maxAlliesCreated: 1
   objectsCreated: []
   alliesCreated: []
@@ -1186,7 +1186,7 @@ GameObject:
   - component: {fileID: 6084257739461296014}
   m_Layer: 3
   m_Name: Gun Model
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

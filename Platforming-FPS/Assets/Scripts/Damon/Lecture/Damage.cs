@@ -69,14 +69,15 @@ public class Damage : MonoBehaviour
                     (gameManager.instance.playerScript.objectHeld.CompareTag("Ally") && gameManager.instance.playerScript.alliesCreated.Count < gameManager.instance.playerScript.GetMaxAlliesCreated()))
                { 
                     RaycastHit hit;
-                Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 100, gameManager.instance.player.layer);
+                Physics.Raycast(gameManager.instance.playerScript.GetShootPosition().position, gameManager.instance.playerScript.GetShootPosition().forward, out hit, 100, gameManager.instance.player.layer);
+                    Debug.Log(hit.point);
                     if (other.CompareTag("Ground"))
                     {
                         GameObject groundObject = gameManager.instance.playerScript.objectHeld;
 
-                        GameObject newGroundObject = Instantiate(groundObject, hit.point + new Vector3(0, groundObject.transform.position.y, 0), Quaternion.identity);
+                        GameObject newGroundObject = Instantiate(gameManager.instance.playerScript.objectHeld, hit.point, Quaternion.identity);
 
-                        Vector3 directionToPlayer = gameManager.instance.player.transform.position - newGroundObject.transform.position;
+                        Vector3 directionToPlayer = gameManager.instance.playerScript.GetPlayerCenter().position - newGroundObject.transform.position;
 
                         directionToPlayer.y = 0;
 
@@ -93,8 +94,6 @@ public class Damage : MonoBehaviour
                         GameObject wallObject = gameManager.instance.playerScript.objectHeld;
 
                         GameObject newWallObject = Instantiate(gameManager.instance.playerScript.objectHeld, hit.point, this.transform.rotation);
-
-                        lowerObject(other.gameObject.transform, 3f, 10);       // 10 is the ground layer
 
                         newWallObject.transform.localScale = gameManager.instance.playerScript.GetObjectHeldOriginalSize();
 
@@ -132,15 +131,15 @@ public class Damage : MonoBehaviour
         }
 
     }
-    public void lowerObject(Transform objectHit, float speedDown, LayerMask groundLayer)
-    {
-        Debug.Log(LayerMask.LayerToName(groundLayer));
-        RaycastHit groundHit;
-        if (Physics.Raycast(objectHit.position, Vector3.down, out groundHit, Mathf.Infinity, groundLayer))
-        {
-            Vector3 targetPosition = new Vector3(objectHit.position.x, groundHit.point.y, objectHit.position.z);
+    //public void lowerObject(Transform objectHit, float speedDown, LayerMask groundLayer)
+    //{
+    //    Debug.Log(LayerMask.LayerToName(groundLayer));
+    //    RaycastHit groundHit;
+    //    if (Physics.Raycast(objectHit.position, Vector3.down, out groundHit, Mathf.Infinity, groundLayer))
+    //    {
+    //        Vector3 targetPosition = new Vector3(objectHit.position.x, groundHit.point.y, objectHit.position.z);
 
-            objectHit.position = Vector3.Lerp(objectHit.position, targetPosition, speedDown * Time.deltaTime);
-        }
-    }
+    //        objectHit.position = Vector3.Lerp(objectHit.position, targetPosition, speedDown * Time.deltaTime);
+    //    }
+    //}
 }

@@ -10,6 +10,12 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] CharacterController controller;
     [SerializeField] LayerMask ignoreMask;
     [SerializeField] GameObject shield;
+    [SerializeField] Transform playerCenter;
+
+    public Transform GetPlayerCenter()
+    {
+        return playerCenter;
+    }
 
     [Header("-----Attributes-----")]
     [Range(0, 100)][SerializeField] public int HP;
@@ -60,6 +66,10 @@ public class playerController : MonoBehaviour, IDamage
     Vector3 objectHeldOriginalSize;
     public float allyHeldAggroRange;
 
+    public Transform GetShootPosition()
+    {
+        return shootPos;
+    }
     public int GetMaxObjectsCreated()
     {
         return maxObjectsCreated;

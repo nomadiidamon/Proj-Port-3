@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEditor.ProBuilder;
 
 
 public class enemyManager : MonoBehaviour
@@ -13,21 +12,19 @@ public class enemyManager : MonoBehaviour
     public int enemiesRemaining;
 
     [SerializeField] TMP_Text enemyCountText;
+    
+    public Transform playerPosition;
 
-    public GameObject player;
-    public Vector3 playerPosition;
-
-    void Awake()
+    void Start()
     {
         instance = this;
-        player = GameObject.FindWithTag("Player");
-        playerPosition = player.transform.position;
+        playerPosition = gameManager.instance.playerScript.GetPlayerCenter();
 
     }
 
     void Update()
     {
-        playerPosition = player.transform.position;
+        playerPosition = gameManager.instance.playerScript.GetPlayerCenter();
     }
 
     public void updateEnemyCount(int amount)
