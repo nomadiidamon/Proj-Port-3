@@ -7,7 +7,6 @@ using TMPro;
 public class enemyManager : MonoBehaviour
 {
 
-    UIManager uiManager;
 
     public static enemyManager instance;
 
@@ -47,8 +46,8 @@ public class enemyManager : MonoBehaviour
 
             // you win!
             gameManager.instance.statePause();
-            uiManager.menuActive = uiManager.menuWin;
-            uiManager.menuActive.SetActive(gameManager.instance.isPaused);
+            gameUIManager.instance.menuActive = gameUIManager.instance.menuWin;
+            gameUIManager.instance.menuActive.SetActive(gameManager.instance.isPaused);
 
         }
     }

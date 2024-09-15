@@ -2228,7 +2228,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3994191360514342829}
-  - component: {fileID: 4139540555266505462}
+  - component: {fileID: 8222086157075276529}
   m_Layer: 5
   m_Name: UIManager
   m_TagString: Untagged
@@ -2255,7 +2255,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &4139540555266505462
+--- !u!114 &8222086157075276529
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2267,6 +2267,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5a5da006e1913f4f83d630c29b53d3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menuActive: {fileID: 0}
+  menuPause: {fileID: 68401831589066027}
+  menuWin: {fileID: 4292888127461263188}
+  menuLose: {fileID: 7919162680089734814}
+  menuSettings: {fileID: 7429879012995502968}
+  checkPointMenu: {fileID: 4329168847347616602}
+  CheckpointReached: 0
+  playersHealthPool: {fileID: 3378646710307807168}
+  RespawnCount: {fileID: 7129572748241510608}
+  uiPrompt: {fileID: 8384181117690848029}
+  flashDamageScreen: {fileID: 957170193202929846}
+  restoreHealthScreen: {fileID: 8790658514185980166}
+  increaseDamageScreen: {fileID: 5725635364053485103}
+  raiseSpeedScreen: {fileID: 7293482538484365216}
+  underwaterOverlay: {fileID: 4773412224339965119}
 --- !u!1 &3420405980908022330
 GameObject:
   m_ObjectHideFlags: 0
@@ -4797,7 +4812,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: Press 'E' to Open
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5212,27 +5227,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f5341f73166b7b4ca464a825cb58a89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuActive: {fileID: 0}
-  menuPause: {fileID: 68401831589066027}
-  menuWin: {fileID: 4292888127461263188}
-  menuLose: {fileID: 7919162680089734814}
-  menuSettings: {fileID: 7429879012995502968}
   playerSpawnPosition: {fileID: 0}
-  flashDamageScreen: {fileID: 957170193202929846}
-  underwaterOverlay: {fileID: 4773412224339965119}
-  restoreHealthScreen: {fileID: 8790658514185980166}
-  increaseDamageScreen: {fileID: 5725635364053485103}
-  raiseSpeedScreen: {fileID: 7293482538484365216}
-  checkPointMenu: {fileID: 4329168847347616602}
-  CheckpointReached: 0
-  playersHealthPool: {fileID: 9171209080167684621}
-  RespawnCount: {fileID: 7129572748241510608}
-  uiPrompt: {fileID: 8384181117690848029}
   player: {fileID: 0}
   worldGravity: 15
   playerScript: {fileID: 0}
   respawns: 3
   isPaused: 0
+  currentDoor: {fileID: 0}
 --- !u!114 &3342679326824184376
 MonoBehaviour:
   m_ObjectHideFlags: 0

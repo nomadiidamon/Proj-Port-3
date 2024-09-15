@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class buttonFunctions : MonoBehaviour
 {
-    UIManager uiManager;
 
     public void resume()
     {
@@ -19,7 +18,7 @@ public class buttonFunctions : MonoBehaviour
         Debug.Log("Restarted");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         gameManager.instance.stateUnpause();
-        uiManager.CheckpointReached = false;
+        gameUIManager.instance.CheckpointReached = false;
         gameManager.instance.respawns = gameManager.instance.GetOriginalRespawnCount();
     }
 
@@ -31,7 +30,7 @@ public class buttonFunctions : MonoBehaviour
             return;
         }
         
-        gameManager.instance.updateRespawnCount(-1);
+        gameUIManager.instance.updateRespawnCount(-1);
         Debug.Log("Second Chance!");
         gameManager.instance.playerScript.spawnPlayer();
         gameManager.instance.stateUnpause();
@@ -42,7 +41,7 @@ public class buttonFunctions : MonoBehaviour
     {
         Debug.Log("Quitting");
 
-        if (uiManager.menuActive == uiManager.menuLose)
+        if (gameUIManager.instance.menuActive == gameUIManager.instance.menuLose)
         {
             gameManager.instance.playerScript.HP = gameManager.instance.playerScript.HPOrig;
             Debug.Log("Player's HP reset to original HP");
@@ -59,13 +58,13 @@ public class buttonFunctions : MonoBehaviour
     public void openSettings()
     {
 
-        
-        
 
-            uiManager.menuPause.SetActive(false);
 
-            uiManager.menuActive = uiManager.menuSettings;
-            uiManager.menuSettings.SetActive(true);
+
+        gameUIManager.instance.menuPause.SetActive(false);
+
+        gameUIManager.instance.menuActive = gameUIManager.instance.menuSettings;
+        gameUIManager.instance.menuSettings.SetActive(true);
         
         
             
@@ -76,9 +75,9 @@ public class buttonFunctions : MonoBehaviour
 
     public void closeSettings()
     {
-        uiManager.menuSettings.SetActive(false);
-        uiManager.menuActive = uiManager.menuPause;
-        uiManager.menuPause.SetActive(true);
+        gameUIManager.instance.menuSettings.SetActive(false);
+        gameUIManager.instance.menuActive = gameUIManager.instance.menuPause;
+        gameUIManager.instance.menuPause.SetActive(true);
     }
 
     public void loadMainMenu()

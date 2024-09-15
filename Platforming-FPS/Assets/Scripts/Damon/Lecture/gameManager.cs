@@ -14,7 +14,6 @@ public class gameManager : MonoBehaviour
 
     public GameObject player;
     public int worldGravity;
-    public UIManager uiManager;
     public playerController playerScript;
     public int respawns;
     int respawnsOriginal;
@@ -32,7 +31,7 @@ public class gameManager : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponentInParent<playerController>();
         respawnsOriginal = respawns;
-        updateRespawnCount(0);
+        gameUIManager.instance.updateRespawnCount(0);
         playerScript.updatePlayerUI();
         playerSpawnPosition = GameObject.FindWithTag("Player Spawn Position");
         worldGravity = instance.playerScript.GetGravity();                          // setting resting gravity of the world
@@ -67,20 +66,20 @@ public class gameManager : MonoBehaviour
     {
         if (Input.GetButtonDown("Cancel"))
         {
-            if (uiManager.menuActive == null)
+            if (gameUIManager.instance.menuActive == null)
             {
                 statePause();
-                uiManager.menuActive = uiManager.menuPause;
-                uiManager.menuActive.SetActive(isPaused);
+                gameUIManager.instance.menuActive = gameUIManager.instance.menuPause;
+                gameUIManager.instance.menuActive.SetActive(isPaused);
 
             }
 
-            else if (uiManager.menuActive == uiManager.menuPause)
+            else if (gameUIManager.instance.menuActive == gameUIManager.instance.menuPause)
             {
                 stateUnpause();
             }
 
-            else if (uiManager.menuActive == uiManager.menuSettings)
+            else if (gameUIManager.instance.menuActive == gameUIManager.instance.menuSettings)
             {
 
                 stateUnpause();
@@ -131,17 +130,13 @@ public class gameManager : MonoBehaviour
         Time.timeScale = 1;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        uiManager.menuActive.SetActive(isPaused);
-        uiManager.menuActive = null;
+        gameUIManager.instance.menuActive.SetActive(isPaused);
+        gameUIManager.instance.menuActive = null;
         
 
     }
 
-    public void updateRespawnCount(int amount)
-    {
-        respawns += amount;
-        uiManager.RespawnCount.text = respawns.ToString("F0");
-    }
+    
 
     public void youLose()
     {
@@ -149,11 +144,11 @@ public class gameManager : MonoBehaviour
         if (isPaused)
         {
             isPaused = !isPaused;
-            uiManager.menuActive = null;
+            gameUIManager.instance.menuActive = null;
         }
         statePause();
-        uiManager.menuActive = uiManager.menuLose;
-        uiManager.menuActive.SetActive(isPaused);
+        gameUIManager.instance.menuActive = gameUIManager.instance.menuLose;
+        gameUIManager.instance.menuActive.SetActive(isPaused);
 
     }
 

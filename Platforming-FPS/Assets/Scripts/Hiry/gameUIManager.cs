@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class UIManager : MonoBehaviour
+public class gameUIManager : MonoBehaviour
 {
+    public static gameUIManager instance;
 
     public GameObject menuActive;
     public GameObject menuPause;
@@ -24,7 +25,7 @@ public class UIManager : MonoBehaviour
     public GameObject increaseDamageScreen;
     public GameObject raiseSpeedScreen;
     public GameObject underwaterOverlay;
-
+    playerController player;
 
 
 
@@ -38,6 +39,17 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void updateRespawnCount(int amount)
+    {
+        gameManager.instance.respawns += amount;
+        gameUIManager.instance.RespawnCount.text = gameManager.instance.respawns.ToString("F0");
+    }
+
+    public void updatePlayerUI(float HP, float HPOrig)
+    {
+        playersHealthPool.fillAmount = HP / HPOrig;
     }
 
     public void UpdateUIPrompt(string message, GameObject door)
@@ -68,5 +80,6 @@ public class UIManager : MonoBehaviour
 
 
     }
+
 
 }

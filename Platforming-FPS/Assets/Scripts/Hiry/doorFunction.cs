@@ -36,7 +36,7 @@ public class doorFunction : MonoBehaviour
             if (!isNearDoor)
             {
                 isNearDoor = true;
-                gameManager.instance.UpdateUIPrompt(promptMessage, gameObject);
+                gameUIManager.instance.UpdateUIPrompt(promptMessage, gameObject);
             }
             if (Input.GetButtonDown(doorButton))
             {
@@ -49,7 +49,7 @@ public class doorFunction : MonoBehaviour
         else if (isNearDoor)
         {
             isNearDoor = false;
-            gameManager.instance.ClearUIPrompt(gameObject);
+            gameUIManager.instance.ClearUIPrompt(gameObject);
 
 
 
@@ -61,7 +61,7 @@ public class doorFunction : MonoBehaviour
     {
         isDoorActive = false;
         door.SetActive(false);
-        gameManager.instance.ClearUIPrompt(gameObject);
+        gameUIManager.instance.ClearUIPrompt(gameObject);
         yield return new WaitForSeconds(doorAppearTime);
         door.SetActive(true);
         isDoorActive = true;
@@ -70,7 +70,7 @@ public class doorFunction : MonoBehaviour
         if (distance <= doorDistance)
         {
 
-            gameManager.instance.UpdateUIPrompt(promptMessage, gameObject);
+            gameUIManager.instance.UpdateUIPrompt(promptMessage, gameObject);
 
         }
         

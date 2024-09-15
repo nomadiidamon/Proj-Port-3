@@ -12,7 +12,7 @@ public class Water : MonoBehaviour
         {
             gameManager.instance.playerScript.SetGravity(gravity, 5);
             gameManager.instance.playerScript.isSwimming = true;
-            gameManager.instance.underwaterOverlay.SetActive(true);
+            gameUIManager.instance.underwaterOverlay.SetActive(true);
         }
     }
     private void OnTriggerExit(Collider other)
@@ -21,7 +21,7 @@ public class Water : MonoBehaviour
         {
             gameManager.instance.playerScript.SetGravity(gameManager.instance.worldGravity);
             gameManager.instance.playerScript.isSwimming = false;
-            gameManager.instance.underwaterOverlay.SetActive(false);
+            gameUIManager.instance.underwaterOverlay.SetActive(false);
         }
     }
 }

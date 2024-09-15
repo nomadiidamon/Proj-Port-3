@@ -93,7 +93,6 @@ public class playerController : MonoBehaviour, IDamage
     public bool isDeflecting;
     public bool isHoldingShield;
     private BoxCollider myCollider;
-    UIManager uiManager;
 
     public Vector3 GetObjectHeldOriginalSize()
     {
@@ -396,30 +395,30 @@ public class playerController : MonoBehaviour, IDamage
 
     IEnumerator flashDamage()
     {
-        uiManager.flashDamageScreen.SetActive(true);
+        gameUIManager.instance.flashDamageScreen.SetActive(true);
         yield return new WaitForSeconds(0.1f);
-        uiManager.flashDamageScreen.SetActive(false);
+        gameUIManager.instance.flashDamageScreen.SetActive(false);
     }
 
     IEnumerator RestoreHealthScreen()
     {
-        uiManager.restoreHealthScreen.SetActive(true);
+        gameUIManager.instance.restoreHealthScreen.SetActive(true);
         yield return new WaitForSeconds(0.5f);
-        uiManager.restoreHealthScreen.SetActive(false);
+        gameUIManager.instance.restoreHealthScreen.SetActive(false);
     }
 
     IEnumerator IncreaseDamageScreen()
     {
-        uiManager.increaseDamageScreen.SetActive(true);
+        gameUIManager.instance.increaseDamageScreen.SetActive(true);
         yield return new WaitForSeconds(0.5f);
-        uiManager.increaseDamageScreen.SetActive(false);
+        gameUIManager.instance.increaseDamageScreen.SetActive(false);
     }
 
     IEnumerator RaiseSpeedScreen()
     {
-        uiManager.raiseSpeedScreen.SetActive(true);
+        gameUIManager.instance.raiseSpeedScreen.SetActive(true);
         yield return new WaitForSeconds(0.5f);
-        uiManager.raiseSpeedScreen.SetActive(false);
+        gameUIManager.instance.raiseSpeedScreen.SetActive(false);
     }
 
     public void RestoreHealth()
@@ -440,7 +439,10 @@ public class playerController : MonoBehaviour, IDamage
 
     public void updatePlayerUI()
     {
-        uiManager.playersHealthPool.fillAmount = (float)HP / HPOrig;
+        if (gameManager.instance != null)
+        {
+            gameUIManager.instance.updatePlayerUI (HP, HPOrig);
+        }
     }
 
     public void getGunStats(gunStats gun)
