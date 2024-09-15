@@ -11,6 +11,7 @@ public class parasiteAI : MonoBehaviour, IDamage
     [SerializeField] int startingHealth;
     [SerializeField] int facePlayerSpeed;
     [SerializeField] float shootRate;
+    [SerializeField] float swipeRate;
 
     [Header("-----Body-----")]
     [SerializeField] Renderer model;
@@ -34,6 +35,7 @@ public class parasiteAI : MonoBehaviour, IDamage
     [Range(0, 1)][SerializeField] float deathSoundVol;
 
     bool isShooting;
+    bool isSwiping;
     private bool isDead = false;
 
     Vector3 playerDir;
@@ -61,8 +63,14 @@ public class parasiteAI : MonoBehaviour, IDamage
             Debug.Log("Parasite sees: " + hit.collider.name);
             if (hit.collider.CompareTag("Player"))
             {
-                if (!isShooting)
-                    StartCoroutine(shoot());
+                if (!isSwiping && hit.distance < 5)
+                {
+                    StartCoroutine(swipe());
+                }
+                else if (!isShooting && !isSwiping)
+                {
+                        StartCoroutine(shoot());
+                }
 
                 facePlayer();
             }
@@ -128,14 +136,12 @@ public class parasiteAI : MonoBehaviour, IDamage
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
     }
-
-    public void createProjectile()
+    IEnumerator swipe()
     {
-        Vector3 direction = gameManager.instance.player.transform.position - shootPos.transform.position;
-        direction.Normalize();
-        Quaternion bulletRotation = Quaternion.LookRotation(direction);
-        //Debug.Log("Pew!");
-        Instantiate(bullet, shootPos.transform.position, bulletRotation);
+        isSwiping = true;
+        ChangeAnimation("Parasite_Swipe");
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+        isSwiping = false;
     }
 
     void updateHPBar()
