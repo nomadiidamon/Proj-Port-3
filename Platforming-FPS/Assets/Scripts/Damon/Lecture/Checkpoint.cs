@@ -24,6 +24,7 @@ public class Checkpoint : MonoBehaviour
             if (gameObject.GetComponent<flashColor>() == null && gameObject.GetComponent<scrollUV>() == null)
             {
                 StartCoroutine(flashModel());
+                StartCoroutine(showCheckPointMenu());
             }
             else
             {
@@ -31,7 +32,7 @@ public class Checkpoint : MonoBehaviour
                 gameObject.GetComponent<scrollUV>().horizontal = false;
                 gameObject.GetComponent<scrollUV>().vertical = true;
                 gameObject.GetComponent<scrollUV>().scrollSpeedY = -0.015f;
-
+                StartCoroutine(showCheckPointMenu());
             }
         }
     }
@@ -43,5 +44,14 @@ public class Checkpoint : MonoBehaviour
         yield return new WaitForSeconds(flashTimer);
         gameUIManager.instance.checkPointMenu.gameObject.SetActive(false);
         model.material.color = colorOriginal;
+    }
+
+    IEnumerator showCheckPointMenu()
+    {
+        gameUIManager.instance.CheckpointReached = true;
+        gameUIManager.instance.checkPointMenu.SetActive(true);
+        yield return new WaitForSeconds(flashTimer);
+        gameUIManager.instance.checkPointMenu.SetActive(false);
+
     }
 }
