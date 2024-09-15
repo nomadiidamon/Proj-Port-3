@@ -163,11 +163,14 @@ public class allyAI : MonoBehaviour, IDamage
 
     public void createProjectile()
     {
-        Vector3 direction = enemyPosition - shootPos.transform.position;
+        if (GetComponent<enemyAI>() == null)
+        {
+            Vector3 direction = enemyPosition - shootPos.transform.position;
         direction.Normalize();
         Quaternion bulletRotation = Quaternion.LookRotation(direction);
-        //Debug.Log("Pew!");
-        Instantiate(bullet, shootPos.transform.position, bulletRotation);
+            //Debug.Log("Pew!");
+            Instantiate(bullet, shootPos.transform.position, bulletRotation);
+        }
     }
 
     //public void weaponColliderOn()
