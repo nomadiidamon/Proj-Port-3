@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class buttonFunctions : MonoBehaviour
 {
+    UIManager uiManager;
 
     public void resume()
     {
@@ -18,7 +19,7 @@ public class buttonFunctions : MonoBehaviour
         Debug.Log("Restarted");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         gameManager.instance.stateUnpause();
-        gameManager.instance.CheckpointReached = false;
+        uiManager.CheckpointReached = false;
         gameManager.instance.respawns = gameManager.instance.GetOriginalRespawnCount();
     }
 
@@ -41,7 +42,7 @@ public class buttonFunctions : MonoBehaviour
     {
         Debug.Log("Quitting");
 
-        if (gameManager.instance.menuActive == gameManager.instance.menuLose)
+        if (uiManager.menuActive == uiManager.menuLose)
         {
             gameManager.instance.playerScript.HP = gameManager.instance.playerScript.HPOrig;
             Debug.Log("Player's HP reset to original HP");
@@ -61,10 +62,10 @@ public class buttonFunctions : MonoBehaviour
         
         
 
-            gameManager.instance.menuPause.SetActive(false);
+            uiManager.menuPause.SetActive(false);
 
-            gameManager.instance.menuActive = gameManager.instance.menuSettings;
-            gameManager.instance.menuSettings.SetActive(true);
+            uiManager.menuActive = uiManager.menuSettings;
+            uiManager.menuSettings.SetActive(true);
         
         
             
@@ -75,9 +76,9 @@ public class buttonFunctions : MonoBehaviour
 
     public void closeSettings()
     {
-        gameManager.instance.menuSettings.SetActive(false);
-        gameManager.instance.menuActive = gameManager.instance.menuPause;
-        gameManager.instance.menuPause.SetActive(true);
+        uiManager.menuSettings.SetActive(false);
+        uiManager.menuActive = uiManager.menuPause;
+        uiManager.menuPause.SetActive(true);
     }
 
     public void loadMainMenu()

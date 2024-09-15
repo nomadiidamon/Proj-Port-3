@@ -93,6 +93,7 @@ public class playerController : MonoBehaviour, IDamage
     public bool isDeflecting;
     public bool isHoldingShield;
     private BoxCollider myCollider;
+    UIManager uiManager;
 
     public Vector3 GetObjectHeldOriginalSize()
     {
@@ -395,30 +396,30 @@ public class playerController : MonoBehaviour, IDamage
 
     IEnumerator flashDamage()
     {
-        gameManager.instance.flashDamageScreen.SetActive(true);
+        uiManager.flashDamageScreen.SetActive(true);
         yield return new WaitForSeconds(0.1f);
-        gameManager.instance.flashDamageScreen.SetActive(false);
+        uiManager.flashDamageScreen.SetActive(false);
     }
 
     IEnumerator RestoreHealthScreen()
     {
-        gameManager.instance.restoreHealthScreen.SetActive(true);
+        uiManager.restoreHealthScreen.SetActive(true);
         yield return new WaitForSeconds(0.5f);
-        gameManager.instance.restoreHealthScreen.SetActive(false);
+        uiManager.restoreHealthScreen.SetActive(false);
     }
 
     IEnumerator IncreaseDamageScreen()
     {
-        gameManager.instance.increaseDamageScreen.SetActive(true);
+        uiManager.increaseDamageScreen.SetActive(true);
         yield return new WaitForSeconds(0.5f);
-        gameManager.instance.increaseDamageScreen.SetActive(false);
+        uiManager.increaseDamageScreen.SetActive(false);
     }
 
     IEnumerator RaiseSpeedScreen()
     {
-        gameManager.instance.raiseSpeedScreen.SetActive(true);
+        uiManager.raiseSpeedScreen.SetActive(true);
         yield return new WaitForSeconds(0.5f);
-        gameManager.instance.raiseSpeedScreen.SetActive(false);
+        uiManager.raiseSpeedScreen.SetActive(false);
     }
 
     public void RestoreHealth()
@@ -439,7 +440,7 @@ public class playerController : MonoBehaviour, IDamage
 
     public void updatePlayerUI()
     {
-        gameManager.instance.playersHealthPool.fillAmount = (float)HP / HPOrig;
+        uiManager.playersHealthPool.fillAmount = (float)HP / HPOrig;
     }
 
     public void getGunStats(gunStats gun)

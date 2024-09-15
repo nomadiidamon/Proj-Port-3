@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEditor.ProBuilder;
 
 
 public class enemyManager : MonoBehaviour
 {
+
+    UIManager uiManager;
+
     public static enemyManager instance;
 
     public int enemiesOriginal;
@@ -45,8 +47,8 @@ public class enemyManager : MonoBehaviour
 
             // you win!
             gameManager.instance.statePause();
-            gameManager.instance.menuActive = gameManager.instance.menuWin;
-            gameManager.instance.menuActive.SetActive(gameManager.instance.isPaused);
+            uiManager.menuActive = uiManager.menuWin;
+            uiManager.menuActive.SetActive(gameManager.instance.isPaused);
 
         }
     }

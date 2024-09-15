@@ -10,34 +10,11 @@ public class gameManager : MonoBehaviour
     public static gameManager instance;
     public QuestTracker questTracker;
 
-    public GameObject menuActive;
-    public GameObject menuPause;
-    [SerializeField] public GameObject menuWin;
-    [SerializeField] public GameObject menuLose;
-    public GameObject menuSettings;
-
-    
-
     public GameObject playerSpawnPosition;
-    
-    public GameObject flashDamageScreen;
-    public GameObject underwaterOverlay;
-    public GameObject restoreHealthScreen;
-    public GameObject increaseDamageScreen;
-    public GameObject raiseSpeedScreen;
-
-    public GameObject checkPointMenu;
-    public bool CheckpointReached;
-
-    public Image playersHealthPool;
-    [SerializeField] TMP_Text RespawnCount;
-    [SerializeField] TMP_Text uiPrompt;
-
 
     public GameObject player;
     public int worldGravity;
-
-
+    public UIManager uiManager;
     public playerController playerScript;
     public int respawns;
     int respawnsOriginal;
@@ -47,7 +24,7 @@ public class gameManager : MonoBehaviour
 
     int enemyCount;
 
-    private GameObject currentDoor;
+    public GameObject currentDoor;
 
     void Awake()
     {
@@ -90,20 +67,20 @@ public class gameManager : MonoBehaviour
     {
         if (Input.GetButtonDown("Cancel"))
         {
-            if (menuActive == null)
+            if (uiManager.menuActive == null)
             {
                 statePause();
-                menuActive = menuPause;
-                menuActive.SetActive(isPaused);
+                uiManager.menuActive = uiManager.menuPause;
+                uiManager.menuActive.SetActive(isPaused);
 
             }
 
-            else if (menuActive == menuPause)
+            else if (uiManager.menuActive == uiManager.menuPause)
             {
                 stateUnpause();
             }
 
-            else if (menuActive == menuSettings)
+            else if (uiManager.menuActive == uiManager.menuSettings)
             {
 
                 stateUnpause();
@@ -154,8 +131,8 @@ public class gameManager : MonoBehaviour
         Time.timeScale = 1;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        menuActive.SetActive(isPaused);
-        menuActive = null;
+        uiManager.menuActive.SetActive(isPaused);
+        uiManager.menuActive = null;
         
 
     }
@@ -163,7 +140,7 @@ public class gameManager : MonoBehaviour
     public void updateRespawnCount(int amount)
     {
         respawns += amount;
-        RespawnCount.text = respawns.ToString("F0");
+        uiManager.RespawnCount.text = respawns.ToString("F0");
     }
 
     public void youLose()
@@ -172,42 +149,15 @@ public class gameManager : MonoBehaviour
         if (isPaused)
         {
             isPaused = !isPaused;
-            menuActive = null;
+            uiManager.menuActive = null;
         }
         statePause();
-        menuActive = menuLose;
-        menuActive.SetActive(isPaused);
+        uiManager.menuActive = uiManager.menuLose;
+        uiManager.menuActive.SetActive(isPaused);
 
     }
-
-    public void UpdateUIPrompt(string message, GameObject door)
-    {
-        currentDoor = door;
-        uiPrompt.text = message;
-        uiPrompt.enabled = !string.IsNullOrEmpty(message);
-    }
-
-    public void ClearUIPrompt(GameObject door) 
-    {
-    
-        if (currentDoor == door)
-        {
-
-            uiPrompt.enabled = false;
-            currentDoor = null;
-
-        }
 
     
-    }
-
-    public bool IsUIPromptActive()
-    {
-
-        return uiPrompt.enabled;
-
-
-    }
 
     
 
