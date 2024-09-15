@@ -6,6 +6,7 @@ public class Checkpoint : MonoBehaviour
 {
     [SerializeField] Renderer model;
     [SerializeField] float flashTimer;
+    [SerializeField] float activatedFlashSpeed;
 
     Color colorOriginal;
 
@@ -19,7 +20,19 @@ public class Checkpoint : MonoBehaviour
         if (other.CompareTag("Player") && gameManager.instance.playerSpawnPosition.transform.position != this.transform.position && GetComponent<CapsuleCollider>().bounds.Contains(gameManager.instance.player.transform.position))
         {
             gameManager.instance.playerSpawnPosition.transform.position = transform.position;
-            StartCoroutine(flashModel());
+
+            if (gameObject.GetComponent<flashColor>() == null && gameObject.GetComponent<scrollUV>() == null)
+            {
+                StartCoroutine(flashModel());
+            }
+            else
+            {
+                gameObject.GetComponent<flashColor>().flashSpeed = activatedFlashSpeed;
+                gameObject.GetComponent<scrollUV>().horizontal = false;
+                gameObject.GetComponent<scrollUV>().vertical = true;
+                gameObject.GetComponent<scrollUV>().scrollSpeedY = -0.015f;
+
+            }
         }
     }
 

@@ -5,11 +5,11 @@ using UnityEngine;
 public class scrollUV : MonoBehaviour
 {
 
-    [SerializeField] float scrollSpeedX = 0.1f;
-    [SerializeField] float scrollSpeedY = 0.1f;
+    [SerializeField] public float scrollSpeedX = 0.1f;
+    [SerializeField] public float scrollSpeedY = 0.1f;
 
-    [SerializeField] bool horizontal;
-    [SerializeField] bool vertical;
+    [SerializeField] public bool horizontal;
+    [SerializeField] public bool vertical;
     private Renderer rend;
 
 
