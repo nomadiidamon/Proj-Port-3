@@ -23,7 +23,7 @@ public class bossGolem : MonoBehaviour, IDamage, IDeflect
 
     [Header("-----Attributes-----")]
     private int HP;
-    [Range(0, 50)][SerializeField] int startingHealth;
+    [Range(0, 100)][SerializeField] int startingHealth;
 
     [Header("-----Factors-----")]
     [SerializeField] int viewAngle;
