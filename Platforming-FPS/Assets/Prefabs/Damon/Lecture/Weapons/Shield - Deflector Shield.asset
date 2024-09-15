@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac4c15d63ca800489dada8a320fe87c, type: 3}
   m_Name: Shield - Deflector Shield
   m_EditorClassIdentifier: 
+  gunName: 
   gunModel: {fileID: 7263974932301356860, guid: 0c761cb6a0742384b989c6654acde62a, type: 3}
   shootDamage: 0
   shootRate: 0.5
   shootDistance: 20
   ammoCur: 0
   ammoMax: 3
+  gunScale: {x: 0.5, y: 0.5, z: 0.5}
   hitEffect: {fileID: 3249809072487309720, guid: 47096eff328e11a418ace7db2d72aa97, type: 3}
   shootSound:
   - {fileID: 8300000, guid: 2579b45e1c309f04f9a5bf7ea52aafff, type: 3}
@@ -33,3 +35,4 @@ MonoBehaviour:
   switchVolume: 0.5
   isCreator: 0
   isShield: 1
+  isBlast: 0

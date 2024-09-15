@@ -18,7 +18,7 @@ public class Damage : MonoBehaviour
     public void SetDamageAmount(int amount) { damageAmount = amount; }
 
     [SerializeField] float damageDelay;
-    [SerializeField] int speed;
+    [SerializeField] public int speed;
     [SerializeField] int destroyTime;
 
     bool isDamageable = true;
