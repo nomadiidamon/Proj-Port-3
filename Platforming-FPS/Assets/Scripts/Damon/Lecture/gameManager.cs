@@ -10,34 +10,10 @@ public class gameManager : MonoBehaviour
     public static gameManager instance;
     public QuestTracker questTracker;
 
-    public GameObject menuActive;
-    public GameObject menuPause;
-    [SerializeField] public GameObject menuWin;
-    [SerializeField] public GameObject menuLose;
-    public GameObject menuSettings;
-
-    
-
     public GameObject playerSpawnPosition;
-    
-    public GameObject flashDamageScreen;
-    public GameObject underwaterOverlay;
-    public GameObject restoreHealthScreen;
-    public GameObject increaseDamageScreen;
-    public GameObject raiseSpeedScreen;
-
-    public GameObject checkPointMenu;
-    public bool CheckpointReached;
-
-    public Image playersHealthPool;
-    [SerializeField] TMP_Text RespawnCount;
-    [SerializeField] TMP_Text uiPrompt;
-
 
     public GameObject player;
     public int worldGravity;
-
-
     public playerController playerScript;
     public int respawns;
     int respawnsOriginal;
@@ -47,7 +23,7 @@ public class gameManager : MonoBehaviour
 
     int enemyCount;
 
-    private GameObject currentDoor;
+    public GameObject currentDoor;
 
     void Awake()
     {
@@ -55,7 +31,7 @@ public class gameManager : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponentInParent<playerController>();
         respawnsOriginal = respawns;
-        updateRespawnCount(0);
+        gameUIManager.instance.updateRespawnCount(respawns);
         playerScript.updatePlayerUI();
         playerSpawnPosition = GameObject.FindWithTag("Player Spawn Position");
         worldGravity = instance.playerScript.GetGravity();                          // setting resting gravity of the world
@@ -90,20 +66,20 @@ public class gameManager : MonoBehaviour
     {
         if (Input.GetButtonDown("Cancel"))
         {
-            if (menuActive == null)
+            if (gameUIManager.instance.menuActive == null)
             {
                 statePause();
-                menuActive = menuPause;
-                menuActive.SetActive(isPaused);
+                gameUIManager.instance.menuActive = gameUIManager.instance.menuPause;
+                gameUIManager.instance.menuActive.SetActive(isPaused);
 
             }
 
-            else if (menuActive == menuPause)
+            else if (gameUIManager.instance.menuActive == gameUIManager.instance.menuPause)
             {
                 stateUnpause();
             }
 
-            else if (menuActive == menuSettings)
+            else if (gameUIManager.instance.menuActive == gameUIManager.instance.menuSettings)
             {
 
                 stateUnpause();
@@ -154,17 +130,13 @@ public class gameManager : MonoBehaviour
         Time.timeScale = 1;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        menuActive.SetActive(isPaused);
-        menuActive = null;
+        gameUIManager.instance.menuActive.SetActive(isPaused);
+        gameUIManager.instance.menuActive = null;
         
 
     }
 
-    public void updateRespawnCount(int amount)
-    {
-        respawns += amount;
-        RespawnCount.text = respawns.ToString("F0");
-    }
+    
 
     public void youLose()
     {
@@ -172,42 +144,15 @@ public class gameManager : MonoBehaviour
         if (isPaused)
         {
             isPaused = !isPaused;
-            menuActive = null;
+            gameUIManager.instance.menuActive = null;
         }
         statePause();
-        menuActive = menuLose;
-        menuActive.SetActive(isPaused);
+        gameUIManager.instance.menuActive = gameUIManager.instance.menuLose;
+        gameUIManager.instance.menuActive.SetActive(isPaused);
 
     }
-
-    public void UpdateUIPrompt(string message, GameObject door)
-    {
-        currentDoor = door;
-        uiPrompt.text = message;
-        uiPrompt.enabled = !string.IsNullOrEmpty(message);
-    }
-
-    public void ClearUIPrompt(GameObject door) 
-    {
-    
-        if (currentDoor == door)
-        {
-
-            uiPrompt.enabled = false;
-            currentDoor = null;
-
-        }
 
     
-    }
-
-    public bool IsUIPromptActive()
-    {
-
-        return uiPrompt.enabled;
-
-
-    }
 
     
 

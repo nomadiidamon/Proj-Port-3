@@ -13,7 +13,7 @@ public class CheckpointScript : MonoBehaviour
     void Start()
     {
         player = GameObject.FindWithTag("Player").transform;
-        gameManager.instance.CheckpointReached = false;
+        gameUIManager.instance.CheckpointReached = false;
     }
 
     // Update is called once per frame
@@ -29,7 +29,7 @@ public class CheckpointScript : MonoBehaviour
         if (area.bounds.Contains(player.position))
         {
             Debug.Log("Checkpoint Reached!");
-            gameManager.instance.CheckpointReached = true;
+            gameUIManager.instance.CheckpointReached = true;
         }
 
     }

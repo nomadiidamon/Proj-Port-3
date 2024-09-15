@@ -405,30 +405,30 @@ public class playerController : MonoBehaviour, IDamage
 
     IEnumerator flashDamage()
     {
-        gameManager.instance.flashDamageScreen.SetActive(true);
+        gameUIManager.instance.flashDamageScreen.SetActive(true);
         yield return new WaitForSeconds(0.1f);
-        gameManager.instance.flashDamageScreen.SetActive(false);
+        gameUIManager.instance.flashDamageScreen.SetActive(false);
     }
 
     IEnumerator RestoreHealthScreen()
     {
-        gameManager.instance.restoreHealthScreen.SetActive(true);
+        gameUIManager.instance.restoreHealthScreen.SetActive(true);
         yield return new WaitForSeconds(0.5f);
-        gameManager.instance.restoreHealthScreen.SetActive(false);
+        gameUIManager.instance.restoreHealthScreen.SetActive(false);
     }
 
     IEnumerator IncreaseDamageScreen()
     {
-        gameManager.instance.increaseDamageScreen.SetActive(true);
+        gameUIManager.instance.increaseDamageScreen.SetActive(true);
         yield return new WaitForSeconds(0.5f);
-        gameManager.instance.increaseDamageScreen.SetActive(false);
+        gameUIManager.instance.increaseDamageScreen.SetActive(false);
     }
 
     IEnumerator RaiseSpeedScreen()
     {
-        gameManager.instance.raiseSpeedScreen.SetActive(true);
+        gameUIManager.instance.raiseSpeedScreen.SetActive(true);
         yield return new WaitForSeconds(0.5f);
-        gameManager.instance.raiseSpeedScreen.SetActive(false);
+        gameUIManager.instance.raiseSpeedScreen.SetActive(false);
     }
 
     public void RestoreHealth()
@@ -449,7 +449,10 @@ public class playerController : MonoBehaviour, IDamage
 
     public void updatePlayerUI()
     {
-        gameManager.instance.playersHealthPool.fillAmount = (float)HP / HPOrig;
+        if (gameManager.instance != null)
+        {
+            gameUIManager.instance.updatePlayerUI (HP, HPOrig);
+        }
     }
 
     public void getGunStats(gunStats gun)
