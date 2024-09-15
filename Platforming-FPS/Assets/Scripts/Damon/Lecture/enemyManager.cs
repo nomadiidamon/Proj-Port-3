@@ -17,10 +17,10 @@ public class enemyManager : MonoBehaviour
     
     public Transform playerPosition;
 
-    void Start()
+    void Awake()
     {
         instance = this;
-        playerPosition = gameManager.instance.playerScript.GetPlayerCenter();
+        //playerPosition = gameManager.instance.playerScript.GetPlayerCenter();
 
     }
 
