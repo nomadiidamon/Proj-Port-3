@@ -161,5 +161,13 @@ public class parasiteAI : MonoBehaviour, IDamage
         currentAnimation = targetAnimation;
         animator.CrossFade(targetAnimation, fadeTime);
     }
+    public void createProjectile()
+    {
+        Vector3 direction = gameManager.instance.player.transform.position - shootPos.transform.position;
+        direction.Normalize();
+        Quaternion bulletRotation = Quaternion.LookRotation(direction);
+        //Debug.Log("Pew!");
+        Instantiate(bullet, shootPos.transform.position, bulletRotation);
+    }
 }
 

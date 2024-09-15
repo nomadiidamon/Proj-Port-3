@@ -609,14 +609,15 @@ MonoBehaviour:
   headPos: {fileID: 7103974935042376568}
   audEnemy: {fileID: 5849967986925197964}
   startingHealth: 8
-  viewAngle: 90
   faceEnemySpeed: 5
   hpbar: {fileID: 942767710059875622}
   animSpeedTrans: 3
   bullet: {fileID: 3121373984394139885, guid: b18ac85634ea36a438f60d9b104e933c, type: 3}
   shootRate: 0.5
-  deathSound: []
-  deathSoundVol: 0
+  deathSound:
+  - {fileID: 8300000, guid: 8e5745ff523fd904fb323cf6eec504a9, type: 3}
+  - {fileID: 8300000, guid: 09084bed31b0a0f41ae058f4a84fbf4f, type: 3}
+  deathSoundVol: 1
 --- !u!195 &3279710370638521175
 NavMeshAgent:
   m_ObjectHideFlags: 0
