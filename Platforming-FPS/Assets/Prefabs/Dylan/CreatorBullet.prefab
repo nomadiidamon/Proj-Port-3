@@ -52,7 +52,7 @@ MonoBehaviour:
   targetHitEffect: {fileID: 577812841044345583, guid: fcb74f28d107e284e80af037bfec14ca, type: 3}
   damageAmount: 1
   damageDelay: 0
-  speed: 100
+  speed: 200
   destroyTime: 3
 --- !u!135 &6592911173515488272
 SphereCollider:

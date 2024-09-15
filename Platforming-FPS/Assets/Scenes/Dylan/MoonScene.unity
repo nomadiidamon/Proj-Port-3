@@ -2620,10 +2620,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 417920918263337141, guid: 89c27f129871ce846af830d1864f4b65, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6083180464367101227, guid: 89c27f129871ce846af830d1864f4b65, type: 3}
       propertyPath: m_LocalPosition.x
       value: 35.773285
@@ -2667,42 +2663,6 @@ PrefabInstance:
     - target: {fileID: 6267006595757427889, guid: 89c27f129871ce846af830d1864f4b65, type: 3}
       propertyPath: m_Name
       value: Player_Damon
-      objectReference: {fileID: 0}
-    - target: {fileID: 7696987937344138000, guid: 89c27f129871ce846af830d1864f4b65, type: 3}
-      propertyPath: speed
-      value: 18
-      objectReference: {fileID: 0}
-    - target: {fileID: 7696987937344138000, guid: 89c27f129871ce846af830d1864f4b65, type: 3}
-      propertyPath: bullet
-      value: 
-      objectReference: {fileID: 7705054103025303262, guid: 2021439659934794a91f92d4b48aae2a, type: 3}
-    - target: {fileID: 7696987937344138000, guid: 89c27f129871ce846af830d1864f4b65, type: 3}
-      propertyPath: audHurtVol
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7696987937344138000, guid: 89c27f129871ce846af830d1864f4b65, type: 3}
-      propertyPath: audJumpVol
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7696987937344138000, guid: 89c27f129871ce846af830d1864f4b65, type: 3}
-      propertyPath: audStepsVol
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7696987937344138000, guid: 89c27f129871ce846af830d1864f4b65, type: 3}
-      propertyPath: playerCenter
-      value: 
-      objectReference: {fileID: 1777218321}
-    - target: {fileID: 7696987937344138000, guid: 89c27f129871ce846af830d1864f4b65, type: 3}
-      propertyPath: audWeapPickupVol
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7696987937344138000, guid: 89c27f129871ce846af830d1864f4b65, type: 3}
-      propertyPath: maxObjectsCreated
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 7912685596475692159, guid: 89c27f129871ce846af830d1864f4b65, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
