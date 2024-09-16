@@ -458,7 +458,20 @@ public class playerController : MonoBehaviour, IDamage
     public void getGunStats(gunStats gun)
     {
         audioManager.instance.PlayAud(audWeapPickup, audWeapPickupVol);
-        gunList.Add(gun);
+
+        if (gunList.Contains(gun))
+        {
+            return;
+        }
+        else
+        {
+            gunList.Add(gun);
+
+        }
+
+
+       
+
         selectedGun = gunList.Count - 1;
         shootDamage = gun.shootDamage;
         bullet.GetComponent<Damage>().SetDamageAmount(shootDamage);
@@ -471,16 +484,18 @@ public class playerController : MonoBehaviour, IDamage
         if (isCreator)
         {
             objectHeldContainer.gameObject.SetActive(true);
+            gameUIManager.instance.ShowCreatorGunPrompt();
         }
         else
         {
             objectHeldContainer.gameObject.SetActive(false);
+            gameUIManager.instance.HideCreatorGunPrompt();
         }
 
         gunModel.GetComponent<MeshFilter>().sharedMesh = gun.gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gun.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
 
-        gunModel.transform.localScale = gun.gunScale;
+        //gunModel.transform.localScale = gun.gunScale;
     }
 
     void selectGun()
@@ -509,10 +524,14 @@ public class playerController : MonoBehaviour, IDamage
         if (isCreator)
         {
             objectHeldContainer.gameObject.SetActive(true);
+            gameUIManager.instance.ShowCreatorGunPrompt();
+            
         }
         else
         {
             objectHeldContainer.gameObject.SetActive(false);
+            gameUIManager.instance.HideCreatorGunPrompt();
+
         }
 
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].gunModel.GetComponent<MeshFilter>().sharedMesh;

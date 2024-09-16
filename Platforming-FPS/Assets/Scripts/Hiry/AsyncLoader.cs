@@ -35,9 +35,10 @@ public class AsyncLoader : MonoBehaviour
             loadingSlider.value = progressValue;
             yield return null;
 
-            //if (gameManager.instance != null && gameManager.instance.isPaused) {
-               // gameManager.instance.stateUnpause();
-            //}
+            if (gameUIManager.instance != null && gameUIManager.instance.isPaused)
+            {
+                gameUIManager.instance.stateUnpause();
+            }
 
         }
 

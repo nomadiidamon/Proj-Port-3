@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5310616148177685218}
-  - component: {fileID: 6981038358710319720}
+  - component: {fileID: -787060967650995860}
   - component: {fileID: 4568458166508073963}
   - component: {fileID: 321238960857309566}
   - component: {fileID: 712677224695134100}
@@ -35,7 +35,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6981038358710319720
+--- !u!114 &-787060967650995860
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,30 +44,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 8016048949092535783}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f5341f73166b7b4ca464a825cb58a89, type: 3}
+  m_Script: {fileID: 11500000, guid: 3bd65ec4b9ad47349b1b757980895315, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuActive: {fileID: 0}
-  menuPause: {fileID: 0}
-  menuWin: {fileID: 0}
-  menuLose: {fileID: 0}
-  menuSettings: {fileID: 0}
-  playerSpawnPosition: {fileID: 0}
-  flashDamageScreen: {fileID: 0}
-  underwaterOverlay: {fileID: 0}
-  restoreHealthScreen: {fileID: 0}
-  increaseDamageScreen: {fileID: 0}
-  raiseSpeedScreen: {fileID: 0}
-  checkPointMenu: {fileID: 0}
-  CheckpointReached: 0
-  playersHealthPool: {fileID: 0}
-  RespawnCount: {fileID: 0}
-  uiPrompt: {fileID: 0}
-  player: {fileID: 0}
-  worldGravity: 0
-  playerScript: {fileID: 0}
-  respawns: 0
-  isPaused: 0
+  type: 0
+  rb: {fileID: 321238960857309566}
+  targetHitEffect: {fileID: 0}
+  damageAmount: 0
+  damageDelay: 0
+  speed: 0
+  destroyTime: 0
 --- !u!135 &4568458166508073963
 SphereCollider:
   m_ObjectHideFlags: 0

@@ -13,6 +13,8 @@ public class gameUIManager : MonoBehaviour
     public GameObject menuPause;
     [SerializeField] public GameObject menuWin;
     [SerializeField] public GameObject menuLose;
+    [SerializeField] public GameObject CreatorGunPrompt;
+
     public GameObject menuSettings;
     public GameObject checkPointMenu;
     public bool CheckpointReached;
@@ -102,7 +104,7 @@ public class gameUIManager : MonoBehaviour
 
 
         Debug.Log("Unpaused");
-        isPaused = !isPaused;
+        isPaused = false;
         Time.timeScale = 1;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -145,6 +147,16 @@ public class gameUIManager : MonoBehaviour
         gameManager.instance.currentDoor = door;
         uiPrompt.text = message;
         uiPrompt.enabled = !string.IsNullOrEmpty(message);
+    }
+
+    public void ShowCreatorGunPrompt()
+    {
+        CreatorGunPrompt.SetActive(true);
+    }
+
+    public void HideCreatorGunPrompt()
+    {
+        CreatorGunPrompt.SetActive(false);
     }
 
     public void ClearUIPrompt(GameObject door)

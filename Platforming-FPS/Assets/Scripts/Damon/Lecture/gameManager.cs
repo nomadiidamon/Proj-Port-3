@@ -27,6 +27,7 @@ public class gameManager : MonoBehaviour
     void Awake()
     {
         instance = this;
+        Time.timeScale = 1;
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponentInParent<playerController>();
         respawnsOriginal = respawns;
