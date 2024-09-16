@@ -20,6 +20,7 @@ MonoBehaviour:
   ammoCur: 0
   ammoMax: 25
   gunScale: {x: 0.5, y: 0.5, z: 0.5}
+  bullet: {fileID: 7705054103025303262, guid: 2021439659934794a91f92d4b48aae2a, type: 3}
   hitEffect: {fileID: 3249809072487309720, guid: 47096eff328e11a418ace7db2d72aa97, type: 3}
   shootSound:
   - {fileID: 8300000, guid: 90e56cc1674f9e94393779aaf4c54cb5, type: 3}
