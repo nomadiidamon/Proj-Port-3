@@ -55,8 +55,6 @@ public class allyAI : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
-        enemyPosition = FindAnyObjectByType<enemyAI>().GetComponent<CapsuleCollider>().ClosestPoint(shootPos.position);
-
         float agentSpeed = agent.velocity.normalized.magnitude;
         animator.SetFloat("Speed", Mathf.Lerp(animator.GetFloat("Speed"), agentSpeed, Time.deltaTime * animSpeedTrans));
 
@@ -85,16 +83,20 @@ public class allyAI : MonoBehaviour, IDamage
 
     bool canSeeEnemy()
     {
-        enemyDirection = enemyPosition - headPos.position;
-
-        RaycastHit hit;
-        Physics.Raycast(headPos.position, enemyDirection, out hit, gameManager.instance.playerScript.allyHeldAggroRange);
-        Debug.DrawRay(headPos.position, enemyDirection);
-        if (hit.collider != null)
+        enemyAI enemy = FindAnyObjectByType<enemyAI>();
+        if (enemy != null)
         {
-            if (hit.collider.CompareTag("Enemy"))
+            enemyPosition = enemy.GetComponent<CapsuleCollider>().ClosestPoint(shootPos.position);
+            enemyDirection = enemyPosition - headPos.position;
+            RaycastHit hit;
+            Physics.Raycast(headPos.position, enemyDirection, out hit, gameManager.instance.playerScript.allyHeldAggroRange);
+            Debug.DrawRay(headPos.position, enemyDirection);
+            if (hit.collider != null)
             {
-                return true;
+                if (hit.collider.CompareTag("Enemy"))
+                {
+                    return true;
+                }
             }
         }
         return false;
