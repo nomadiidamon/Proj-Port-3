@@ -49,7 +49,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4161911922665730659}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -841,8 +841,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   shield: {fileID: 5594909959243809031}
+  playerCenter: {fileID: 984660246716668632}
   HP: 100
-  speed: 3
+  speed: 18
   jumpMax: 2
   jumpSpeed: 14
   gravity: 28
@@ -855,7 +856,7 @@ MonoBehaviour:
   gunModel: {fileID: 7912685596475692159}
   muzzleFlash: {fileID: 6888947675050280122}
   deflectionFlash: {fileID: 5810606773978635880}
-  bullet: {fileID: 7705054103025303262, guid: affa48a4d98f22e4aa6182cf600b73da, type: 3}
+  bullet: {fileID: 7705054103025303262, guid: 2021439659934794a91f92d4b48aae2a, type: 3}
   shootPos: {fileID: 3329544287267998570}
   shootDamage: 0
   shootDist: 0
@@ -866,7 +867,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 7387f813351958543bd24df759310f4b, type: 3}
   - {fileID: 8300000, guid: 6e1e7ec32c538cf4bbf0f2104e193a9a, type: 3}
   - {fileID: 8300000, guid: ac76eed785842bc409eaf52a88e10407, type: 3}
-  audJumpVol: 0.5
+  audJumpVol: 0
   audHurt:
   - {fileID: 8300000, guid: ecd69211efdf55f4cb1fbafd4235d1c7, type: 3}
   - {fileID: 8300000, guid: 7563aebac5c7041468ba8a5c601d44d9, type: 3}
@@ -874,7 +875,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: adc9ff753b3fe214787cda01ff5aad31, type: 3}
   - {fileID: 8300000, guid: d0be188c5f5a66b49ac3207f4918d270, type: 3}
   - {fileID: 8300000, guid: a2727a321ee8c5641b3f46101c0bd47c, type: 3}
-  audHurtVol: 0.5
+  audHurtVol: 0
   audSteps:
   - {fileID: 8300000, guid: 13d64ec197df1614e9c7d90284058b95, type: 3}
   - {fileID: 8300000, guid: 19940d50526875646b028ddfd628cda7, type: 3}
@@ -885,9 +886,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d6124bd8da126804fa4e20cc807dfe7b, type: 3}
   - {fileID: 8300000, guid: bcc89b972c0d92d4695426346381346d, type: 3}
   - {fileID: 8300000, guid: ce0af7f393f223547b2ccb72cfbadb8e, type: 3}
-  audStepsVol: 0.2
+  audStepsVol: 0
   audWeapPickup: {fileID: 8300000, guid: cf58eab19a3fc784facdb4bd23251b0e, type: 3}
-  audWeapPickupVol: 1
+  audWeapPickupVol: 0
   objectHeld: {fileID: 0}
   objectHeldContainer: {fileID: 3536201500387809014}
   maxObjectsCreated: 10

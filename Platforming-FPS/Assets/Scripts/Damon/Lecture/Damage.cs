@@ -62,7 +62,7 @@ public class Damage : MonoBehaviour
         {
             Instantiate(gameManager.instance.playerScript.GetGunList()[gameManager.instance.playerScript.selectedGun].hitEffect, this.transform.position, Quaternion.identity);  
 
-            if (gameManager.instance.playerScript.isCreator)
+            if (gameManager.instance.playerScript.isCreator && gameManager.instance.playerScript.objectHeld != null)
             {
                 if ((gameManager.instance.playerScript.objectHeld.CompareTag("Creatable") && gameManager.instance.playerScript.objectsCreated.Count < gameManager.instance.playerScript.GetMaxObjectsCreated())
                     ||
@@ -75,7 +75,7 @@ public class Damage : MonoBehaviour
                     {
                         GameObject groundObject = gameManager.instance.playerScript.objectHeld;
 
-                        GameObject newGroundObject = Instantiate(gameManager.instance.playerScript.objectHeld, hit.point, Quaternion.identity);
+                        GameObject newGroundObject = Instantiate(groundObject, hit.point, Quaternion.identity);
 
                         Vector3 directionToPlayer = gameManager.instance.playerScript.GetPlayerCenter().position - newGroundObject.transform.position;
 

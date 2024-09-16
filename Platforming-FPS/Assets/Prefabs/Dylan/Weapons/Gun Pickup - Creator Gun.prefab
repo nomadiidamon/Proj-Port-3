@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2254210609484914172}
   - component: {fileID: 6472046317361826999}
   m_Layer: 0
-  m_Name: Gun Pickup - Platform Gun
+  m_Name: Gun Pickup - Creator Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
