@@ -43,9 +43,9 @@ public class enemyManager : MonoBehaviour
             Debug.Log("You Win");
 
             // you win!
-            gameManager.instance.statePause();
+            gameUIManager.instance.statePause();
             gameUIManager.instance.menuActive = gameUIManager.instance.menuWin;
-            gameUIManager.instance.menuActive.SetActive(gameManager.instance.isPaused);
+            gameUIManager.instance.menuActive.SetActive(gameUIManager.instance.isPaused);
 
         }
     }

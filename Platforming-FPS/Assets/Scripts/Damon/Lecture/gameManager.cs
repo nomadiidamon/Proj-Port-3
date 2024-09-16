@@ -19,7 +19,6 @@ public class gameManager : MonoBehaviour
     int respawnsOriginal;
     public int GetOriginalRespawnCount() {  return respawnsOriginal; }
 
-    public bool isPaused;
 
     int enemyCount;
 
@@ -64,93 +63,10 @@ public class gameManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Cancel"))
-        {
-            if (gameUIManager.instance.menuActive == null)
-            {
-                statePause();
-                gameUIManager.instance.menuActive = gameUIManager.instance.menuPause;
-                gameUIManager.instance.menuActive.SetActive(isPaused);
-
-            }
-
-            else if (gameUIManager.instance.menuActive == gameUIManager.instance.menuPause)
-            {
-                stateUnpause();
-            }
-
-            else if (gameUIManager.instance.menuActive == gameUIManager.instance.menuSettings)
-            {
-
-                stateUnpause();
-
-
-            }
-
-
-        }
-    }
-
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-
-        
-        if (isPaused)
-        {
-            stateUnpause();
-        }
 
     }
 
-    private void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
 
-    void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
-
-    public void statePause()
-    {
-        Debug.Log("Paused");
-        isPaused = !isPaused;
-        Time.timeScale = 0;
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.Confined;
-    }
-
-    public void stateUnpause()
-    {
-       
-        
-        Debug.Log("Unpaused");
-        isPaused = !isPaused;
-        Time.timeScale = 1;
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-        gameUIManager.instance.menuActive.SetActive(isPaused);
-        gameUIManager.instance.menuActive = null;
-        
-
-    }
-
-    
-
-    public void youLose()
-    {
-        Debug.Log("You Lose");
-        if (isPaused)
-        {
-            isPaused = !isPaused;
-            gameUIManager.instance.menuActive = null;
-        }
-        statePause();
-        gameUIManager.instance.menuActive = gameUIManager.instance.menuLose;
-        gameUIManager.instance.menuActive.SetActive(isPaused);
-
-    }
 
     
 

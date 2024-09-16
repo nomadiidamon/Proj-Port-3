@@ -161,7 +161,7 @@ public class playerController : MonoBehaviour, IDamage
     {
         Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
 
-        if (!gameManager.instance.isPaused)
+        if (!gameUIManager.instance.isPaused)
         {
             movement();
             selectGun();
@@ -178,8 +178,8 @@ public class playerController : MonoBehaviour, IDamage
         {
             HP = 0;
             updatePlayerUI();
-            gameManager.instance.isPaused = false;
-            gameManager.instance.youLose();
+            gameUIManager.instance.isPaused = false;
+            gameUIManager.instance.youLose();
             
         }
     }
@@ -398,8 +398,8 @@ public class playerController : MonoBehaviour, IDamage
         // I'm dead!
         if (HP <= 0)
         {
-            gameManager.instance.isPaused = false;
-            gameManager.instance.youLose();
+            gameUIManager.instance.isPaused = false;
+            gameUIManager.instance.youLose();
         }
     }
 

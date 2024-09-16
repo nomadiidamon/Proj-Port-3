@@ -10,14 +10,14 @@ public class buttonFunctions : MonoBehaviour
     {
         Debug.Log("Resumed");
 
-        gameManager.instance.stateUnpause();
+        gameUIManager.instance.stateUnpause();
     }
 
     public void restart()
     {
         Debug.Log("Restarted");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        gameManager.instance.stateUnpause();
+        gameUIManager.instance.stateUnpause();
         gameUIManager.instance.CheckpointReached = false;
         gameManager.instance.respawns = gameManager.instance.GetOriginalRespawnCount();
     }
@@ -33,7 +33,7 @@ public class buttonFunctions : MonoBehaviour
         gameUIManager.instance.updateRespawnCount(-1);
         Debug.Log("Second Chance!");
         gameManager.instance.playerScript.spawnPlayer();
-        gameManager.instance.stateUnpause();
+        gameUIManager.instance.stateUnpause();
 
     }
 
