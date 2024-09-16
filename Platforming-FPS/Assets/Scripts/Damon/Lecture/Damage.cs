@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 
 public class Damage : MonoBehaviour
 {
-    [SerializeField] enum damageType { bullet, stationary, impact, enemyBullet }
+    [SerializeField] enum damageType { bullet, stationary, melee, enemyBullet }
     [SerializeField] damageType type;
     [SerializeField] Rigidbody rb;
     [SerializeField] ParticleSystem targetHitEffect;
@@ -43,6 +43,11 @@ public class Damage : MonoBehaviour
         if (other.isTrigger || other.transform == transform.parent) //!isDamageable) 
         {
             return;
+        }
+
+        if (other.CompareTag("Player"))
+        {
+            gameManager.instance.playerScript.takeDamage(damageAmount);
         }
 
         if (other.CompareTag("Environment"))
