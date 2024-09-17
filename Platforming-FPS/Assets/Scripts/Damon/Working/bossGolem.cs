@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -19,6 +20,8 @@ public class bossGolem : MonoBehaviour, IDamage, IDeflect
     [SerializeField] Image hpbar;
     [SerializeField] GameObject projectile;
     [SerializeField] SphereCollider bossArea;
+    [SerializeField] GameObject deathDrop;
+    [SerializeField] GameObject shield;
 
 
     [Header("-----Attributes-----")]
@@ -38,6 +41,8 @@ public class bossGolem : MonoBehaviour, IDamage, IDeflect
     [SerializeField] float sprintSpeed;
     [SerializeField] float meleeRange;
     [SerializeField] float deflectionTime;
+    [SerializeField] float vulnerableTime;
+
 
 
     bool isFighting;
@@ -85,11 +90,7 @@ public class bossGolem : MonoBehaviour, IDamage, IDeflect
         sprintSpeed = movementSpeed * 2;
         Rigidbody rb = projectile.GetComponent<Rigidbody>();
         rb.useGravity = false;
-        isThrowing = false; 
-
-
-
-
+        isThrowing = false;
     }
 
 
@@ -291,6 +292,7 @@ public class bossGolem : MonoBehaviour, IDamage, IDeflect
             audioManager.instance.PlayAud(deathSound[Random.Range(0, deathSound.Length)], deathSoundVol);
 
             StartCoroutine(destroyAfterSound());
+            Instantiate(deathDrop, gameObject.transform.position, gameObject.transform.rotation);
         }
 
         ChangeAnimation(prevAnim);
@@ -333,7 +335,6 @@ public class bossGolem : MonoBehaviour, IDamage, IDeflect
     {
         if (other.CompareTag("Player"))
         {
-            //Debug.Log("Player in shooting range");
             playerInRange = true;
         }
     }
@@ -342,8 +343,6 @@ public class bossGolem : MonoBehaviour, IDamage, IDeflect
     {
         if (other.CompareTag("Player"))
         {
-            //Debug.Log("Player out of range");
-
             playerInRange = false;
             agent.stoppingDistance = 0;
         }
@@ -361,11 +360,14 @@ public class bossGolem : MonoBehaviour, IDamage, IDeflect
         CapsuleCollider deflect = GetComponent<CapsuleCollider>();
         isDefending = false;
         deflect.isTrigger = false;
+        shield.SetActive(false);
+
     }
 
     public void startDeflecting()
     {
         onDeflectCollisionEnter();
+        shield.SetActive(true);
     }
 
     private void onDeflectCollisionEnter ()
@@ -394,20 +396,25 @@ public class bossGolem : MonoBehaviour, IDamage, IDeflect
                 coll.excludeLayers = 0;
                 coll.includeLayers = 3;
                 amounts.SetDamageAmount(delfectDamage);
-
-
             }
-
         }
-
     }
 
     IEnumerator iAmDeflecting()
     {
         startDeflecting();
+
+        // show shield effect
+
         yield return new WaitForSeconds(deflectionTime);
+
+
         endDeflecting();
-        yield return new WaitForSeconds(deflectionTime);
+
+        // turn off shield effect
+
+
+        yield return new WaitForSeconds(vulnerableTime * 2);
 
     }
 
