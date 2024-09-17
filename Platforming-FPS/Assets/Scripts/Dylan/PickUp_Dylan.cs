@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PickUp_Dylan : MonoBehaviour
 {
-    [SerializeField] enum pickUpType { health, speed, damage , equipment}              // types of pickups
+    [SerializeField] enum pickUpType { health, speed, damage , equipment, objective}              // types of pickups
     [SerializeField] pickUpType type;
     [SerializeField] Rigidbody rbPickup;                                   // rigid body needed for collision detection
 
@@ -41,6 +41,12 @@ public class PickUp_Dylan : MonoBehaviour
                     break;
                 }
             case pickUpType.equipment:
+                {
+                    rotationSpeed = 75f;
+                    rotationAxis = Vector3.up;
+                    return;
+                }
+            case pickUpType.objective:
                 {
                     rotationSpeed = 75f;
                     rotationAxis = Vector3.up;
@@ -103,6 +109,13 @@ public class PickUp_Dylan : MonoBehaviour
                     }
                 case pickUpType.equipment:
                     {
+                        return;
+                    }
+                case pickUpType.objective:
+                    {
+                        // show some sort of objective completed menu
+                        Debug.Log("Objective completed");
+                        Destroy(gameObject);
                         return;
                     }
                 default:
