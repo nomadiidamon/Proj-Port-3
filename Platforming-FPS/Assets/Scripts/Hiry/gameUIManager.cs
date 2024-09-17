@@ -14,6 +14,7 @@ public class gameUIManager : MonoBehaviour
     [SerializeField] public GameObject menuWin;
     [SerializeField] public GameObject menuLose;
     [SerializeField] public GameObject CreatorGunPrompt;
+    [SerializeField] public GameObject UpgradeMenu;
 
     public GameObject menuSettings;
     public GameObject checkpointReachedMessage;
@@ -64,11 +65,26 @@ public class gameUIManager : MonoBehaviour
 
 
             }
-
-
         }
+
+        CheckForUpgradeMenu();
+
     }
 
+    public void CheckForUpgradeMenu()
+    {
+        if (checkpointMenu.activeSelf)
+        {
+            if (Input.GetButtonDown("Interact"))
+            {
+                Debug.Log("opening the menu");
+                checkpointMenu.gameObject.SetActive(false);
+                statePause();
+                menuActive = UpgradeMenu;
+                menuActive.SetActive(true);
+            }
+        }
+    }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
@@ -94,7 +110,7 @@ public class gameUIManager : MonoBehaviour
     public void statePause()
     {
         Debug.Log("Paused");
-        isPaused = !isPaused;
+        isPaused = true;
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;

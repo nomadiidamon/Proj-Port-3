@@ -22,7 +22,6 @@ public class Checkpoint : MonoBehaviour
     {
         if (GetComponent<CapsuleCollider>().bounds.Contains(gameManager.instance.player.transform.position) && CheckpointReached)
         {
-            Debug.Log("We in there!");
             gameUIManager.instance.checkpointMenu.gameObject.SetActive(true);
         }
         else
@@ -47,8 +46,8 @@ public class Checkpoint : MonoBehaviour
 
                 if (GetComponent<CapsuleCollider>().bounds.Contains(gameManager.instance.player.transform.position) && CheckpointReached)
                 {
-                    Debug.Log("We in there!");
                     gameUIManager.instance.checkpointMenu.gameObject.SetActive(true);
+
                 }
             }
         }
@@ -58,8 +57,6 @@ public class Checkpoint : MonoBehaviour
     {
         if (GetComponent<CapsuleCollider>().bounds!.Contains(gameManager.instance.player.transform.position) && CheckpointReached)
         {
-            Debug.Log("peace!");
-
             gameUIManager.instance.checkpointMenu.gameObject.SetActive(false);
 
         }
