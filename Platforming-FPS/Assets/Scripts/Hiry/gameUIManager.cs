@@ -16,10 +16,11 @@ public class gameUIManager : MonoBehaviour
     [SerializeField] public GameObject CreatorGunPrompt;
 
     public GameObject menuSettings;
-    public GameObject checkPointMenu;
-    public bool CheckpointReached;
+    public GameObject checkpointReachedMessage;
+    public GameObject checkpointMenu;
     public Image playersHealthPool;
     public TMP_Text RespawnCount;
+    public TMP_Text ExperienceCount;
     public TMP_Text uiPrompt;
 
 

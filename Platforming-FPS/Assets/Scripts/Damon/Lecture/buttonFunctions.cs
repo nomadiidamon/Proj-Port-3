@@ -18,7 +18,7 @@ public class buttonFunctions : MonoBehaviour
         Debug.Log("Restarted");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         gameUIManager.instance.stateUnpause();
-        gameUIManager.instance.CheckpointReached = false;
+        //gameUIManager.instance.CheckpointReached = false;
         gameManager.instance.respawns = gameManager.instance.GetOriginalRespawnCount();
     }
 
