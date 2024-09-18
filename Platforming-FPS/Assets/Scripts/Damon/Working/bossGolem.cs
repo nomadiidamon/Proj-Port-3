@@ -22,6 +22,8 @@ public class bossGolem : MonoBehaviour, IDamage, IDeflect
     [SerializeField] SphereCollider bossArea;
     [SerializeField] GameObject deathDrop;
     [SerializeField] GameObject shield;
+    [SerializeField] GameObject particleHitBoxStart;
+
 
 
     [Header("-----Attributes-----")]
@@ -36,6 +38,7 @@ public class bossGolem : MonoBehaviour, IDamage, IDeflect
     [SerializeField] int animSpeedTrans;
     [SerializeField] float projectileShootRate;
     [SerializeField] int projectileDistance;
+    [SerializeField] int stompDamage;
     [SerializeField] float meleeAttackRate;
     [SerializeField] float movementSpeed;
     [SerializeField] float sprintSpeed;
@@ -128,14 +131,8 @@ public class bossGolem : MonoBehaviour, IDamage, IDeflect
 
         if (HP < startingHealth / 2)
         {
-            if (isDefending)
-            {
-                return;
-            }
-            else if (!isDefending)
-            {
-                StartCoroutine(iAmDeflecting());
-            }
+            StartCoroutine(iAmDeflecting());
+
         }
 
     }
@@ -179,32 +176,28 @@ public class bossGolem : MonoBehaviour, IDamage, IDeflect
                 facePlayer();
 
                 agent.SetDestination(gameManager.instance.player.transform.position);
-                //if (isInMeleeRange && distanceToPlayer <= meleeRange)
-                //{
-                //    stopPursuing();
+                if (isInMeleeRange && distanceToPlayer <= meleeRange)
+                {
+                    stopPursuing();
 
-                //    //// perfrom melee
-                //    //if (!isStomping)
-                //    //{
+                    // perfrom melee
+                    if (!isStomping)
+                    {
 
-                //    //    isStomping = true;
-                //    //    ChangeAnimation("Golem_stompAttack");
-                //    //    isStomping = false;
-                //    //}
-                //    //else if (isStomping)
-                //    //{
-                //    //    ChangeAnimation("Golem_intimidateOne");
-                //    //}
+                        isStomping = true;
+                        ChangeAnimation("Golem_stompAttack");
+                        isStomping = false;
+                    }
+                    else if (isStomping)
+                    {
+                        ChangeAnimation("Golem_intimidateOne");
+                    }
 
 
-                //}
-                //if (!isInMeleeRange)
-                //{
-                //    ChangeAnimation("Golem_throwAttack");
+                }
 
-                //}
-                //agent.isStopped = false;
-                //agent.SetDestination(gameManager.instance.player.transform.position);
+                agent.isStopped = false;
+                agent.SetDestination(gameManager.instance.player.transform.position);
 
                 if (playerInRange)
                 {
@@ -248,6 +241,40 @@ public class bossGolem : MonoBehaviour, IDamage, IDeflect
         agent.isStopped = false;
         agent.speed = movementSpeed;
         isThrowing = false;
+    }
+
+    IEnumerator Stomp()
+    {
+        isStomping = true;
+        agent.isStopped = true;
+        agent.SetDestination(this.transform.position);
+        ChangeAnimation("Golem_stompAttack");
+        yield return new WaitForSeconds(1.5f);
+        isStomping = false;
+        agent.isStopped = false;
+
+        if (distanceToPlayer >= meleeRange)
+        {
+            agent.SetDestination(gameManager.instance.player.transform.position);
+
+        }
+        //ChangeAnimation("Golem_walkForward");
+        Debug.Log(currentAnimation);
+
+    }
+    public void createStompEffect()
+    {
+        Instantiate(stompEffect, stompPosition.transform.position, this.transform.rotation);
+    }
+
+    public void turnOnStompHitBox()
+    {
+        BoxCollider coll = particleHitBoxStart.GetComponent<BoxCollider>();
+        if (coll.bounds.Contains(gameManager.instance.player.transform.position))
+        {
+            Debug.Log("Inbounds");
+            gameManager.instance.playerScript.takeDamage(stompDamage);
+        }
     }
 
     public void stopPursuing()
@@ -383,14 +410,12 @@ public class bossGolem : MonoBehaviour, IDamage, IDeflect
         isDefending = false;
         deflect.isTrigger = false;
         shield.SetActive(false);
-        Debug.Log("Shield down");
     }
 
     public void startDeflecting()
     {
         onDeflectCollisionEnter();
         shield.SetActive(true);
-        Debug.Log("Shield up");
     }
 
     private void onDeflectCollisionEnter ()
