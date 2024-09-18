@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+
 
 public class Checkpoint : MonoBehaviour
 {
     [SerializeField] Renderer model;
     [SerializeField] float flashTimer;
     [SerializeField] float activatedFlashSpeed;
+    public bool CheckpointReached;
 
     Color colorOriginal;
 
@@ -17,41 +20,63 @@ public class Checkpoint : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && gameManager.instance.playerSpawnPosition.transform.position != this.transform.position && GetComponent<CapsuleCollider>().bounds.Contains(gameManager.instance.player.transform.position))
+        if (GetComponent<CapsuleCollider>().bounds.Contains(gameManager.instance.player.transform.position) && CheckpointReached)
         {
-            gameManager.instance.playerSpawnPosition.transform.position = transform.position;
+            gameUIManager.instance.checkpointMenu.gameObject.SetActive(true);
+        }
+        else
+        {
+            if (other.CompareTag("Player") && gameManager.instance.playerSpawnPosition.transform.position != this.transform.position && GetComponent<CapsuleCollider>().bounds.Contains(gameManager.instance.player.transform.position))
+            {
+                gameManager.instance.playerSpawnPosition.transform.position = transform.position;
 
-            if (gameObject.GetComponent<flashColor>() == null && gameObject.GetComponent<scrollUV>() == null)
-            {
-                StartCoroutine(flashModel());
-                StartCoroutine(showCheckPointMenu());
+                if (gameObject.GetComponent<flashColor>() == null && gameObject.GetComponent<scrollUV>() == null)
+                {
+                    StartCoroutine(flashModel());
+                    StartCoroutine(showCheckpointReachedMessage());
+                }
+                else
+                {
+                    gameObject.GetComponent<flashColor>().flashSpeed = activatedFlashSpeed;
+                    gameObject.GetComponent<scrollUV>().horizontal = false;
+                    gameObject.GetComponent<scrollUV>().vertical = true;
+                    gameObject.GetComponent<scrollUV>().scrollSpeedY = -0.015f;
+                    StartCoroutine(showCheckpointReachedMessage());
+                }
+
+                if (GetComponent<CapsuleCollider>().bounds.Contains(gameManager.instance.player.transform.position) && CheckpointReached)
+                {
+                    gameUIManager.instance.checkpointMenu.gameObject.SetActive(true);
+
+                }
             }
-            else
-            {
-                gameObject.GetComponent<flashColor>().flashSpeed = activatedFlashSpeed;
-                gameObject.GetComponent<scrollUV>().horizontal = false;
-                gameObject.GetComponent<scrollUV>().vertical = true;
-                gameObject.GetComponent<scrollUV>().scrollSpeedY = -0.015f;
-                StartCoroutine(showCheckPointMenu());
-            }
+        }
+    }
+
+    private void OnTriggerExit()
+    {
+        if (GetComponent<CapsuleCollider>().bounds!.Contains(gameManager.instance.player.transform.position) && CheckpointReached)
+        {
+            gameUIManager.instance.checkpointMenu.gameObject.SetActive(false);
+
         }
     }
 
     IEnumerator flashModel()
     {
         model.material.color = Color.red;
-        gameUIManager.instance.checkPointMenu.gameObject.SetActive(true);
+        gameUIManager.instance.checkpointReachedMessage.gameObject.SetActive(true);
         yield return new WaitForSeconds(flashTimer);
-        gameUIManager.instance.checkPointMenu.gameObject.SetActive(false);
+        gameUIManager.instance.checkpointReachedMessage.gameObject.SetActive(false);
         model.material.color = colorOriginal;
     }
 
-    IEnumerator showCheckPointMenu()
+    IEnumerator showCheckpointReachedMessage()
     {
-        gameUIManager.instance.CheckpointReached = true;
-        gameUIManager.instance.checkPointMenu.SetActive(true);
+        CheckpointReached = true;
+        gameUIManager.instance.checkpointReachedMessage.SetActive(true);
         yield return new WaitForSeconds(flashTimer);
-        gameUIManager.instance.checkPointMenu.SetActive(false);
+        gameUIManager.instance.checkpointReachedMessage.SetActive(false);
 
     }
 }

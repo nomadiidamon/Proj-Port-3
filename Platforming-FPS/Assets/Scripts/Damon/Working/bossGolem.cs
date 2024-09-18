@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -8,7 +9,7 @@ public class bossGolem : MonoBehaviour, IDamage, IDeflect
 
     [Header("-----Components-----")]
     [SerializeField] NavMeshAgent agent;
-    [SerializeField] Renderer model;
+    //[SerializeField] Renderer model;
     [SerializeField] Animator animator;
     [SerializeField] Transform projectilePos;
     [SerializeField] Transform headPos;
@@ -19,6 +20,8 @@ public class bossGolem : MonoBehaviour, IDamage, IDeflect
     [SerializeField] Image hpbar;
     [SerializeField] GameObject projectile;
     [SerializeField] SphereCollider bossArea;
+    [SerializeField] GameObject deathDrop;
+    [SerializeField] GameObject shield;
 
 
     [Header("-----Attributes-----")]
@@ -38,6 +41,8 @@ public class bossGolem : MonoBehaviour, IDamage, IDeflect
     [SerializeField] float sprintSpeed;
     [SerializeField] float meleeRange;
     [SerializeField] float deflectionTime;
+    [SerializeField] float vulnerableTime;
+
 
 
     bool isFighting;
@@ -75,7 +80,7 @@ public class bossGolem : MonoBehaviour, IDamage, IDeflect
     void Start()
     {
         HP = startingHealth;
-        colorOrig = model.material.color;
+        //colorOrig = model.material.color;
         enemyManager.instance.updateEnemyCount(1);
         stoppingDistanceOriginal = agent.stoppingDistance;
         startingPosition = transform.position;
@@ -85,11 +90,7 @@ public class bossGolem : MonoBehaviour, IDamage, IDeflect
         sprintSpeed = movementSpeed * 2;
         Rigidbody rb = projectile.GetComponent<Rigidbody>();
         rb.useGravity = false;
-        isThrowing = false; 
-
-
-
-
+        isThrowing = false;
     }
 
 
@@ -127,7 +128,14 @@ public class bossGolem : MonoBehaviour, IDamage, IDeflect
 
         if (HP < startingHealth / 2)
         {
-            StartCoroutine(iAmDeflecting());
+            if (isDefending)
+            {
+                return;
+            }
+            else if (!isDefending)
+            {
+                StartCoroutine(iAmDeflecting());
+            }
         }
 
     }
@@ -291,6 +299,7 @@ public class bossGolem : MonoBehaviour, IDamage, IDeflect
             audioManager.instance.PlayAud(deathSound[Random.Range(0, deathSound.Length)], deathSoundVol);
 
             StartCoroutine(destroyAfterSound());
+            Instantiate(deathDrop, gameObject.transform.position, gameObject.transform.rotation);
         }
 
         ChangeAnimation(prevAnim);
@@ -313,10 +322,10 @@ public class bossGolem : MonoBehaviour, IDamage, IDeflect
     IEnumerator flashRed()
     {
         Debug.Log("Flashing from damage");
-        model.material.color = Color.red;
+        //model.material.color = Color.red;
         yield return new WaitForSeconds(0.1f);
-        model.material.color = colorOrig;
-        Debug.Log(currentAnimation);
+        //model.material.color = colorOrig;
+        //Debug.Log(currentAnimation);
 
     }
 
@@ -333,7 +342,6 @@ public class bossGolem : MonoBehaviour, IDamage, IDeflect
     {
         if (other.CompareTag("Player"))
         {
-            //Debug.Log("Player in shooting range");
             playerInRange = true;
         }
     }
@@ -342,8 +350,6 @@ public class bossGolem : MonoBehaviour, IDamage, IDeflect
     {
         if (other.CompareTag("Player"))
         {
-            //Debug.Log("Player out of range");
-
             playerInRange = false;
             agent.stoppingDistance = 0;
         }
@@ -356,16 +362,35 @@ public class bossGolem : MonoBehaviour, IDamage, IDeflect
             hpbar.fillAmount = (float)HP / startingHealth;
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public void endDeflecting()
     {
         CapsuleCollider deflect = GetComponent<CapsuleCollider>();
         isDefending = false;
         deflect.isTrigger = false;
+        shield.SetActive(false);
+        Debug.Log("Shield down");
     }
 
     public void startDeflecting()
     {
         onDeflectCollisionEnter();
+        shield.SetActive(true);
+        Debug.Log("Shield up");
     }
 
     private void onDeflectCollisionEnter ()
@@ -378,7 +403,7 @@ public class bossGolem : MonoBehaviour, IDamage, IDeflect
         
         foreach (Damage damage in damageObjects)
         {
-            if (deflect.bounds.Contains(damage.transform.position))
+            if (deflect.bounds.Contains(damage.transform.position) && isDefending)
             {
                 Rigidbody rb = damage.GetComponent<Rigidbody>();
                 Damage amounts = damage.GetComponent<Damage>();
@@ -394,20 +419,29 @@ public class bossGolem : MonoBehaviour, IDamage, IDeflect
                 coll.excludeLayers = 0;
                 coll.includeLayers = 3;
                 amounts.SetDamageAmount(delfectDamage);
-
-
             }
-
         }
-
     }
 
     IEnumerator iAmDeflecting()
     {
-        startDeflecting();
-        yield return new WaitForSeconds(deflectionTime);
-        endDeflecting();
-        yield return new WaitForSeconds(deflectionTime);
+
+        {
+            startDeflecting();
+
+            // show shield effect
+
+            yield return new WaitForSeconds(deflectionTime);
+
+
+            endDeflecting();
+
+            // turn off shield effect
+
+
+            yield return new WaitForSeconds(vulnerableTime * 2);
+
+        }
 
     }
 
