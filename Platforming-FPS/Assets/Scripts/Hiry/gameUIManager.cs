@@ -25,6 +25,12 @@ public class gameUIManager : MonoBehaviour
     public TMP_Text ExperienceCount;
     public TMP_Text uiPrompt;
 
+    public TMP_Text currentHealth;
+    public TMP_Text pointsNeededForHealth;
+    public TMP_Text currentSpeed;
+    public TMP_Text pointsNeededForSpeed;
+    public TMP_Text currentDamage;
+    public TMP_Text pointsNeededForDamage;
 
     public GameObject flashDamageScreen;
     public GameObject restoreHealthScreen;
@@ -68,24 +74,45 @@ public class gameUIManager : MonoBehaviour
             }
         }
 
-        CheckForUpgradeMenu();
+        if (CheckForUpgradeMenu())
+        {
+            updateUpgradeMenu();
+        }
 
     }
 
-    public void CheckForUpgradeMenu()
+    public bool CheckForUpgradeMenu()
     {
-        if (checkpointMenu.activeSelf)
-        {
-            if (Input.GetButtonDown("Interact"))
+            if (checkpointMenu.activeSelf && Input.GetButtonDown("Interact"))
             {
                 Debug.Log("opening the menu");
                 checkpointMenu.gameObject.SetActive(false);
                 statePause();
                 menuActive = UpgradeMenu;
                 menuActive.SetActive(true);
+                return true;
             }
-        }
+            return false;
     }
+
+    public void updateUpgradeMenu()
+    {
+        pointsNeededForHealth.text = gameManager.instance.playerScript.numberOfPointsToUpgradeHealth.ToString("F0");
+        pointsNeededForSpeed.text = gameManager.instance.playerScript.numberOfPointsToUpgradeSpeed.ToString("F0");
+        pointsNeededForDamage.text = gameManager.instance.playerScript.numberOfPointsToUpgradeDamage.ToString("F0");
+
+        currentHealth.text = gameManager.instance.playerScript.HP.ToString("F0");
+        currentSpeed.text = gameManager.instance.playerScript.speed.ToString("F0");
+        currentDamage.text = gameManager.instance.playerScript.baseDamage.ToString("F0");
+
+
+
+        gameManager.instance.playerScript.updatePlayerUI();
+
+    }
+
+
+
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
@@ -156,6 +183,12 @@ public class gameUIManager : MonoBehaviour
         gameUIManager.instance.RespawnCount.text = gameManager.instance.respawns.ToString("F0");
     }
 
+    public void updateExperienceCount(int amount)
+    {
+        gameManager.instance.playerScript.currentExperience += amount;
+        ExperienceCount.text = gameManager.instance.playerScript.currentExperience.ToString("F0");
+    }
+
     public void updatePlayerUI(float HP, float HPOrig)
     {
         playersHealthPool.fillAmount = HP / HPOrig;
@@ -177,6 +210,8 @@ public class gameUIManager : MonoBehaviour
     {
         CreatorGunPrompt.SetActive(false);
     }
+
+
 
     public void ClearUIPrompt(GameObject door)
     {

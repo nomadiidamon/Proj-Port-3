@@ -17,6 +17,11 @@ public class enemyAI : MonoBehaviour, IDamage
 
     private int HP;
     [SerializeField] int startingHealth;
+    [SerializeField] public int maxExpGiven;
+    [SerializeField] public int minExpGiven;
+    public int actualExpGiven;
+
+
     [SerializeField] int viewAngle;
     [SerializeField] int facePlayerSpeed;
 
@@ -56,6 +61,7 @@ public class enemyAI : MonoBehaviour, IDamage
         stoppingDistanceOriginal = agent.stoppingDistance;
         startingPosition = transform.position;
         updateHPBar();
+        actualExpGiven = Random.Range(minExpGiven, maxExpGiven);
     }
 
     // Update is called once per frame
@@ -158,6 +164,7 @@ public class enemyAI : MonoBehaviour, IDamage
             playDeathAudio(deathSound[Random.Range(0, deathSound.Length)], deathSoundVol);
 
             StartCoroutine(destroyAfterSound());
+            gameUIManager.instance.updateExperienceCount(actualExpGiven);
         }
     }
 

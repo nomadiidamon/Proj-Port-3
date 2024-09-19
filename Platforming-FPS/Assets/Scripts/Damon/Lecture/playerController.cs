@@ -12,6 +12,7 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] GameObject shield;
     [SerializeField] Transform playerCenter;
 
+    [SerializeField] public float upgradePercentage;
     public Transform GetPlayerCenter()
     {
         return playerCenter;
@@ -19,7 +20,43 @@ public class playerController : MonoBehaviour, IDamage
 
     [Header("-----Attributes-----")]
     [Range(0, 100)][SerializeField] public int HP;
-    [Range(1, 50)][SerializeField] int speed;
+    private int numberOfHealthUpgrades;
+    public int numberOfPointsToUpgradeHealth = 150;
+    public int GetNumberOfHealthUpgrades()
+    {
+        return numberOfHealthUpgrades;
+    }
+    public void SetNumberOfHealthUpgrades(int amount)
+    {
+        numberOfHealthUpgrades += amount;
+    }
+
+    [Range(1, 50)][SerializeField] public int speed;
+    private int numberOfSpeedUpgrades;
+    public int numberOfPointsToUpgradeSpeed = 300;
+    public int GetNumberOfSpeedUpgrades()
+    {
+        return numberOfSpeedUpgrades;
+    }
+    public void SetNumberOfSpeedUpgrades(int amount)
+    {
+        numberOfSpeedUpgrades += amount;
+    }
+    [Range(0, 20)][SerializeField] public int baseDamage;
+    private int numberOfDamageUpgrades;
+    public int numberOfPointsToUpgradeDamage = 500;
+
+    public int GetNumberOfDamageUpgrades()
+    {
+        return numberOfDamageUpgrades;
+    }
+    public void SetNumberOfDamageUpgrades(int amount)
+    {
+        numberOfDamageUpgrades += amount;
+    }
+    [SerializeField] public int currentExperience;
+
+
     //[Range(2, 10)][SerializeField] int sprintMod;
     [Range(1, 3)][SerializeField] int jumpMax;
     [Range(8, 20)][SerializeField] int jumpSpeed;

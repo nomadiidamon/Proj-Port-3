@@ -107,6 +107,30 @@ public class buttonFunctions : MonoBehaviour
         SceneManager.LoadScene("Main Menu");
     }
 
+    public void increaseHealthStat()
+    {
+        if (gameManager.instance.playerScript.currentExperience >= gameManager.instance.playerScript.numberOfPointsToUpgradeHealth)
+        {
+            gameManager.instance.playerScript.SetNumberOfHealthUpgrades(1);
+            gameManager.instance.playerScript.numberOfPointsToUpgradeHealth +=
+                (gameManager.instance.playerScript.numberOfPointsToUpgradeHealth * gameManager.instance.playerScript.GetNumberOfHealthUpgrades());
 
+
+            gameManager.instance.playerScript.HPOrig += gameManager.instance.playerScript.HPOrig * (int)gameManager.instance.playerScript.upgradePercentage;
+            gameManager.instance.playerScript.HP += gameManager.instance.playerScript.HP * (int)gameManager.instance.playerScript.upgradePercentage;
+            gameUIManager.instance.updateUpgradeMenu();
+            gameManager.instance.playerScript.updatePlayerUI();
+        }
+    }
+
+    public void increaseSpeedStat()
+    {
+
+    }
+
+    public void increaseDamageStat()
+    {
+
+    }
 
 }
