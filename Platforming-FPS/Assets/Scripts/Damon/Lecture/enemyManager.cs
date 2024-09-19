@@ -38,11 +38,21 @@ public class enemyManager : MonoBehaviour
         ///
 
 
+        youWin();
+
+    }
+
+    public void youWin()
+    {
         if (enemiesRemaining <= 0)
         {
             Debug.Log("You Win");
 
             // you win!
+
+            gameManager.instance.savePlayerData();
+
+
             gameUIManager.instance.statePause();
             gameUIManager.instance.menuActive = gameUIManager.instance.menuWin;
             gameUIManager.instance.menuActive.SetActive(gameUIManager.instance.isPaused);

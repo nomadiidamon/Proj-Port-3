@@ -1,5 +1,4 @@
 using System.Collections;
-using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -326,7 +325,7 @@ public class bossGolem : MonoBehaviour, IDamage, IDeflect
             audioManager.instance.PlayAud(deathSound[Random.Range(0, deathSound.Length)], deathSoundVol);
 
             StartCoroutine(destroyAfterSound());
-            Instantiate(deathDrop, gameObject.transform.position, gameObject.transform.rotation);
+            Instantiate(deathDrop, gameObject.transform.position + (Vector3.up*2), gameObject.transform.rotation);
         }
 
         ChangeAnimation(prevAnim);

@@ -10,6 +10,11 @@ public class TurretControl : MonoBehaviour, IDamage
 
     [SerializeField] int health;
     private int startingHealth;
+
+    [SerializeField] public int maxExpGiven;
+    [SerializeField] public int minExpGiven;
+    public int actualExpGiven;
+
     [SerializeField] int viewAngle;
     [SerializeField] int facePlayerSpeed;
     [SerializeField] Canvas hpFrame;
@@ -36,6 +41,7 @@ public class TurretControl : MonoBehaviour, IDamage
         UpdateHealthBar();
         enemyManager.instance.updateEnemyCount(1);
         bullet.GetComponent<Damage>().SetDamageAmount(damage);
+        actualExpGiven = Random.Range(minExpGiven, maxExpGiven);
 
     }
 
@@ -81,6 +87,7 @@ public class TurretControl : MonoBehaviour, IDamage
             enemyManager.instance.updateEnemyCount(-1);
 
             Destroy(gameObject);
+            gameUIManager.instance.updateExperienceCount(actualExpGiven);
         }
     }
 

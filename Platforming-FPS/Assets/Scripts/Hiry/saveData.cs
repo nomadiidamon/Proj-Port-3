@@ -10,7 +10,7 @@ public class playerData
     public int HP;
     public int speed;
     public int respawnCount;
-    public List<gunData> gunList;
+    public List<string> gunList;
 
     public playerData(playerController player, int respawns)
     {
@@ -29,10 +29,10 @@ public class playerData
         speed = player.GetSpeed();
         this.respawnCount = respawns;
 
-        gunList = new List<gunData>();
+        gunList = new List<string>();
         foreach (var gun in player.GetGunList())
         {
-            gunList.Add(new gunData(gun));
+            gunList.Add(gun.gunName);
         }
         
 
@@ -64,13 +64,13 @@ public class playerData
             gameManager.instance.respawns = data.respawnCount;
 
             gunList.Clear();
-            foreach (var gunData in data.gunList)
+            foreach (var gunName in data.gunList)
             {
 
-                var gunStats = player.getGunName(gunData.gunModelName);
+                var gunStats = Resources.Load<gunStats>($"Guns/{gunName}");
                 if (gunStats != null)
                 {
-                    gunList.Add(new gunData(gunStats));
+                    player.AddGun(gunStats);
                 }
 
             }
