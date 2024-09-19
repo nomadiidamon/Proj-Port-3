@@ -24,6 +24,8 @@ public class gameManager : MonoBehaviour
 
     public GameObject currentDoor;
 
+
+
     void Awake()
     {
         instance = this;
@@ -41,6 +43,8 @@ public class gameManager : MonoBehaviour
         Quest questTest = new Quest(1337);
         questTracker.AddQuest(questTest);
     }
+
+    
 
     public void CompleteQuest(int questId)
     {
@@ -75,6 +79,7 @@ public class gameManager : MonoBehaviour
 
     public void savePlayerData()
     {
+
         playerController playerScript = GetComponent<playerController>();
         if (player != null)
         {
@@ -92,7 +97,7 @@ public class gameManager : MonoBehaviour
 
         yield return new WaitForEndOfFrame();
 
-        playerController playerScript = GetComponent<playerController>(); 
+        playerController playerScript = player.GetComponent<playerController>(); 
         if (playerScript != null)
         {
             playerData data = new playerData(playerScript, respawns); 
@@ -103,6 +108,23 @@ public class gameManager : MonoBehaviour
             Debug.LogError("playerController not found on playerGameObject.");
         }
       }
+
+
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        StartCoroutine(loadPlayerData());
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
 
     private void OnApplicationQuit()
     {

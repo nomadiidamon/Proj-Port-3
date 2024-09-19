@@ -540,6 +540,15 @@ public class playerController : MonoBehaviour, IDamage
         audioManager.instance.PlayAud(gunList[selectedGun].switchSound[Random.Range(0, gunList[selectedGun].switchSound.Length)], gunList[selectedGun].switchVolume);
 
     }
+    
+    public void AddGun(gunStats gun)
+    {
+        if (!gunList.Contains(gun))
+        {
+            gunList.Add(gun);
+        }
+    }
+
 
     public int GetHealth()
     {
