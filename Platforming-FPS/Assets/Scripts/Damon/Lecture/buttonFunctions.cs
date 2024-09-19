@@ -50,10 +50,23 @@ public class buttonFunctions : MonoBehaviour
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
-    //gameManager.instance.savePlayerData();
+    gameManager.instance.savePlayerData();
         Application.Quit();
 #endif
     }
+
+    public void quitInLevel()
+    {
+
+
+        gameUIManager.instance.menuPause.SetActive(false);
+
+        gameUIManager.instance.menuActive = gameUIManager.instance.menuAreYouSure;
+        gameUIManager.instance.menuAreYouSure.SetActive(true);
+
+
+    }
+
 
     public void openSettings()
     {
@@ -76,6 +89,13 @@ public class buttonFunctions : MonoBehaviour
     public void closeSettings()
     {
         gameUIManager.instance.menuSettings.SetActive(false);
+        gameUIManager.instance.menuActive = gameUIManager.instance.menuPause;
+        gameUIManager.instance.menuPause.SetActive(true);
+    }
+
+    public void closeAreYouSure()
+    {
+        gameUIManager.instance.menuAreYouSure.SetActive(false);
         gameUIManager.instance.menuActive = gameUIManager.instance.menuPause;
         gameUIManager.instance.menuPause.SetActive(true);
     }

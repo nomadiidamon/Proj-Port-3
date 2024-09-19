@@ -13,6 +13,7 @@ public class gameUIManager : MonoBehaviour
     public GameObject menuPause;
     [SerializeField] public GameObject menuWin;
     [SerializeField] public GameObject menuLose;
+    [SerializeField] public GameObject menuAreYouSure;
     [SerializeField] public GameObject CreatorGunPrompt;
     [SerializeField] public GameObject UpgradeMenu;
 

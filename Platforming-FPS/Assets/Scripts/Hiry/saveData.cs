@@ -14,6 +14,17 @@ public class playerData
 
     public playerData(playerController player, int respawns)
     {
+
+        player = GameObject.FindWithTag("Player").GetComponent<playerController>();
+
+        if (player == null)
+        {
+            
+
+            Debug.LogError("PlayerController is null when trying to create playerData.");
+            return;
+        }
+
         HP = player.GetHealth();
         speed = player.GetSpeed();
         this.respawnCount = respawns;
@@ -32,7 +43,7 @@ public class playerData
 
 
 
-        playerData data = new playerData(GameObject.FindObjectOfType<playerController>(), respawnCount);
+        playerData data = new playerData(GameObject.FindWithTag("Player").GetComponent<playerController>(), respawnCount);
         string json = JsonUtility.ToJson(data, true);
 
         File.WriteAllText(Application.persistentDataPath + "/playerData.json", json);
@@ -77,6 +88,10 @@ public class playerData
 
 
 }
+
+
+
+
 
 [System.Serializable]
 

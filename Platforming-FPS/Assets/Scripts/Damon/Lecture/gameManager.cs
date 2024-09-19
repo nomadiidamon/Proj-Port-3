@@ -73,7 +73,7 @@ public class gameManager : MonoBehaviour
 
     
 
-    /*public void savePlayerData()
+    public void savePlayerData()
     {
         playerController playerScript = GetComponent<playerController>();
         if (player != null)
@@ -102,14 +102,20 @@ public class gameManager : MonoBehaviour
         {
             Debug.LogError("playerController not found on playerGameObject.");
         }
-
-    }
+      }
 
     private void OnApplicationQuit()
     {
-        savePlayerData();
+        if (player != null)
+        {
+            savePlayerData();
+        }
+        else
+        {
+            Debug.LogWarning("Player was null on application quit, skipping save.");
+        }
     }
-    */
+    
 
 
 }
