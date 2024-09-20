@@ -42,10 +42,35 @@ public class gameUIManager : MonoBehaviour
     public bool isPaused;
 
 
+    public class upgradeManager
+    {
+        public int currPlayerExp;
+
+        public int maxHP;
+        public int HpUpgrades;
+        public int pointsForHealth;
+        public int healthIncreaseAmount;
+
+        public int maxSpeed;
+        public int speedUpgrades;
+        public int pointsForSpeed;
+        public int speedIncreaseAmount;
+
+        public int maxDamage;
+        public int damageUpgrades;
+        public int pointsForDamage;
+        public int damageIncreaseAmount;
+    }
+
+    public upgradeManager upgradeStats;
+
     // Start is called before the first frame update
     void Awake()
     {
         instance = this;
+
+
+
     }
 
     private void Update()
@@ -97,13 +122,29 @@ public class gameUIManager : MonoBehaviour
 
     public void updateUpgradeMenu()
     {
-        pointsNeededForHealth.text = gameManager.instance.playerScript.numberOfPointsToUpgradeHealth.ToString("F0");
-        pointsNeededForSpeed.text = gameManager.instance.playerScript.numberOfPointsToUpgradeSpeed.ToString("F0");
-        pointsNeededForDamage.text = gameManager.instance.playerScript.numberOfPointsToUpgradeDamage.ToString("F0");
+        upgradeStats = new upgradeManager();
+        upgradeStats.currPlayerExp = gameManager.instance.playerScript.currentExperience;
+        upgradeStats.maxHP = gameManager.instance.playerScript.HPOrig;
+        upgradeStats.HpUpgrades = gameManager.instance.playerScript.GetNumberOfHealthUpgrades();
+        upgradeStats.pointsForHealth = gameManager.instance.playerScript.numberOfPointsToUpgradeHealth;
 
-        currentHealth.text = gameManager.instance.playerScript.HP.ToString("F0");
-        currentSpeed.text = gameManager.instance.playerScript.speed.ToString("F0");
-        currentDamage.text = gameManager.instance.playerScript.baseDamage.ToString("F0");
+        upgradeStats.maxSpeed = gameManager.instance.playerScript.speed;
+        upgradeStats.speedUpgrades = gameManager.instance.playerScript.GetNumberOfSpeedUpgrades();
+        upgradeStats.pointsForSpeed = gameManager.instance.playerScript.numberOfPointsToUpgradeSpeed;
+
+        upgradeStats.maxDamage = gameManager.instance.playerScript.baseDamage;
+        upgradeStats.damageUpgrades = gameManager.instance.playerScript.GetNumberOfDamageUpgrades();
+        upgradeStats.pointsForDamage = gameManager.instance.playerScript.numberOfPointsToUpgradeDamage;
+
+
+
+        pointsNeededForHealth.text = upgradeStats.pointsForHealth.ToString("F0");
+        pointsNeededForSpeed.text = upgradeStats.pointsForSpeed.ToString("F0");
+        pointsNeededForDamage.text = upgradeStats.pointsForDamage.ToString("F0");
+
+        currentHealth.text = upgradeStats.maxHP.ToString("F0");
+        currentSpeed.text = upgradeStats.maxSpeed.ToString("F0");
+        currentDamage.text = upgradeStats.maxDamage.ToString("F0");
 
 
 
@@ -188,11 +229,19 @@ public class gameUIManager : MonoBehaviour
         gameManager.instance.playerScript.currentExperience += amount;
         ExperienceCount.text = gameManager.instance.playerScript.currentExperience.ToString("F0");
     }
+    public void updatPlayerUI()
+    {
+        playersHealthPool.fillAmount = gameManager.instance.playerScript.HP / gameManager.instance.playerScript.HPOrig;
+
+    }
 
     public void updatePlayerUI(float HP, float HPOrig)
     {
         playersHealthPool.fillAmount = HP / HPOrig;
+        gameUIManager.instance.RespawnCount.text = gameManager.instance.respawns.ToString("F0");
+        ExperienceCount.text = gameManager.instance.playerScript.currentExperience.ToString("F0");
     }
+
 
     public void UpdateUIPrompt(string message, GameObject door)
     {

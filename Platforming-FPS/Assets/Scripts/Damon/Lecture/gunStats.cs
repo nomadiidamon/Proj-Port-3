@@ -31,4 +31,9 @@ public class gunStats : ScriptableObject
     public bool isShield;
     public bool isBlast;
 
+    public void increaseDamage(int amount)
+    {
+        shootDamage += amount;
+    }
+
 }

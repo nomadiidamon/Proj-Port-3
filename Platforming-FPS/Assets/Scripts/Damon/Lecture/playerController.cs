@@ -34,7 +34,7 @@ public class playerController : MonoBehaviour, IDamage
 
     private int numberOfDamageUpgrades;
     public int numberOfPointsToUpgradeDamage = 500;
-
+    public bool justUpgradedDamage;
 
 
 
@@ -125,6 +125,25 @@ public class playerController : MonoBehaviour, IDamage
     {
         numberOfDamageUpgrades += amount;
     }
+
+    public void updateAllGunsInInventory()
+    {
+        if (justUpgradedDamage)
+        {
+            foreach (gunStats gun in GetGunList())
+            {
+                if (!gun.isShield && !gun.isBlast && !gun.isCreator)
+                {
+                    gun.increaseDamage(baseDamage);
+                }
+            }
+
+            justUpgradedDamage = false;
+            changeGun();
+        }
+    }
+
+
 
     Vector3 move;
     Vector3 playerVel;
@@ -217,6 +236,7 @@ public class playerController : MonoBehaviour, IDamage
         //sprint();
 
         fallDeath();
+        updateAllGunsInInventory();
     }
 
     void fallDeath()

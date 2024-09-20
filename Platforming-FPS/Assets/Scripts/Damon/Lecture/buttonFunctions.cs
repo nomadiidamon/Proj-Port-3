@@ -34,7 +34,6 @@ public class buttonFunctions : MonoBehaviour
         Debug.Log("Second Chance!");
         gameManager.instance.playerScript.spawnPlayer();
         gameUIManager.instance.stateUnpause();
-
     }
 
     public void quit()
@@ -57,34 +56,20 @@ public class buttonFunctions : MonoBehaviour
 
     public void quitInLevel()
     {
-
-
         gameUIManager.instance.menuPause.SetActive(false);
 
         gameUIManager.instance.menuActive = gameUIManager.instance.menuAreYouSure;
         gameUIManager.instance.menuAreYouSure.SetActive(true);
-
-
     }
 
 
     public void openSettings()
     {
-
-
-
-
         gameUIManager.instance.menuPause.SetActive(false);
 
         gameUIManager.instance.menuActive = gameUIManager.instance.menuSettings;
-        gameUIManager.instance.menuSettings.SetActive(true);
-        
-        
-            
-        
+        gameUIManager.instance.menuSettings.SetActive(true);  
     }
-
-    
 
     public void closeSettings()
     {
@@ -109,28 +94,81 @@ public class buttonFunctions : MonoBehaviour
 
     public void increaseHealthStat()
     {
-        if (gameManager.instance.playerScript.currentExperience >= gameManager.instance.playerScript.numberOfPointsToUpgradeHealth)
+        if (gameUIManager.instance.upgradeStats.currPlayerExp >= gameUIManager.instance.upgradeStats.pointsForHealth)
         {
-            gameManager.instance.playerScript.SetNumberOfHealthUpgrades(1);
-            gameManager.instance.playerScript.numberOfPointsToUpgradeHealth +=
-                (gameManager.instance.playerScript.numberOfPointsToUpgradeHealth * gameManager.instance.playerScript.GetNumberOfHealthUpgrades());
+            gameUIManager.instance.upgradeStats.currPlayerExp -= gameUIManager.instance.upgradeStats.pointsForHealth;
+            gameUIManager.instance.upgradeStats.HpUpgrades += 1;
+            gameUIManager.instance.upgradeStats.pointsForHealth += 
+                gameUIManager.instance.upgradeStats.pointsForHealth * gameUIManager.instance.upgradeStats.HpUpgrades;
 
+            gameUIManager.instance.upgradeStats.healthIncreaseAmount += (int)(gameUIManager.instance.upgradeStats.maxHP * gameManager.instance.playerScript.upgradePercentage);
+            gameUIManager.instance.upgradeStats.maxHP += (int)(gameUIManager.instance.upgradeStats.maxHP * gameManager.instance.playerScript.upgradePercentage);
 
-            gameManager.instance.playerScript.HPOrig += gameManager.instance.playerScript.HPOrig * (int)gameManager.instance.playerScript.upgradePercentage;
-            gameManager.instance.playerScript.HP += gameManager.instance.playerScript.HP * (int)gameManager.instance.playerScript.upgradePercentage;
-            gameUIManager.instance.updateUpgradeMenu();
-            gameManager.instance.playerScript.updatePlayerUI();
+            gameUIManager.instance.pointsNeededForHealth.text = gameUIManager.instance.upgradeStats.pointsForHealth.ToString("F0");
+            gameUIManager.instance.currentHealth.text = gameUIManager.instance.upgradeStats.maxHP.ToString("F0");
         }
     }
 
     public void increaseSpeedStat()
     {
+        if (gameUIManager.instance.upgradeStats.currPlayerExp >= gameUIManager.instance.upgradeStats.pointsForSpeed)
+        {
+            gameUIManager.instance.upgradeStats.currPlayerExp -= gameUIManager.instance.upgradeStats.pointsForSpeed;
+            gameUIManager.instance.upgradeStats.speedUpgrades += 1;
+            gameUIManager.instance.upgradeStats.pointsForSpeed +=
+                gameUIManager.instance.upgradeStats.pointsForSpeed * gameUIManager.instance.upgradeStats.speedUpgrades;
 
+            gameUIManager.instance.upgradeStats.maxSpeed += (int)(gameUIManager.instance.upgradeStats.maxSpeed * gameManager.instance.playerScript.upgradePercentage);
+
+            gameUIManager.instance.pointsNeededForSpeed.text = gameUIManager.instance.upgradeStats.pointsForSpeed.ToString("F0");
+            gameUIManager.instance.currentSpeed.text = gameUIManager.instance.upgradeStats.maxSpeed.ToString("F0");
+        }
     }
 
     public void increaseDamageStat()
     {
+        if (gameUIManager.instance.upgradeStats.currPlayerExp >= gameUIManager.instance.upgradeStats.pointsForDamage)
+        {
+            gameUIManager.instance.upgradeStats.currPlayerExp -= gameUIManager.instance.upgradeStats.pointsForDamage;
+            gameUIManager.instance.upgradeStats.damageUpgrades += 1;
+            gameUIManager.instance.upgradeStats.pointsForDamage +=
+                gameUIManager.instance.upgradeStats.pointsForDamage * gameUIManager.instance.upgradeStats.damageUpgrades;
 
+                gameUIManager.instance.upgradeStats.maxDamage++;
+
+
+            gameUIManager.instance.pointsNeededForDamage.text = gameUIManager.instance.upgradeStats.pointsForDamage.ToString("F0");
+            gameUIManager.instance.currentDamage.text = gameUIManager.instance.upgradeStats.maxDamage.ToString("F0");
+        }
+    }
+
+    public void cancelUpgrades()
+    {
+        resume();
+    }
+
+    public void confirmUpgrades()
+    {
+        gameManager.instance.playerScript.currentExperience = gameUIManager.instance.upgradeStats.currPlayerExp;
+
+
+        gameManager.instance.playerScript.HPOrig = gameUIManager.instance.upgradeStats.maxHP;
+        gameManager.instance.playerScript.HP += gameUIManager.instance.upgradeStats.healthIncreaseAmount;
+        gameManager.instance.playerScript.SetNumberOfHealthUpgrades(gameUIManager.instance.upgradeStats.HpUpgrades);
+        gameManager.instance.playerScript.numberOfPointsToUpgradeHealth = gameUIManager.instance.upgradeStats.pointsForHealth;
+
+        gameManager.instance.playerScript.speed = gameUIManager.instance.upgradeStats.maxSpeed;
+        gameManager.instance.playerScript.SetNumberOfSpeedUpgrades(gameUIManager.instance.upgradeStats.speedUpgrades);
+        gameManager.instance.playerScript.numberOfPointsToUpgradeSpeed = gameUIManager.instance.upgradeStats.pointsForSpeed;
+
+        gameManager.instance.playerScript.baseDamage = gameUIManager.instance.upgradeStats.maxDamage;
+        gameManager.instance.playerScript.SetNumberOfDamageUpgrades(gameUIManager.instance.upgradeStats.damageUpgrades);
+        gameManager.instance.playerScript.numberOfPointsToUpgradeDamage = gameUIManager.instance.upgradeStats.pointsForDamage;
+
+        gameManager.instance.playerScript.updatePlayerUI();
+        gameManager.instance.playerScript.justUpgradedDamage = true;
+
+        resume();
     }
 
 }
