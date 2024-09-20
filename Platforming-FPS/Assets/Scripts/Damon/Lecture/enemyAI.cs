@@ -13,7 +13,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] Transform shootPos;
     [SerializeField] Transform headPos;
     //[SerializeField] Collider meleeCollider;
-    [SerializeField] AudioSource audEnemy;
+    
 
     private int HP;
     [SerializeField] int startingHealth;
@@ -29,14 +29,21 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] int roamDistance;
     [SerializeField] int roamTimer;
     [SerializeField] int animSpeedTrans;
+    [SerializeField] float deathDelay;
 
     [SerializeField] GameObject bullet;
     [SerializeField] float shootRate;
     //lecture shoot angle
     //[SerializeField] int shootAngle;
 
+    [Header("-----Audio-----")]
+    [SerializeField] AudioSource audSource;
     [SerializeField] AudioClip[] deathSound;
     [Range(0, 1)][SerializeField] float deathSoundVol;
+    [SerializeField] AudioClip[] shootSound;
+    [Range(0, 1)][SerializeField] float shootSoundVol;
+    [SerializeField] AudioClip[] hurtSound;
+    [Range (0, 1)][SerializeField] float hurtSoundVol;
 
     bool isShooting;
     bool playerInRange;
@@ -144,6 +151,9 @@ public class enemyAI : MonoBehaviour, IDamage
         if (isDead) return;
 
         HP -= amount;
+
+        playHurtAudio(hurtSound[Random.Range(0, hurtSound.Length)], hurtSoundVol);
+
         agent.SetDestination(gameManager.instance.player.transform.position);
         StopCoroutine(roam());
 
@@ -155,22 +165,30 @@ public class enemyAI : MonoBehaviour, IDamage
         {
             isDead = true;
 
+            isShooting = false;
+
             enemyManager.instance.updateEnemyCount(-1);
 
-            agent.isStopped = true;
-            animator.enabled = false;
-            this.enabled = false;
+            
 
             playDeathAudio(deathSound[Random.Range(0, deathSound.Length)], deathSoundVol);
 
-            StartCoroutine(destroyAfterSound());
+            StartCoroutine(destroyDelay());
             gameUIManager.instance.updateExperienceCount(actualExpGiven);
         }
     }
 
-    IEnumerator destroyAfterSound()
+    IEnumerator destroyDelay()
     {
-        yield return new WaitForSeconds(deathSound[0].length);
+        if (isShooting)
+        {
+            isShooting = false;
+        }
+        animator.SetTrigger("Dead");
+        yield return new WaitForSeconds(deathDelay);
+        agent.isStopped = true;
+        animator.enabled = false;
+        this.enabled = false;
         Destroy(gameObject);
     }
 
@@ -185,11 +203,6 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         isShooting = true;
         animator.SetTrigger("Shoot");
-        //createProjectile();
-        //Vector3 direction = gameManager.instance.player.transform.position - shootPos.transform.position;
-        //direction.Normalize();
-        //Quaternion bulletRotation = Quaternion.LookRotation(direction);
-        //Instantiate(bullet, shootPos.transform.position, bulletRotation);
 
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
@@ -197,10 +210,12 @@ public class enemyAI : MonoBehaviour, IDamage
 
     public void createProjectile()
     {
+        playShootAudio(shootSound[Random.Range(0, shootSound.Length)], shootSoundVol);
         Vector3 direction = gameManager.instance.player.transform.position - shootPos.transform.position;
         direction.Normalize();
         Quaternion bulletRotation = Quaternion.LookRotation(direction);
         //Debug.Log("Pew!");
+ 
         Instantiate(bullet, shootPos.transform.position, bulletRotation);
     }
 
@@ -242,8 +257,15 @@ public class enemyAI : MonoBehaviour, IDamage
 
     public void playDeathAudio(AudioClip sound, float vol)
     {
-        audEnemy.PlayOneShot(sound, vol);
+        audSource.PlayOneShot(sound, vol);
     }
-
+    public void playShootAudio(AudioClip sound, float vol)
+    {
+        audSource.PlayOneShot(sound, vol);
+    }
+    public void playHurtAudio(AudioClip sound, float vol)
+    {
+        audSource.PlayOneShot(sound, vol);
+    }
 }
 

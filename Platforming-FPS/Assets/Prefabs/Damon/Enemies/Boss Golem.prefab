@@ -65482,7 +65482,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 7442828546318201578}
-  model: {fileID: 5295321085295499511}
   animator: {fileID: 1802937463396067796}
   projectilePos: {fileID: 2885447600004831186}
   headPos: {fileID: 8349693493154985914}
@@ -65494,6 +65493,9 @@ MonoBehaviour:
   hpbar: {fileID: 6897978463469216961}
   projectile: {fileID: 3672504965784739243, guid: 0691bc8c83cd5ec40810e03e56dbb637, type: 3}
   bossArea: {fileID: 2662620175335737289}
+  deathDrop: {fileID: 0}
+  shield: {fileID: 0}
+  particleHitBoxStart: {fileID: 0}
   startingHealth: 30
   viewAngle: 360
   facePlayerSpeed: 1000
@@ -65502,10 +65504,13 @@ MonoBehaviour:
   animSpeedTrans: 2
   projectileShootRate: 1.5
   projectileDistance: 30
+  stompDamage: 0
   meleeAttackRate: 3
   movementSpeed: 1.5
   sprintSpeed: 3
   meleeRange: 8
+  deflectionTime: 0
+  vulnerableTime: 0
 --- !u!114 &5763393994384728612
 MonoBehaviour:
   m_ObjectHideFlags: 0
