@@ -12,57 +12,33 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] GameObject shield;
     [SerializeField] Transform playerCenter;
 
-    [SerializeField] public float upgradePercentage;
-    public Transform GetPlayerCenter()
-    {
-        return playerCenter;
-    }
 
     [Header("-----Attributes-----")]
     [Range(0, 100)][SerializeField] public int HP;
-    private int numberOfHealthUpgrades;
-    public int numberOfPointsToUpgradeHealth = 150;
-    public int GetNumberOfHealthUpgrades()
-    {
-        return numberOfHealthUpgrades;
-    }
-    public void SetNumberOfHealthUpgrades(int amount)
-    {
-        numberOfHealthUpgrades += amount;
-    }
-
     [Range(1, 50)][SerializeField] public int speed;
-    private int numberOfSpeedUpgrades;
-    public int numberOfPointsToUpgradeSpeed = 300;
-    public int GetNumberOfSpeedUpgrades()
-    {
-        return numberOfSpeedUpgrades;
-    }
-    public void SetNumberOfSpeedUpgrades(int amount)
-    {
-        numberOfSpeedUpgrades += amount;
-    }
     [Range(0, 20)][SerializeField] public int baseDamage;
-    private int numberOfDamageUpgrades;
-    public int numberOfPointsToUpgradeDamage = 500;
-
-    public int GetNumberOfDamageUpgrades()
-    {
-        return numberOfDamageUpgrades;
-    }
-    public void SetNumberOfDamageUpgrades(int amount)
-    {
-        numberOfDamageUpgrades += amount;
-    }
+    [SerializeField] public float upgradePercentage;
     [SerializeField] public int currentExperience;
-
-
-    //[Range(2, 10)][SerializeField] int sprintMod;
     [Range(1, 3)][SerializeField] int jumpMax;
     [Range(8, 20)][SerializeField] int jumpSpeed;
     [Range(15, 30)][SerializeField] int gravity;
     [SerializeField] float fallDeathLevel = -50f;
     [SerializeField] float footStepRate = 0.3f;
+
+
+    private int numberOfHealthUpgrades;
+    public int numberOfPointsToUpgradeHealth = 150;
+
+    private int numberOfSpeedUpgrades;
+    public int numberOfPointsToUpgradeSpeed = 300;
+
+    private int numberOfDamageUpgrades;
+    public int numberOfPointsToUpgradeDamage = 500;
+
+
+
+
+    //[Range(2, 10)][SerializeField] int sprintMod;
 
     [Header("-----Dodge-----")]
     [SerializeField] float dodgeSpeed = 20f;
@@ -103,6 +79,10 @@ public class playerController : MonoBehaviour, IDamage
     Vector3 objectHeldOriginalSize;
     public float allyHeldAggroRange;
 
+    public Transform GetPlayerCenter()
+    {
+        return playerCenter;
+    }
     public Transform GetShootPosition()
     {
         return shootPos;
@@ -114,6 +94,36 @@ public class playerController : MonoBehaviour, IDamage
     public int GetMaxAlliesCreated()
     {
         return maxAlliesCreated;
+    }
+
+
+
+
+
+
+    public int GetNumberOfHealthUpgrades()
+    {
+        return numberOfHealthUpgrades;
+    }
+    public void SetNumberOfHealthUpgrades(int amount)
+    {
+        numberOfHealthUpgrades += amount;
+    }
+    public int GetNumberOfSpeedUpgrades()
+    {
+        return numberOfSpeedUpgrades;
+    }
+    public void SetNumberOfSpeedUpgrades(int amount)
+    {
+        numberOfSpeedUpgrades += amount;
+    }
+    public int GetNumberOfDamageUpgrades()
+    {
+        return numberOfDamageUpgrades;
+    }
+    public void SetNumberOfDamageUpgrades(int amount)
+    {
+        numberOfDamageUpgrades += amount;
     }
 
     Vector3 move;
