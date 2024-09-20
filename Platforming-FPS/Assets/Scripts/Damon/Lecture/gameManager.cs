@@ -77,7 +77,7 @@ public class gameManager : MonoBehaviour
 
     
 
-    public void savePlayerData()
+    /*public void savePlayerData()
     {
 
         playerController playerScript = GetComponent<playerController>();
@@ -136,7 +136,7 @@ public class gameManager : MonoBehaviour
         {
             Debug.LogWarning("Player was null on application quit, skipping save.");
         }
-    }
+    }*/
     
 
 

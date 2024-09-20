@@ -102,7 +102,7 @@ public class buttonFunctions : MonoBehaviour
 
     public void loadMainMenu()
     {
-        gameManager.instance.savePlayerData();
+        //gameManager.instance.savePlayerData();
 
         SceneManager.LoadScene("Main Menu");
     }
