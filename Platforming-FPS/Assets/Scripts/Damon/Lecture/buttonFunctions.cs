@@ -165,10 +165,8 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.playerScript.SetNumberOfDamageUpgrades(gameUIManager.instance.upgradeStats.damageUpgrades);
         gameManager.instance.playerScript.numberOfPointsToUpgradeDamage = gameUIManager.instance.upgradeStats.pointsForDamage;
 
-
-
-
         gameManager.instance.playerScript.updatePlayerUI();
+        gameManager.instance.playerScript.justUpgradedDamage = true;
 
         resume();
     }

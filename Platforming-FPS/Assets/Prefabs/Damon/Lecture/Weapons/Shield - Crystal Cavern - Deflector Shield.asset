@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dac4c15d63ca800489dada8a320fe87c, type: 3}
+  m_Name: Shield - Crystal Cavern - Deflector Shield
+  m_EditorClassIdentifier: 
+  gunName: 
+  gunModel: {fileID: 7263974932301356860, guid: 0c761cb6a0742384b989c6654acde62a, type: 3}
+  shootDamage: 0
+  shootRate: 0.5
+  shootDistance: 20
+  ammoCur: 0
+  ammoMax: 3
+  gunScale: {x: 0.5, y: 0.5, z: 0.5}
+  bullet: {fileID: 7705054103025303262, guid: 895b44e79001efe44b8e5fdce25236dc, type: 3}
+  hitEffect: {fileID: 3249809072487309720, guid: 47096eff328e11a418ace7db2d72aa97, type: 3}
+  shootSound:
+  - {fileID: 8300000, guid: 2579b45e1c309f04f9a5bf7ea52aafff, type: 3}
+  - {fileID: 8300000, guid: 1c429f653070490489dedbc2f140ee9f, type: 3}
+  - {fileID: 8300000, guid: 9bace5c4de863c846b99cf8f62c163be, type: 3}
+  - {fileID: 8300000, guid: b4b12a473d599ac48b4b9ed0cfcc2095, type: 3}
+  shootVolume: 0.2
+  pickupSound:
+  - {fileID: 8300000, guid: 3e5a1a5aeabf4014db92f050f64248b5, type: 3}
+  pickupVolume: 0.5
+  switchSound:
+  - {fileID: 8300000, guid: 3e5a1a5aeabf4014db92f050f64248b5, type: 3}
+  switchVolume: 0.5
+  isCreator: 0
+  isShield: 1
+  isBlast: 0
