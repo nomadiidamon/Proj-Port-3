@@ -6,10 +6,18 @@ public class scrollUV : MonoBehaviour
 {
 
     [SerializeField] public float scrollSpeedX = 0.1f;
+    [SerializeField] public float MinScrollSpeedX = 0.1f;
+    [SerializeField] public float MaxScrollSpeedX = 2f;
+
     [SerializeField] public float scrollSpeedY = 0.1f;
+    [SerializeField] public float MinScrollSpeedY = 0.1f;
+    [SerializeField] public float MaxScrollSpeedY = 2f;
 
     [SerializeField] public bool horizontal;
     [SerializeField] public bool vertical;
+    [SerializeField] public bool randomizeX;
+    [SerializeField] public bool randomizeY;
+
     private Renderer rend;
 
 
@@ -17,6 +25,16 @@ public class scrollUV : MonoBehaviour
     void Start()
     {
         rend = GetComponent<MeshRenderer>();
+
+        if (randomizeX)
+        {
+            scrollSpeedX = Random.Range(MinScrollSpeedX, MaxScrollSpeedX);
+        }
+
+        if (randomizeY)
+        {
+            scrollSpeedY = Random.Range(MinScrollSpeedY, MaxScrollSpeedY);
+        }
     }
 
     void Update()
@@ -35,8 +53,7 @@ public class scrollUV : MonoBehaviour
             offsetY = Time.time * scrollSpeedY;
         }
 
-        Vector2 offset = new Vector2(offsetX, offsetY);
-        rend.material.mainTextureOffset = offset;
+        rend.material.mainTextureOffset = new Vector2(offsetX, offsetY);
 
 
     }
