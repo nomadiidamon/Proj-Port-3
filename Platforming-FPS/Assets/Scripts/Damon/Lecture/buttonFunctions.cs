@@ -41,16 +41,16 @@ public class buttonFunctions : MonoBehaviour
     {
         Debug.Log("Quitting");
 
-        if (gameUIManager.instance.menuActive == gameUIManager.instance.menuLose)
+        /*if (gameUIManager.instance.menuActive == gameUIManager.instance.menuLose)
         {
             gameManager.instance.playerScript.HP = gameManager.instance.playerScript.HPOrig;
             Debug.Log("Player's HP reset to original HP");
-        }
+        }*/
 
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
-    gameManager.instance.savePlayerData();
+    //gameManager.instance.savePlayerData();
         Application.Quit();
 #endif
     }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac4c15d63ca800489dada8a320fe87c, type: 3}
   m_Name: Gun - BlastGun
   m_EditorClassIdentifier: 
-  gunName: 
+  gunName: Blast Gun
   gunModel: {fileID: 8666491934486968174, guid: 76ddb46e095303c409e9cd36f50b57f6, type: 3}
   shootDamage: 0
   shootRate: 3
