@@ -17,6 +17,7 @@ public class playerController : MonoBehaviour, IDamage
     [Header("-----Attributes-----")]
     [Range(0, 100)][SerializeField] public int HP;
     [Range(0, 100)][SerializeField] public int Stamina;
+    [Range(0, 5)][SerializeField] public float staminaRechargeDelay;
     [Range(1, 50)][SerializeField] public int speed;
     [Range(0, 20)][SerializeField] public int baseDamage;
     [SerializeField] public float upgradePercentage;
@@ -179,6 +180,7 @@ public class playerController : MonoBehaviour, IDamage
     //bool isSprinting;
     bool isShooting;
     bool isPlayingSteps;
+    bool isRechargingStamina;
 
     //public bool sprintToggle;
     //bool sprintingPressed;
@@ -217,11 +219,16 @@ public class playerController : MonoBehaviour, IDamage
 
     void Dodge()
     {
-        if (Input.GetButtonDown("Dodge") && Time.time > prevDodgeTime + dodgeCooldown && !isDodging)
+        if (Input.GetButtonDown("Dodge") && Time.time > prevDodgeTime + dodgeCooldown && !isDodging && Stamina >= dodgeCost)
         {
             Stamina -= dodgeCost;
             updatePlayerUI();
             StartCoroutine(DoDodge());
+
+            if (!isRechargingStamina)
+            {
+                StartCoroutine(StaminaRecharge());
+            }
         }
     }
 
@@ -241,6 +248,18 @@ public class playerController : MonoBehaviour, IDamage
         }
 
         isDodging = false;
+    }
+    IEnumerator StaminaRecharge()
+    {
+        isRechargingStamina = true;
+
+        while (Stamina < StaminaOrig)
+        {
+            yield return new WaitForSeconds(staminaRechargeDelay);
+            Stamina++;
+            updatePlayerUI();
+        }
+        isRechargingStamina = false;
     }
 
     public void spawnPlayer()

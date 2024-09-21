@@ -849,6 +849,7 @@ MonoBehaviour:
   shield: {fileID: 5594909959243809031}
   playerCenter: {fileID: 984660246716668632}
   HP: 5
+  Stamina: 10
   speed: 15
   baseDamage: 0
   upgradePercentage: 0
@@ -859,12 +860,14 @@ MonoBehaviour:
   fallDeathLevel: -50
   footStepRate: 0.3
   numberOfPointsToUpgradeHealth: 150
+  numberOfPointsToUpgradeStamina: 100
   numberOfPointsToUpgradeSpeed: 300
   numberOfPointsToUpgradeDamage: 500
   justUpgradedDamage: 0
   dodgeSpeed: 35
   dodgeDuration: 0.3
   dodgeCooldown: 0.75
+  dodgeCost: 1
   gunList: []
   gunModel: {fileID: 7912685596475692159}
   muzzleFlash: {fileID: 6888947675050280122}
@@ -905,11 +908,12 @@ MonoBehaviour:
   objectHeld: {fileID: 0}
   objectHeldContainer: {fileID: 3536201500387809014}
   maxObjectsCreated: 10
-  maxAlliesCreated: 1
+  maxAlliesCreated: 2
   objectsCreated: []
   alliesCreated: []
   allyHeldAggroRange: 0
   HPOrig: 0
+  StaminaOrig: 0
   selectedGun: 0
   isCreator: 0
   isSwimming: 0
