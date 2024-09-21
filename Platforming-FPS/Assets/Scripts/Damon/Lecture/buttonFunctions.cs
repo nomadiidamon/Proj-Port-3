@@ -109,6 +109,23 @@ public class buttonFunctions : MonoBehaviour
         }
     }
 
+    public void increaseStaminaStat()
+    {
+        if (gameUIManager.instance.upgradeStats.currPlayerExp >= gameUIManager.instance.upgradeStats.pointsForStamina)
+        {
+            gameUIManager.instance.upgradeStats.currPlayerExp -= gameUIManager.instance.upgradeStats.pointsForStamina;
+            gameUIManager.instance.upgradeStats.StaminaUpgrades += 1;
+            gameUIManager.instance.upgradeStats.pointsForStamina +=
+                gameUIManager.instance.upgradeStats.pointsForStamina * gameUIManager.instance.upgradeStats.StaminaUpgrades;
+
+            gameUIManager.instance.upgradeStats.staminaIncreaseAmount += (int)(gameUIManager.instance.upgradeStats.maxStamina * gameManager.instance.playerScript.upgradePercentage);
+            gameUIManager.instance.upgradeStats.maxStamina += (int)(gameUIManager.instance.upgradeStats.maxStamina * (gameManager.instance.playerScript.upgradePercentage + 0.15f));
+
+            gameUIManager.instance.pointsNeededForStamina.text = gameUIManager.instance.upgradeStats.pointsForStamina.ToString("F0");
+            gameUIManager.instance.currentStamina.text = gameUIManager.instance.upgradeStats.maxStamina.ToString("F0");
+        }
+    }
+
     public void increaseSpeedStat()
     {
         if (gameUIManager.instance.upgradeStats.currPlayerExp >= gameUIManager.instance.upgradeStats.pointsForSpeed)
@@ -171,7 +188,9 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.playerScript.numberOfPointsToUpgradeDamage = gameUIManager.instance.upgradeStats.pointsForDamage;
 
         gameManager.instance.playerScript.updatePlayerUI();
+
         gameManager.instance.playerScript.justUpgradedDamage = true;
+        
 
         resume();
     }

@@ -149,10 +149,12 @@ public class gameUIManager : MonoBehaviour
 
 
         pointsNeededForHealth.text = upgradeStats.pointsForHealth.ToString("F0");
+        pointsNeededForStamina.text = upgradeStats.pointsForStamina.ToString("F0");
         pointsNeededForSpeed.text = upgradeStats.pointsForSpeed.ToString("F0");
         pointsNeededForDamage.text = upgradeStats.pointsForDamage.ToString("F0");
 
         currentHealth.text = upgradeStats.maxHP.ToString("F0");
+        currentStamina.text = upgradeStats.maxStamina.ToString("F0");
         currentSpeed.text = upgradeStats.maxSpeed.ToString("F0");
         currentDamage.text = upgradeStats.maxDamage.ToString("F0");
 
