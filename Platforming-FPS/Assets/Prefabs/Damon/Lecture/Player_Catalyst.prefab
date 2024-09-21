@@ -97,9 +97,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollSpeedX: 0.1
+  MinScrollSpeedX: 0.1
+  MaxScrollSpeedX: 2
   scrollSpeedY: 0.1
+  MinScrollSpeedY: 0.1
+  MaxScrollSpeedY: 2
   horizontal: 0
   vertical: 0
+  randomizeX: 0
+  randomizeY: 0
 --- !u!1 &5407094676096073254
 GameObject:
   m_ObjectHideFlags: 0
@@ -844,11 +850,18 @@ MonoBehaviour:
   playerCenter: {fileID: 984660246716668632}
   HP: 40
   speed: 15
+  baseDamage: 0
+  upgradePercentage: 0
+  currentExperience: 0
   jumpMax: 2
   jumpSpeed: 14
   gravity: 28
   fallDeathLevel: -50
   footStepRate: 0.3
+  numberOfPointsToUpgradeHealth: 150
+  numberOfPointsToUpgradeSpeed: 300
+  numberOfPointsToUpgradeDamage: 500
+  justUpgradedDamage: 0
   dodgeSpeed: 35
   dodgeDuration: 0.3
   dodgeCooldown: 0.75
@@ -891,7 +904,7 @@ MonoBehaviour:
   audWeapPickupVol: 0
   objectHeld: {fileID: 0}
   objectHeldContainer: {fileID: 3536201500387809014}
-  maxObjectsCreated: 3
+  maxObjectsCreated: 10
   maxAlliesCreated: 1
   objectsCreated: []
   alliesCreated: []
