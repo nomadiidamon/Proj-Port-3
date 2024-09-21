@@ -149,6 +149,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
         HP -= amount;
 
+        animator.SetTrigger("Damaged");
         playHurtAudio(hurtSound[Random.Range(0, hurtSound.Length)], hurtSoundVol);
 
         agent.SetDestination(gameManager.instance.player.transform.position);
