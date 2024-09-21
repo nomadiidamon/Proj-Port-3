@@ -157,6 +157,11 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.playerScript.SetNumberOfHealthUpgrades(gameUIManager.instance.upgradeStats.HpUpgrades);
         gameManager.instance.playerScript.numberOfPointsToUpgradeHealth = gameUIManager.instance.upgradeStats.pointsForHealth;
 
+        gameManager.instance.playerScript.StaminaOrig = gameUIManager.instance.upgradeStats.maxStamina;
+        gameManager.instance.playerScript.Stamina += gameUIManager.instance.upgradeStats.staminaIncreaseAmount;
+        gameManager.instance.playerScript.SetNumberOfStaminaUpgrades(gameUIManager.instance.upgradeStats.StaminaUpgrades);
+        gameManager.instance.playerScript.numberOfPointsToUpgradeStamina = gameUIManager.instance.upgradeStats.pointsForStamina;
+
         gameManager.instance.playerScript.speed = gameUIManager.instance.upgradeStats.maxSpeed;
         gameManager.instance.playerScript.SetNumberOfSpeedUpgrades(gameUIManager.instance.upgradeStats.speedUpgrades);
         gameManager.instance.playerScript.numberOfPointsToUpgradeSpeed = gameUIManager.instance.upgradeStats.pointsForSpeed;

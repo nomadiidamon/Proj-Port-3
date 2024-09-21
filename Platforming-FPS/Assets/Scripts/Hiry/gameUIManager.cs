@@ -21,12 +21,15 @@ public class gameUIManager : MonoBehaviour
     public GameObject checkpointReachedMessage;
     public GameObject checkpointMenu;
     public Image playersHealthPool;
+    public Image playersStaminaPool;
     public TMP_Text RespawnCount;
     public TMP_Text ExperienceCount;
     public TMP_Text uiPrompt;
 
     public TMP_Text currentHealth;
     public TMP_Text pointsNeededForHealth;
+    public TMP_Text currentStamina;
+    public TMP_Text pointsNeededForStamina;
     public TMP_Text currentSpeed;
     public TMP_Text pointsNeededForSpeed;
     public TMP_Text currentDamage;
@@ -50,6 +53,11 @@ public class gameUIManager : MonoBehaviour
         public int HpUpgrades;
         public int pointsForHealth;
         public int healthIncreaseAmount;
+        
+        public int maxStamina;
+        public int StaminaUpgrades;
+        public int pointsForStamina;
+        public int staminaIncreaseAmount;
 
         public int maxSpeed;
         public int speedUpgrades;
@@ -68,9 +76,6 @@ public class gameUIManager : MonoBehaviour
     void Awake()
     {
         instance = this;
-
-
-
     }
 
     private void Update()
@@ -124,9 +129,14 @@ public class gameUIManager : MonoBehaviour
     {
         upgradeStats = new upgradeManager();
         upgradeStats.currPlayerExp = gameManager.instance.playerScript.currentExperience;
+
         upgradeStats.maxHP = gameManager.instance.playerScript.HPOrig;
         upgradeStats.HpUpgrades = gameManager.instance.playerScript.GetNumberOfHealthUpgrades();
         upgradeStats.pointsForHealth = gameManager.instance.playerScript.numberOfPointsToUpgradeHealth;
+
+        upgradeStats.maxStamina = gameManager.instance.playerScript.StaminaOrig;
+        upgradeStats.StaminaUpgrades = gameManager.instance.playerScript.GetNumberOfStaminaUpgrades();
+        upgradeStats.pointsForStamina = gameManager.instance.playerScript.numberOfPointsToUpgradeStamina;
 
         upgradeStats.maxSpeed = gameManager.instance.playerScript.speed;
         upgradeStats.speedUpgrades = gameManager.instance.playerScript.GetNumberOfSpeedUpgrades();
@@ -229,15 +239,11 @@ public class gameUIManager : MonoBehaviour
         gameManager.instance.playerScript.currentExperience += amount;
         ExperienceCount.text = gameManager.instance.playerScript.currentExperience.ToString("F0");
     }
-    public void updatPlayerUI()
+
+    public void updatePlayerUI()
     {
         playersHealthPool.fillAmount = gameManager.instance.playerScript.HP / gameManager.instance.playerScript.HPOrig;
-
-    }
-
-    public void updatePlayerUI(float HP, float HPOrig)
-    {
-        playersHealthPool.fillAmount = HP / HPOrig;
+        playersStaminaPool.fillAmount = gameManager.instance.playerScript.Stamina / gameManager.instance.playerScript.StaminaOrig;
         gameUIManager.instance.RespawnCount.text = gameManager.instance.respawns.ToString("F0");
         ExperienceCount.text = gameManager.instance.playerScript.currentExperience.ToString("F0");
     }

@@ -16,6 +16,7 @@ public class playerController : MonoBehaviour, IDamage
 
     [Header("-----Attributes-----")]
     [Range(0, 100)][SerializeField] public int HP;
+    [Range(0, 100)][SerializeField] public int Stamina;
     [Range(1, 50)][SerializeField] public int speed;
     [Range(0, 20)][SerializeField] public int baseDamage;
     [SerializeField] public float upgradePercentage;
@@ -29,6 +30,9 @@ public class playerController : MonoBehaviour, IDamage
 
     private int numberOfHealthUpgrades;
     public int numberOfPointsToUpgradeHealth = 150;
+
+    private int numberOfStaminaUpgrades;
+    public int numberOfPointsToUpgradeStamina = 100;
 
     private int numberOfSpeedUpgrades;
     public int numberOfPointsToUpgradeSpeed = 300;
@@ -112,6 +116,14 @@ public class playerController : MonoBehaviour, IDamage
     {
         numberOfHealthUpgrades += amount;
     }
+    public int GetNumberOfStaminaUpgrades()
+    {
+        return numberOfStaminaUpgrades;
+    }
+    public void SetNumberOfStaminaUpgrades(int amount)
+    {
+        numberOfStaminaUpgrades += amount;
+    }
     public int GetNumberOfSpeedUpgrades()
     {
         return numberOfSpeedUpgrades;
@@ -157,8 +169,12 @@ public class playerController : MonoBehaviour, IDamage
 
 
     int jumpCount;
+
     public int HPOrig;
+    public int StaminaOrig;
+
     public int GetOriginalHpAmount() { return HPOrig; }
+    public int GetOriginalStaminaAmount() { return StaminaOrig; }
     //bool isSprinting;
     bool isShooting;
     bool isPlayingSteps;
@@ -191,6 +207,7 @@ public class playerController : MonoBehaviour, IDamage
         //JsonManager = FindObjectOfType<jsonManager>();
         //LoadGuns();
         HPOrig = HP;
+        StaminaOrig = Stamina;
         updatePlayerUI();
         spawnPlayer();
         myCollider = shield.GetComponent<BoxCollider>();
@@ -226,6 +243,7 @@ public class playerController : MonoBehaviour, IDamage
     public void spawnPlayer()
     {
         HP = HPOrig;
+        Stamina = StaminaOrig;
         updatePlayerUI();
         controller.enabled = false;
         transform.position = gameManager.instance.playerSpawnPosition.transform.position;
@@ -531,7 +549,7 @@ public class playerController : MonoBehaviour, IDamage
     {
         if (gameManager.instance != null)
         {
-            gameUIManager.instance.updatePlayerUI (HP, HPOrig);
+            gameUIManager.instance.updatePlayerUI ();
         }
     }
 
