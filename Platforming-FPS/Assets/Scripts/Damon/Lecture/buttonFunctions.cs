@@ -22,6 +22,8 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.respawns = gameManager.instance.GetOriginalRespawnCount();
     }
 
+   
+
     public void respawn()
     {
         //if (!gameManager.instance.CheckpointReached || gameManager.instance.respawns == 0) { return; }
@@ -49,7 +51,6 @@ public class buttonFunctions : MonoBehaviour
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
-    //gameManager.instance.savePlayerData();
         Application.Quit();
 #endif
     }
@@ -87,7 +88,6 @@ public class buttonFunctions : MonoBehaviour
 
     public void loadMainMenu()
     {
-        //gameManager.instance.savePlayerData();
 
         SceneManager.LoadScene("Main Menu");
     }

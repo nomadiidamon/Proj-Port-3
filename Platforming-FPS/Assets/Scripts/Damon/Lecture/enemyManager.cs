@@ -50,7 +50,6 @@ public class enemyManager : MonoBehaviour
 
             // you win!
 
-           // gameManager.instance.savePlayerData();
 
 
             gameUIManager.instance.statePause();

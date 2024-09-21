@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac4c15d63ca800489dada8a320fe87c, type: 3}
   m_Name: Gun - Space Pistol
   m_EditorClassIdentifier: 
-  gunName: 
+  gunName: Space Pistol
   gunModel: {fileID: 1067548111670727202, guid: 767d0c5db57716442be1688307f6b905, type: 3}
   shootDamage: 1
   shootRate: 0.25
-  shootDistance: 75
+  shootDistance: -1149
   ammoCur: 0
   ammoMax: 25
   gunScale: {x: 0.5, y: 0.5, z: 0.5}

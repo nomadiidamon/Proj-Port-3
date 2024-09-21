@@ -848,7 +848,7 @@ MonoBehaviour:
     m_Bits: 8
   shield: {fileID: 5594909959243809031}
   playerCenter: {fileID: 984660246716668632}
-  HP: 40
+  HP: 5
   speed: 15
   baseDamage: 0
   upgradePercentage: 0
@@ -875,7 +875,7 @@ MonoBehaviour:
   shootDist: 0
   shootRate: 0
   deflectionSpeed: 0
-  blastForce: 15
+  blastForce: 30
   audJump:
   - {fileID: 8300000, guid: 7387f813351958543bd24df759310f4b, type: 3}
   - {fileID: 8300000, guid: 6e1e7ec32c538cf4bbf0f2104e193a9a, type: 3}

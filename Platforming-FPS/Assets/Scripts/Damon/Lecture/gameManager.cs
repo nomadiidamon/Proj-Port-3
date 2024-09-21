@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using static gunStats;
 
 public class gameManager : MonoBehaviour
 {
@@ -73,71 +74,14 @@ public class gameManager : MonoBehaviour
 
 
 
-    
 
-    
-
-    /*public void savePlayerData()
-    {
-
-        playerController playerScript = GetComponent<playerController>();
-        if (player != null)
-        {
-            playerData data = new playerData(playerScript, respawns); 
-            data.savePlayer(); 
-        }
-        else
-        {
-            Debug.LogError("playerController not found on player");
-        }
-    }
-
-    public IEnumerator loadPlayerData()
-    {
-
-        yield return new WaitForEndOfFrame();
-
-        playerController playerScript = player.GetComponent<playerController>(); 
-        if (playerScript != null)
-        {
-            playerData data = new playerData(playerScript, respawns); 
-            data.loadPlayer(playerScript); 
-        }
-        else
-        {
-            Debug.LogError("playerController not found on playerGameObject.");
-        }
-      }
 
 
 
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        StartCoroutine(loadPlayerData());
-    }
-
-    private void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
-
-    private void OnApplicationQuit()
-    {
-        if (player != null)
-        {
-            savePlayerData();
-        }
-        else
-        {
-            Debug.LogWarning("Player was null on application quit, skipping save.");
-        }
-    }*/
+    
     
 
 
 }
+
+

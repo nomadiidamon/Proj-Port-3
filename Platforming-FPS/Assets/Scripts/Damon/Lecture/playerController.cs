@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class playerController : MonoBehaviour, IDamage
 {
@@ -46,7 +47,7 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] float dodgeCooldown = 1f;
 
     [Header("-----Guns-----")]
-    [SerializeField] List<gunStats> gunList = new List<gunStats>();
+    public List<gunStats> gunList = new List<gunStats>();
     [SerializeField] GameObject gunModel;
     [SerializeField] GameObject muzzleFlash;
     [SerializeField] GameObject deflectionFlash;
@@ -78,6 +79,8 @@ public class playerController : MonoBehaviour, IDamage
     public List<GameObject> alliesCreated;
     Vector3 objectHeldOriginalSize;
     public float allyHeldAggroRange;
+
+    private jsonManager JsonManager;
 
     public Transform GetPlayerCenter()
     {
@@ -178,8 +181,15 @@ public class playerController : MonoBehaviour, IDamage
     public List<gunStats> GetGunList() { return gunList; }
 
     // Start is called before the first frame update
+    
+    void Awake()
+    {
+        
+    }
     void Start()
     {
+        //JsonManager = FindObjectOfType<jsonManager>();
+        //LoadGuns();
         HPOrig = HP;
         updatePlayerUI();
         spawnPlayer();
@@ -378,6 +388,7 @@ public class playerController : MonoBehaviour, IDamage
     {
         if (!gunList[selectedGun].isShield && !gunList[selectedGun].isBlast)
         {
+            
             isShooting = true;
 
             StartCoroutine(flashMuzzle());
@@ -416,6 +427,8 @@ public class playerController : MonoBehaviour, IDamage
             isShooting = false;
 
         }
+
+        
 
     }
 
@@ -772,17 +785,35 @@ public class playerController : MonoBehaviour, IDamage
         objectsCreated.Clear();
     }
 
-    public gunStats getGunName(string gunName)
+    
+
+    public void SaveGuns()
     {
-        foreach (gunStats gun in gunList)
+        JsonManager.SaveGunList(gunList);
+    }
+
+    public void LoadGuns()
+    {
+        gunList = JsonManager.LoadGunList();
+
+        if (gunList.Count > 0 && selectedGun >= 0 && selectedGun < gunList.Count)
         {
-            if (gun.gunName.Equals(gunName, System.StringComparison.OrdinalIgnoreCase))
-            {
-                return gun;
-            }
+            var currentGun = gunList[selectedGun];
+            shootRate = currentGun.shootRate;
+            
+
         }
-        Debug.LogWarning($"Gun with name {gunName} not found!");
-        return null;
+
+
+    }
+
+    
+
+
+
+    private void OnApplicationQuit()
+    {
+        SaveGuns();
     }
 
 }

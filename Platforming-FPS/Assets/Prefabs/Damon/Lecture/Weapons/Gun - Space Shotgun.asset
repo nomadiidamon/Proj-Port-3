@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac4c15d63ca800489dada8a320fe87c, type: 3}
   m_Name: Gun - Space Shotgun
   m_EditorClassIdentifier: 
-  gunName: 
+  gunName: Space Shotgun
   gunModel: {fileID: -927199367670048503, guid: 9e75824a692823d4584aab319cea3fd5, type: 3}
   shootDamage: 5
   shootRate: 1

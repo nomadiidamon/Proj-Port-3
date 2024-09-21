@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac4c15d63ca800489dada8a320fe87c, type: 3}
   m_Name: Shield - Crystal Cavern - Deflector Shield
   m_EditorClassIdentifier: 
-  gunName: 
+  gunName: CC Shield
   gunModel: {fileID: 7263974932301356860, guid: 0c761cb6a0742384b989c6654acde62a, type: 3}
   shootDamage: 0
   shootRate: 0.5
