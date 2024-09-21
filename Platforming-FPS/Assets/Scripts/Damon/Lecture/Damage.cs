@@ -45,11 +45,6 @@ public class Damage : MonoBehaviour
             return;
         }
 
-        if (other.CompareTag("Player"))
-        {
-            gameManager.instance.playerScript.takeDamage(damageAmount);
-        }
-
         if (other.CompareTag("Environment"))
         {
             Instantiate(targetHitEffect, this.transform.position, Quaternion.identity);
