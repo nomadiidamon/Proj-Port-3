@@ -187,7 +187,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -241.48, y: -0.5000001, z: -237}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.014446836, y: 0.045637306, z: 0.014447516}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7432454097478239520}
@@ -212,12 +212,16 @@ MonoBehaviour:
   model: {fileID: 3950080930802721441}
   shootPos: {fileID: 7432454097478239520}
   health: 10
+  maxExpGiven: 100
+  minExpGiven: 35
+  actualExpGiven: 0
   viewAngle: 342
   facePlayerSpeed: 200
+  hpFrame: {fileID: 240685543523392431}
   hpbar: {fileID: 2470707982750417268}
   damage: 1
   bullet: {fileID: 3287213390385466787, guid: e200dac718d66b64baafa9bfb6d7ac52, type: 3}
-  shootRate: 2
+  shootRate: 0.5
   muzzleFlash: {fileID: 4581953193325810353}
 --- !u!136 &5854584583912322938
 CapsuleCollider:
@@ -261,7 +265,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 12
+  m_Radius: 25
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3782949775858980346
 GameObject:
@@ -546,7 +550,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.92549026, g: 0.6509804, b: 0, a: 1}
-  m_Intensity: 1.74
+  m_Intensity: 2.91
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208

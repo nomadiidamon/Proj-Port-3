@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Gun - Crystal Cavern - Space Pistol
   m_EditorClassIdentifier: 
   gunName: CC Space Pistol
-  gunModel: {fileID: 1067548111670727202, guid: 767d0c5db57716442be1688307f6b905, type: 3}
+  gunModel: {fileID: 1067548111670727202, guid: e661785be0aa9f04cbf17726598b77af, type: 3}
   shootDamage: 1
   shootRate: 0.25
   shootDistance: 75
