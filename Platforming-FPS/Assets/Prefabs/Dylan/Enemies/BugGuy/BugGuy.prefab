@@ -764,8 +764,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -63.993828, y: 0.00000047683716, z: 26.70764}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5601396535213820682}
   - {fileID: 7136170230829523988}
@@ -810,25 +810,31 @@ MonoBehaviour:
   animator: {fileID: 3972468809337407503}
   shootPos: {fileID: 3810211310466246075}
   headPos: {fileID: 5432453007753087508}
-  startingHealth: 10
+  startingHealth: 3
   maxExpGiven: 0
   minExpGiven: 0
   actualExpGiven: 0
   viewAngle: 90
   facePlayerSpeed: 5
-  hpbar: {fileID: 0}
-  roamDistance: 0
-  roamTimer: 0
-  animSpeedTrans: 0
-  bullet: {fileID: 0}
-  shootRate: 0
-  audSource: {fileID: 0}
-  deathSound: []
-  deathSoundVol: 0
-  shootSound: []
-  shootSoundVol: 0
-  hurtSound: []
-  hurtSoundVol: 0
+  hpbar: {fileID: 4265317249500042952}
+  roamDistance: 15
+  roamTimer: 1
+  animSpeedTrans: 3
+  deathDelay: 9.59
+  bullet: {fileID: 3288759639155870270, guid: 30e003f71a748684ea0f36bda696e5ac, type: 3}
+  shootRate: 0.8
+  audSource: {fileID: 9203278959582708287}
+  deathSound:
+  - {fileID: 8300000, guid: cbe46940e2eaf644794b017c248e1f7f, type: 3}
+  deathSoundVol: 1
+  shootSound:
+  - {fileID: 8300000, guid: 6e8d67d50a4e1c748897f50dada7766f, type: 3}
+  - {fileID: 8300000, guid: f61e4b3e315b75e4a86a643e01586460, type: 3}
+  - {fileID: 8300000, guid: 505a28bafb065b84da5ee59d0b9fb8e7, type: 3}
+  shootSoundVol: 1
+  hurtSound:
+  - {fileID: 8300000, guid: 527e7d73af7c6f749b10f47752d48c35, type: 3}
+  hurtSoundVol: 1
 --- !u!195 &3828326278063535276
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -870,10 +876,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2.25
+  m_Radius: 1.93
+  m_Height: 8.2
   m_Direction: 1
-  m_Center: {x: 0, y: 1.25, z: 0}
+  m_Center: {x: 0, y: 5.97, z: 0}
 --- !u!135 &2272031732905428954
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -893,7 +899,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 18
+  m_Radius: 21.9
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!82 &9203278959582708287
 AudioSource:
@@ -1081,17 +1087,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4214623214745814429}
-  m_LocalRotation: {x: -0, y: -0.7071046, z: -0, w: 0.70710903}
-  m_LocalPosition: {x: 0, y: 0, z: 9.692362}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1.5}
+  m_LocalScale: {x: 1.84, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8808168552785343056}
   m_Father: {fileID: 2741630790122197612}
-  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 108.99383, y: 2.9999995}
+  m_AnchoredPosition: {x: 0, y: 10.24}
   m_SizeDelta: {x: 1.5, y: 0.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &6572728212690359658
