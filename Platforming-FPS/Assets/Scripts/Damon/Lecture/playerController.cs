@@ -49,6 +49,7 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] float dodgeSpeed = 20f;
     [SerializeField] float dodgeDuration = 0.2f;
     [SerializeField] float dodgeCooldown = 1f;
+    [SerializeField] int dodgeCost = 1;
 
     [Header("-----Guns-----")]
     public List<gunStats> gunList = new List<gunStats>();
@@ -218,6 +219,8 @@ public class playerController : MonoBehaviour, IDamage
     {
         if (Input.GetButtonDown("Dodge") && Time.time > prevDodgeTime + dodgeCooldown && !isDodging)
         {
+            Stamina -= dodgeCost;
+            updatePlayerUI();
             StartCoroutine(DoDodge());
         }
     }
