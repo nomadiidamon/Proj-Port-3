@@ -3780,6 +3780,7 @@ MonoBehaviour:
   menuPause: {fileID: 68401831589066027}
   menuWin: {fileID: 4292888127461263188}
   menuLose: {fileID: 7919162680089734814}
+  menuAreYouSure: {fileID: 0}
   CreatorGunPrompt: {fileID: 4322833572941707343}
   UpgradeMenu: {fileID: 5077215450321303846}
   menuSettings: {fileID: 7429879012995502968}
@@ -3789,6 +3790,12 @@ MonoBehaviour:
   RespawnCount: {fileID: 7129572748241510608}
   ExperienceCount: {fileID: 5344118868051652300}
   uiPrompt: {fileID: 8384181117690848029}
+  currentHealth: {fileID: 0}
+  pointsNeededForHealth: {fileID: 0}
+  currentSpeed: {fileID: 0}
+  pointsNeededForSpeed: {fileID: 0}
+  currentDamage: {fileID: 0}
+  pointsNeededForDamage: {fileID: 0}
   flashDamageScreen: {fileID: 957170193202929846}
   restoreHealthScreen: {fileID: 8790658514185980166}
   increaseDamageScreen: {fileID: 5725635364053485103}
@@ -7135,6 +7142,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audPlayer: {fileID: 2124916017426969712}
+  audCopyObject: {fileID: 8300000, guid: b27c33cbe8fbcc647bf7bfaa7e7d12d8, type: 3}
+  audCopyEnemy: {fileID: 8300000, guid: 08788cadcb70bd943acc76cc740eccb6, type: 3}
+  audPasteObject: {fileID: 8300000, guid: e3dd149511721214fba7153e69b8f618, type: 3}
 --- !u!82 &2124916017426969712
 AudioSource:
   m_ObjectHideFlags: 0

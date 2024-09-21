@@ -664,6 +664,15 @@ public class playerController : MonoBehaviour, IDamage
             Debug.Log(hit.collider.name);
             if (hit.collider.CompareTag("Creatable") || hit.collider.CompareTag("Enemy"))
             {
+                if (hit.collider.CompareTag("Creatable"))
+                {
+                    audioManager.instance.PlayCopyObjectSound();
+                }
+                else if (hit.collider.CompareTag("Enemy"))
+                {
+                    audioManager.instance.PlayCopyEnemySound();
+                }
+
                 if (objectHeld)
                 {
                     Destroy(objectHeld);    // if an object is already held, destroy it for the next one to replace it

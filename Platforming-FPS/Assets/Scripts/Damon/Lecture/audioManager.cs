@@ -7,6 +7,9 @@ public class audioManager : MonoBehaviour
     public static audioManager instance;
 
     [SerializeField] AudioSource audPlayer;
+    [SerializeField] AudioClip audCopyObject;
+    [SerializeField] AudioClip audCopyEnemy;
+    [SerializeField] AudioClip audPasteObject;
 
 
     void Awake()
@@ -23,5 +26,16 @@ public class audioManager : MonoBehaviour
     {
         audPlayer.PlayOneShot(sound, vol);
     }
-
+    public void PlayCopyObjectSound()
+    {
+        audPlayer.PlayOneShot(audCopyObject);
+    }
+    public void PlayCopyEnemySound()
+    {
+        audPlayer.PlayOneShot(audCopyEnemy);
+    }
+    public void PlayPasteObjectSound()
+    {
+        audPlayer.PlayOneShot(audPasteObject);
+    }
 }

@@ -108,6 +108,7 @@ public class Damage : MonoBehaviour
 
                         gameManager.instance.playerScript.enableGameObject(newWallObject);
                     }
+                    audioManager.instance.PlayPasteObjectSound();
                 }
             }
             Destroy(gameObject);

@@ -115,9 +115,6 @@ public class enemyAI : MonoBehaviour, IDamage
         playerDir = gameManager.instance.player.transform.position - headPos.position;
         angleToPlayer = Vector3.Angle(playerDir, transform.forward);
 
-        //Debug.Log(angleToPlayer);
-        //Debug.DrawRay(headPos.position, playerDir);
-
         RaycastHit hit;
         if (Physics.Raycast(headPos.position, playerDir, out hit))
         {
@@ -157,7 +154,6 @@ public class enemyAI : MonoBehaviour, IDamage
         agent.SetDestination(gameManager.instance.player.transform.position);
         StopCoroutine(roam());
 
-        Debug.Log("Soldier took " + amount + " damage");
         updateHPBar();
         StartCoroutine(flashRed());
 
@@ -214,7 +210,6 @@ public class enemyAI : MonoBehaviour, IDamage
         Vector3 direction = gameManager.instance.player.transform.position - shootPos.transform.position;
         direction.Normalize();
         Quaternion bulletRotation = Quaternion.LookRotation(direction);
-        //Debug.Log("Pew!");
  
         Instantiate(bullet, shootPos.transform.position, bulletRotation);
     }

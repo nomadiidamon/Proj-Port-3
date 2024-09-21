@@ -743,13 +743,14 @@ GameObject:
   - component: {fileID: 2741630790122197612}
   - component: {fileID: 3972468809337407503}
   - component: {fileID: 215780585202006989}
+  - component: {fileID: 7352848820109590558}
   - component: {fileID: 3828326278063535276}
   - component: {fileID: 475100156241779807}
   - component: {fileID: 2272031732905428954}
   - component: {fileID: 9203278959582708287}
   m_Layer: 0
   m_Name: BugGuy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -820,7 +821,43 @@ MonoBehaviour:
   roamDistance: 15
   roamTimer: 1
   animSpeedTrans: 3
-  deathDelay: 9.59
+  deathDelay: 1.2
+  bullet: {fileID: 3288759639155870270, guid: 30e003f71a748684ea0f36bda696e5ac, type: 3}
+  shootRate: 0.8
+  audSource: {fileID: 9203278959582708287}
+  deathSound:
+  - {fileID: 8300000, guid: cbe46940e2eaf644794b017c248e1f7f, type: 3}
+  deathSoundVol: 1
+  shootSound:
+  - {fileID: 8300000, guid: 6e8d67d50a4e1c748897f50dada7766f, type: 3}
+  - {fileID: 8300000, guid: f61e4b3e315b75e4a86a643e01586460, type: 3}
+  - {fileID: 8300000, guid: 505a28bafb065b84da5ee59d0b9fb8e7, type: 3}
+  shootSoundVol: 1
+  hurtSound:
+  - {fileID: 8300000, guid: 527e7d73af7c6f749b10f47752d48c35, type: 3}
+  hurtSoundVol: 1
+--- !u!114 &7352848820109590558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3715557867345376904}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5db642ff0b05be54cbb76d875934e53e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 3828326278063535276}
+  model: {fileID: 3614114445879266831}
+  animator: {fileID: 3972468809337407503}
+  shootPos: {fileID: 3810211310466246075}
+  headPos: {fileID: 5432453007753087508}
+  startingHealth: 3
+  faceEnemySpeed: 5
+  hpbar: {fileID: 4265317249500042952}
+  animSpeedTrans: 3
+  deathDelay: 1.2
   bullet: {fileID: 3288759639155870270, guid: 30e003f71a748684ea0f36bda696e5ac, type: 3}
   shootRate: 0.8
   audSource: {fileID: 9203278959582708287}
