@@ -48,24 +48,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 999151a6b04c64f4fb3a069d19e080a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flashSpeed: 1
-  maxIntensity: 0
-  minIntensity: 0
+  flashSpeed: 1.5
+  maxIntensity: 25
+  minIntensity: 15
   baseIntensity: 0
   lightRange: 0
-  maxRange: 0
-  minRange: 0
-  flashRange: 0
+  maxRange: 50
+  minRange: 40
+  flashRange: 1
   myLight: {fileID: -7168177618955813285}
   chosenNumber: 0
-  first: 0
+  first: 11
   second: 0
   third: 0
   Custom1_R: 0
   Custom1_G: 0
   Custom1_B: 0
   Custom1_A: 0
-  customColor1: {r: 0, g: 0, b: 0, a: 0}
+  customColor1: {r: 0.36862746, g: 0.027450982, b: 0.3372549, a: 0}
   Custom2_R: 0
   Custom2_G: 0
   Custom2_B: 0
@@ -88,8 +88,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.38918057, g: 0.21676353, b: 0.5031446, a: 1}
-  m_Intensity: 1
-  m_Range: 10
+  m_Intensity: 15
+  m_Range: 50
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
