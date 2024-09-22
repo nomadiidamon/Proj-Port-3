@@ -25,11 +25,11 @@ public class Meteor : MonoBehaviour
         if (damage != null)
         {
             damage.takeDamage(meteorShower.GetMeteorSpeed());
-            audioManager.instance.PlayAud(meteorDamageAud[Random.Range(0, meteorDamageAud.Length)], 1);
+            audioManager.instance.PlayAud(meteorDamageAud[Random.Range(0, meteorDamageAud.Length)], meteorShower.meteorAudio);
         }
         else
         {
-            audioManager.instance.PlayAud(meteorImpactAud[Random.Range(0, meteorImpactAud.Length)], 1);
+            audioManager.instance.PlayAud(meteorImpactAud[Random.Range(0, meteorImpactAud.Length)], meteorShower.meteorAudio);
         }
         Instantiate(meteorHitEffect, gameObject.transform.position, Quaternion.identity);
         Destroy(gameObject);

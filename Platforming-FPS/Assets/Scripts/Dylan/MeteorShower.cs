@@ -6,6 +6,7 @@ public class MeteorShower : MonoBehaviour
 {
     [SerializeField] GameObject[] meteors;
     [SerializeField] int maxMeteors;
+    [Range(0,1)][SerializeField] public float meteorAudio;
     [Range(5, 60)][SerializeField] int destroyTimer;
     [SerializeField] int minSpeed = 1;
     [SerializeField] int maxSpeed = 10;
