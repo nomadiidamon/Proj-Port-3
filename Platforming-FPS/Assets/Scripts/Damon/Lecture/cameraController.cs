@@ -20,12 +20,22 @@ public class cameraController : MonoBehaviour
     float rotX;
     Vector3 cameraOffset;
 
+    // Camera shake
+    private float shakeDuration = 0f;
+    private float shakeIntensity = 0f;
+    private float shakeTimer = 0f;
+    private Vector3 originalCamPos;
+    private Quaternion originalCamRot;
+
     // Start is called before the first frame update
     void Start()
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         cameraOffset = playerCamera.transform.localPosition.normalized * cameraDistance;
+
+        originalCamPos = playerCamera.transform.localPosition;
+        originalCamRot = playerCamera.transform.localRotation;
     }
 
     // Update is called once per frame
@@ -36,9 +46,9 @@ public class cameraController : MonoBehaviour
         float mouseX = Input.GetAxis("Mouse X") * sens * Time.deltaTime;
 
         if (invertY)
-          rotX += mouseY;
+            rotX += mouseY;
         else
-          rotX -= mouseY;
+            rotX -= mouseY;
 
         // clamp the rotX on the x-axis
         rotX = Mathf.Clamp(rotX, lockVertMin, lockVertMax);
@@ -49,8 +59,24 @@ public class cameraController : MonoBehaviour
         //rotate the PLAYER on the y-axis
         transform.parent.Rotate(Vector3.up * mouseX);
 
-        // camera collison
-        HandleCameraCollision();
+        if (shakeTimer > 0)
+        {
+            //Debug.Log("Shaking! timer: " + shakeTimer);
+            playerCamera.transform.localPosition = originalCamPos + Random.insideUnitSphere * shakeIntensity;
+            shakeTimer -= Time.deltaTime;
+        }
+        else
+        {
+            playerCamera.transform.localPosition = originalCamPos;
+        }
+
+        if (shakeTimer <= 0)
+        {
+            // camera collison
+            HandleCameraCollision();
+        }
+    
+        
 
     }
 
@@ -88,5 +114,14 @@ public class cameraController : MonoBehaviour
         playerCamera.fieldOfView = Mathf.Clamp(fov, minFOV, maxFOV);
     }
 
+    public void TriggerCameraShake(float duration, float intensity)
+    {
+        //Debug.Log("Camera shake triggered with duration: " + duration + " and intensity: " + intensity);
+        shakeDuration = duration;
+        shakeIntensity = intensity;
+        shakeTimer = duration;
 
+        originalCamPos = playerCamera.transform.localPosition;
+        originalCamRot = playerCamera.transform.localRotation;
+    }
 }

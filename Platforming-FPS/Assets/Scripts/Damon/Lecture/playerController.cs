@@ -12,6 +12,7 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] LayerMask ignoreMask;
     [SerializeField] GameObject shield;
     [SerializeField] Transform playerCenter;
+    [SerializeField] cameraController camController;
 
 
     [Header("-----Attributes-----")]
@@ -207,6 +208,14 @@ public class playerController : MonoBehaviour, IDamage
     }
     void Start()
     {
+       
+        camController = FindObjectOfType<cameraController>();
+        if (camController == null)
+        {
+            Debug.Log("Camera controller not found");
+        }
+        
+
         //JsonManager = FindObjectOfType<jsonManager>();
         //LoadGuns();
         HPOrig = HP;
@@ -511,6 +520,9 @@ public class playerController : MonoBehaviour, IDamage
         if (HP < 0) { HP = 0; }
 
         audioManager.instance.PlayAud(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
+
+        Debug.Log("Triggering camera shake!");
+        camController.TriggerCameraShake(.5f, 2f);
 
         updatePlayerUI();
         StartCoroutine(flashDamage());
