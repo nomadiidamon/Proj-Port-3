@@ -52,6 +52,10 @@ MonoBehaviour:
   type: 3
   rb: {fileID: 166812810706146570}
   targetHitEffect: {fileID: 198856239026640498, guid: 9bba9cf244c53c5439505dfc96fdd11c, type: 3}
+  damageMissAud:
+  - {fileID: 8300000, guid: 2b6c699e05227194ab2b626a271f94c8, type: 3}
+  damageHitAud:
+  - {fileID: 8300000, guid: 2b6c699e05227194ab2b626a271f94c8, type: 3}
   damageAmount: 10
   damageDelay: 0
   speed: 100

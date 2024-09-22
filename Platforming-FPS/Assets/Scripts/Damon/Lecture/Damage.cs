@@ -60,10 +60,13 @@ public class Damage : MonoBehaviour
 
         if (damage != null)
         {
-            audioManager.instance.PlayAud(damageHitAud[Random.Range(0, damageHitAud.Length)], 1);
-            damage.takeDamage(damageAmount);
+            if (damageHitAud.Length > 0)
+            {
+                audioManager.instance.PlayAud(damageHitAud[Random.Range(0, damageHitAud.Length)], 1);
+            }
+                damage.takeDamage(damageAmount);
         }
-        else
+        else if (damageMissAud.Length > 0)
         {
             audioManager.instance.PlayAud(damageMissAud[Random.Range(0, damageMissAud.Length)], 1);
         }
