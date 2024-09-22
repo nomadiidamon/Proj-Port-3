@@ -821,7 +821,7 @@ MonoBehaviour:
   roamDistance: 15
   roamTimer: 1
   animSpeedTrans: 3
-  deathDelay: 1.2
+  deathDelay: 3
   bullet: {fileID: 3288759639155870270, guid: 30e003f71a748684ea0f36bda696e5ac, type: 3}
   shootRate: 0.8
   audSource: {fileID: 9203278959582708287}

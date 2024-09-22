@@ -6,15 +6,22 @@ public class MeteorShower : MonoBehaviour
 {
     [SerializeField] GameObject[] meteors;
     [SerializeField] int maxMeteors;
-    float speed;
-    int currentNumberOfMeteors = 0;
+    [Range(5, 60)][SerializeField] int destroyTimer;
+    [SerializeField] int minSpeed = 1;
+    [SerializeField] int maxSpeed = 10;
+    int speed;
+    public int GetMeteorSpeed()
+    {
+        return speed; 
+    }
+    public int currentNumberOfMeteors = 0;
+   
     BoxCollider meteorShowerArea;
 
     // Start is called before the first frame update
     void Start()
     {
         meteorShowerArea = GetComponent<BoxCollider>();
-
     }
 
     // Update is called once per frame
@@ -23,12 +30,13 @@ public class MeteorShower : MonoBehaviour
         if (currentNumberOfMeteors < maxMeteors)
         {
             GameObject meteor = Instantiate(meteors[Random.Range(0, meteors.Length)], GetRandomPoint() + transform.position, Quaternion.identity);
-            SphereCollider sphereCollider = meteor.AddComponent<SphereCollider>();
-            sphereCollider.isTrigger = true;
-            Rigidbody rb = meteor.AddComponent<Rigidbody>();
-            rb.useGravity = false;
-            speed = Random.Range(0.5f, 5);
-            rb.velocity = -transform.up * speed;
+            Rigidbody rb = meteor.GetComponent<Rigidbody>();
+            speed = Random.Range(minSpeed, maxSpeed);
+            meteor.transform.rotation = Random.rotation;
+            int meteorSize = Random.Range(1, 5);
+            meteor.transform.localScale = new Vector3(meteorSize,meteorSize,meteorSize);
+            // rb.velocity = -transform.up * speed;
+            StartCoroutine(DestroyMeteor(meteor));
 
             currentNumberOfMeteors++;
         }
@@ -42,6 +50,16 @@ public class MeteorShower : MonoBehaviour
         float x = Random.Range(-width/2, width/2);
         float z = Random.Range(-length/2, length/2);
 
-        return new Vector3(x, -1, z);
+        return new Vector3(x, -5, z);
+    }
+
+    IEnumerator DestroyMeteor(GameObject meteorToDestroy)
+    {
+        yield return new WaitForSeconds(destroyTimer);
+        if (meteorToDestroy != null)
+        {
+            Destroy(meteorToDestroy);
+            currentNumberOfMeteors--;
+        }
     }
 }
