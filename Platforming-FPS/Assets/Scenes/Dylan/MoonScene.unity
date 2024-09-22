@@ -13510,11 +13510,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3051371666496425275, guid: 6d2576d4435f55b4bab09cb2b450f13c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -755.6
+      value: -746.43
       objectReference: {fileID: 0}
     - target: {fileID: 3051371666496425275, guid: 6d2576d4435f55b4bab09cb2b450f13c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 165.3
+      value: 164.34
       objectReference: {fileID: 0}
     - target: {fileID: 3051371666496425275, guid: 6d2576d4435f55b4bab09cb2b450f13c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -16861,6 +16861,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3807142087558244944, guid: 89c27f129871ce846af830d1864f4b65, type: 3}
+      propertyPath: playerTransform
+      value: 
+      objectReference: {fileID: 1777218323}
     - target: {fileID: 6083180464367101227, guid: 89c27f129871ce846af830d1864f4b65, type: 3}
       propertyPath: m_LocalPosition.x
       value: -64.78
@@ -16918,6 +16922,11 @@ Transform:
 --- !u!1 &1777218322 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6267006595757427889, guid: 89c27f129871ce846af830d1864f4b65, type: 3}
+  m_PrefabInstance: {fileID: 1777218320}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1777218323 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6083180464367101227, guid: 89c27f129871ce846af830d1864f4b65, type: 3}
   m_PrefabInstance: {fileID: 1777218320}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1777599439
@@ -17530,15 +17539,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2953364525221378513, guid: 767d0c5db57716442be1688307f6b905, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -755.7
+      value: -745.13
       objectReference: {fileID: 0}
     - target: {fileID: 2953364525221378513, guid: 767d0c5db57716442be1688307f6b905, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 163.9
+      value: 163.3
       objectReference: {fileID: 0}
     - target: {fileID: 2953364525221378513, guid: 767d0c5db57716442be1688307f6b905, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -79.2
+      value: -77.18
       objectReference: {fileID: 0}
     - target: {fileID: 2953364525221378513, guid: 767d0c5db57716442be1688307f6b905, type: 3}
       propertyPath: m_LocalRotation.w
@@ -18971,18 +18980,6 @@ PrefabInstance:
       value: MeteorShower
       objectReference: {fileID: 0}
     - target: {fileID: 3208276797786599564, guid: 183650016ad4f0249a9b244368c53b2b, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 13.947511
-      objectReference: {fileID: 0}
-    - target: {fileID: 3208276797786599564, guid: 183650016ad4f0249a9b244368c53b2b, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.1901942
-      objectReference: {fileID: 0}
-    - target: {fileID: 3208276797786599564, guid: 183650016ad4f0249a9b244368c53b2b, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 9.509709
-      objectReference: {fileID: 0}
-    - target: {fileID: 3208276797786599564, guid: 183650016ad4f0249a9b244368c53b2b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -664
       objectReference: {fileID: 0}
@@ -19021,18 +19018,6 @@ PrefabInstance:
     - target: {fileID: 3208276797786599564, guid: 183650016ad4f0249a9b244368c53b2b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4058459592304480780, guid: 183650016ad4f0249a9b244368c53b2b, type: 3}
-      propertyPath: minSpeed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4058459592304480780, guid: 183650016ad4f0249a9b244368c53b2b, type: 3}
-      propertyPath: maxMeteors
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4058459592304480780, guid: 183650016ad4f0249a9b244368c53b2b, type: 3}
-      propertyPath: destroyTimer
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

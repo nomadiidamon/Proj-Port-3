@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -706, y: 370, z: 6}
-  m_LocalScale: {x: 23.439095, y: 0.23439096, z: 11.719547}
+  m_LocalScale: {x: 13.947511, y: 0.1901942, z: 9.509709}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -57,9 +57,10 @@ MonoBehaviour:
   - {fileID: 141157308486927236, guid: 937c40a5edc04934ebbd7d491ec0059b, type: 3}
   - {fileID: 6888616955001030045, guid: 15caadb059fe4eb4098db3ca042dc086, type: 3}
   - {fileID: 3547704508417847708, guid: 42a4c05367817f243a8185cb4113c77f, type: 3}
-  maxMeteors: 20
-  destroyTimer: 9
-  minSpeed: 1
+  maxMeteors: 10
+  meteorAudio: 0.2
+  destroyTimer: 10
+  minSpeed: 10
   maxSpeed: 30
   currentNumberOfMeteors: 0
 --- !u!33 &6035829887070296976
