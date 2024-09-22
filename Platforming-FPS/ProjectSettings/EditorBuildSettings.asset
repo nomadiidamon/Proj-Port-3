@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Hiry/SkyScene.unity
     guid: 9478d142a8f75f748a43f51aff2bc6dd
+  - enabled: 1
+    path: Assets/Scenes/Johnny/LavaScene.unity
+    guid: 346f9e3ac32377346bdb2465680a3386
   m_configObjects: {}
