@@ -59,8 +59,8 @@ public class parasiteAI : MonoBehaviour, IDamage
         RaycastHit hit;
         if (Physics.Raycast(headPos.position, playerDir, out hit))
         {
-            Debug.DrawRay(headPos.position, playerDir);
-            Debug.Log("Parasite sees: " + hit.collider.name);
+            // Debug.DrawRay(headPos.position, playerDir);
+            // Debug.Log("Parasite sees: " + hit.collider.name);
             if (hit.collider.CompareTag("Player"))
             {
                 if (!isSwiping && hit.distance < 5)
@@ -129,9 +129,8 @@ public class parasiteAI : MonoBehaviour, IDamage
     IEnumerator shoot()
     {
         isShooting = true;
-        ChangeAnimation("Parasite_Shoot");
+        animator.SetTrigger("Shoot");
         shootPos.LookAt(targetPosition.position);
-        Instantiate(bullet, shootPos.position, shootPos.rotation);
 
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
@@ -139,7 +138,7 @@ public class parasiteAI : MonoBehaviour, IDamage
     IEnumerator swipe()
     {
         isSwiping = true;
-        ChangeAnimation("Parasite_Swipe");
+        animator.SetTrigger("Swipe");
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
         isSwiping = false;
     }
@@ -156,11 +155,7 @@ public class parasiteAI : MonoBehaviour, IDamage
     {
         audEnemy.PlayOneShot(sound, vol);
     }
-    void ChangeAnimation(string targetAnimation, float fadeTime = 0.2f)
-    {
-        currentAnimation = targetAnimation;
-        animator.CrossFade(targetAnimation, fadeTime);
-    }
+
     public void createProjectile()
     {
         Vector3 direction = gameManager.instance.player.transform.position - shootPos.transform.position;

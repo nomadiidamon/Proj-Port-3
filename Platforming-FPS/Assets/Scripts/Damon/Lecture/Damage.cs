@@ -12,6 +12,9 @@ public class Damage : MonoBehaviour
     [SerializeField] Rigidbody rb;
     [SerializeField] ParticleSystem targetHitEffect;
 
+    [Header("-----Audio-----")]
+    [SerializeField] AudioClip[] damageMissAud;
+    [SerializeField] AudioClip[] damageHitAud;
 
     [SerializeField] int damageAmount;
     public int GetDamageAmount() { return damageAmount; }
@@ -40,6 +43,7 @@ public class Damage : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log(other.name);
         if (other.isTrigger || other.transform == transform.parent) //!isDamageable) 
         {
             return;
@@ -56,8 +60,14 @@ public class Damage : MonoBehaviour
 
         if (damage != null)
         {
+            audioManager.instance.PlayAud(damageHitAud[Random.Range(0, damageHitAud.Length)], 1);
             damage.takeDamage(damageAmount);
         }
+        else
+        {
+            audioManager.instance.PlayAud(damageMissAud[Random.Range(0, damageMissAud.Length)], 1);
+        }
+
         if (type == damageType.bullet)
         {
             Instantiate(gameManager.instance.playerScript.GetGunList()[gameManager.instance.playerScript.selectedGun].hitEffect, this.transform.position, Quaternion.identity);  
