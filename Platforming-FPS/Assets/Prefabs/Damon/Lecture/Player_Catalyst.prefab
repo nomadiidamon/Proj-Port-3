@@ -360,8 +360,13 @@ MonoBehaviour:
   lockVertMax: 90
   invertY: 0
   playerCamera: {fileID: 3836085253639056780}
+  playerTransform: {fileID: 984660246716668632}
   minFOV: 30
   maxFOV: 100
+  cameraDistance: 0
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!20 &3836085253639056780
 Camera:
   m_ObjectHideFlags: 0
@@ -848,6 +853,7 @@ MonoBehaviour:
     m_Bits: 8
   shield: {fileID: 5594909959243809031}
   playerCenter: {fileID: 984660246716668632}
+  camController: {fileID: 3807142087558244944}
   HP: 40
   Stamina: 10
   staminaRechargeDelay: 1.95
