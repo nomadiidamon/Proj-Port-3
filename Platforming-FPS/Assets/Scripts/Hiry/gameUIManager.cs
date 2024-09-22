@@ -233,7 +233,7 @@ public class gameUIManager : MonoBehaviour
     public void updateRespawnCount(int amount)
     {
         gameManager.instance.respawns += amount;
-        gameUIManager.instance.RespawnCount.text = gameManager.instance.respawns.ToString("F0");
+        RespawnCount.text = gameManager.instance.respawns.ToString("F0");
     }
 
     public void updateExperienceCount(int amount)
@@ -246,7 +246,7 @@ public class gameUIManager : MonoBehaviour
     {
         playersHealthPool.fillAmount = (float)gameManager.instance.playerScript.HP / gameManager.instance.playerScript.HPOrig;
         playersStaminaPool.fillAmount = (float)gameManager.instance.playerScript.Stamina / gameManager.instance.playerScript.StaminaOrig;
-        gameUIManager.instance.RespawnCount.text = gameManager.instance.respawns.ToString("F0");
+        RespawnCount.text = gameManager.instance.respawns.ToString("F0");
         ExperienceCount.text = gameManager.instance.playerScript.currentExperience.ToString("F0");
     }
 

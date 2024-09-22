@@ -182,7 +182,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c8a253bc1d9e7814a87d01583a336bd9, type: 2}
+  - {fileID: 2100000, guid: 344081c05d1a2da48ae31450f9bbdf3f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -447,6 +447,7 @@ GameObject:
   - component: {fileID: 4938572503386113932}
   - component: {fileID: 8670702437035432323}
   - component: {fileID: 6248483294696428558}
+  - component: {fileID: 3800000970145964352}
   - component: {fileID: 139692558163527768}
   - component: {fileID: 6183690512638453970}
   - component: {fileID: 3853527429990296760}
@@ -465,9 +466,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3241666792094090079}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.09955453, z: -0, w: 0.9950322}
+  m_LocalRotation: {x: 0, y: 0.09955424, z: 0, w: 0.9950322}
   m_LocalPosition: {x: -10.93, y: 32.31, z: -46.04}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.014203821, y: 0.045637306, z: 0.014699019}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8907220731057865640}
@@ -488,7 +489,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 6248483294696428558}
-  model: {fileID: 6425995993474141649}
+  model: {fileID: 3800000970145964352}
   animator: {fileID: 139692558163527768}
   projectilePos: {fileID: 8608249527821659568}
   headPos: {fileID: 895057199968401349}
@@ -496,10 +497,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c447138f03a33ec4f9358e91980651bb, type: 3}
   deathSoundVol: 1
   hpbar: {fileID: 4619339167045928299}
-  projectile: {fileID: 4063915013422513786, guid: 0fd1308bfca0f6d4980c30b39d9d74cf, type: 3}
+  projectile: {fileID: 4063915013422513786, guid: dd2be84ca4a84534995b05ff6e34ffeb, type: 3}
   startingHealth: 10
-  maxExpGiven: 200
-  minExpGiven: 100
+  maxExpGiven: 300
+  minExpGiven: 200
   actualExpGiven: 0
   viewAngle: 360
   facePlayerSpeed: 1000
@@ -508,7 +509,7 @@ MonoBehaviour:
   projectileShootRate: 0.75
   projectileDistance: 45
   meleeAttackRate: 0
-  movementSpeed: 7
+  movementSpeed: 10
   meleeRange: 15
 --- !u!195 &6248483294696428558
 NavMeshAgent:
@@ -532,6 +533,48 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!23 &3800000970145964352
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3241666792094090079}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 344081c05d1a2da48ae31450f9bbdf3f, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!95 &139692558163527768
 Animator:
   serializedVersion: 5

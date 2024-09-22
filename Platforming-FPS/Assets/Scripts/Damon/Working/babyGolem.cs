@@ -78,10 +78,7 @@ public class babyGolem : MonoBehaviour, IDamage
         Rigidbody rb = projectile.GetComponent<Rigidbody>();
         rb.useGravity = false;
         isThrowing = false;
-
-
-
-
+        actualExpGiven = Random.Range(minExpGiven, maxExpGiven);
     }
 
 
@@ -229,6 +226,7 @@ public class babyGolem : MonoBehaviour, IDamage
             audioManager.instance.PlayAud(deathSound[Random.Range(0, deathSound.Length)], deathSoundVol);
 
             StartCoroutine(destroyAfterSound());
+            gameUIManager.instance.updateExperienceCount(actualExpGiven);
         }
 
         ChangeAnimation(prevAnim);
@@ -246,6 +244,8 @@ public class babyGolem : MonoBehaviour, IDamage
         Instantiate(rubble, this.transform.position, Quaternion.identity);
 
         Destroy(gameObject);
+        rb.useGravity = false;
+
     }
 
     IEnumerator flashRed()

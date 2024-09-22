@@ -848,12 +848,12 @@ MonoBehaviour:
     m_Bits: 8
   shield: {fileID: 5594909959243809031}
   playerCenter: {fileID: 984660246716668632}
-  HP: 5
+  HP: 40
   Stamina: 10
-  staminaRechargeDelay: 2.5
+  staminaRechargeDelay: 1.95
   speed: 15
   baseDamage: 0
-  upgradePercentage: 0
+  upgradePercentage: 0.15
   currentExperience: 0
   jumpMax: 2
   jumpSpeed: 14
