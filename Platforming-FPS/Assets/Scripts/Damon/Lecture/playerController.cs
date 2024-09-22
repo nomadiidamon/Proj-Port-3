@@ -521,8 +521,8 @@ public class playerController : MonoBehaviour, IDamage
 
         audioManager.instance.PlayAud(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
 
-        Debug.Log("Triggering camera shake!");
-        camController.TriggerCameraShake(.5f, 2f);
+        //Debug.Log("Triggering camera shake!");
+        camController.TriggerCameraShake(.3f, .5f); // to demonstrate camera shake
 
         updatePlayerUI();
         StartCoroutine(flashDamage());
