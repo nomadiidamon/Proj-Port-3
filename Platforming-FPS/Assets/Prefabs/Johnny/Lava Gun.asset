@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dac4c15d63ca800489dada8a320fe87c, type: 3}
+  m_Name: Lava Gun
+  m_EditorClassIdentifier: 
+  gunName: Lava Gun
+  gunModel: {fileID: 124194, guid: 24afaab28ebbf8e40b8a6956429b0359, type: 3}
+  shootDamage: 5
+  shootRate: 10
+  shootDistance: 200
+  ammoCur: 0
+  ammoMax: 50
+  gunScale: {x: 1, y: 1, z: 1}
+  bullet: {fileID: 3121373984394139885, guid: 05d87cf04c06b884fba89a9bd6d956c3, type: 3}
+  hitEffect: {fileID: 577812841044345583, guid: fcb74f28d107e284e80af037bfec14ca, type: 3}
+  shootSound:
+  - {fileID: 8300000, guid: 90e56cc1674f9e94393779aaf4c54cb5, type: 3}
+  shootVolume: 1
+  pickupSound:
+  - {fileID: 8300000, guid: cf58eab19a3fc784facdb4bd23251b0e, type: 3}
+  pickupVolume: 1
+  switchSound:
+  - {fileID: 8300000, guid: ac3bc9959d69edf4e85a56ad9830a4da, type: 3}
+  switchVolume: 1
+  isCreator: 0
+  isShield: 0
+  isBlast: 0

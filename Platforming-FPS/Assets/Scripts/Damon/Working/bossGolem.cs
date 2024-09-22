@@ -28,6 +28,9 @@ public class bossGolem : MonoBehaviour, IDamage, IDeflect
     [Header("-----Attributes-----")]
     private int HP;
     [Range(0, 100)][SerializeField] int startingHealth;
+    [SerializeField] public int maxExpGiven;
+    [SerializeField] public int minExpGiven;
+    public int actualExpGiven;
 
     [Header("-----Factors-----")]
     [SerializeField] int viewAngle;
@@ -78,6 +81,7 @@ public class bossGolem : MonoBehaviour, IDamage, IDeflect
 
     string currentAnimation = "";
 
+    public int GetCurrentHealth() { return HP; }    
 
     void Start()
     {
@@ -93,6 +97,7 @@ public class bossGolem : MonoBehaviour, IDamage, IDeflect
         Rigidbody rb = projectile.GetComponent<Rigidbody>();
         rb.useGravity = false;
         isThrowing = false;
+        actualExpGiven = Random.Range(minExpGiven, maxExpGiven);
     }
 
 
@@ -325,7 +330,9 @@ public class bossGolem : MonoBehaviour, IDamage, IDeflect
             audioManager.instance.PlayAud(deathSound[Random.Range(0, deathSound.Length)], deathSoundVol);
 
             StartCoroutine(destroyAfterSound());
-            Instantiate(deathDrop, gameObject.transform.position + (Vector3.up*2), gameObject.transform.rotation);
+            Instantiate(deathDrop, gameObject.transform.position + (Vector3.up * 1.5f), gameObject.transform.rotation);
+            gameUIManager.instance.updateExperienceCount(actualExpGiven);
+
         }
 
         ChangeAnimation(prevAnim);

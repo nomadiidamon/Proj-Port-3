@@ -12,11 +12,15 @@ public class doorFunction : MonoBehaviour
     [SerializeField] float doorDistance;
     [SerializeField] string doorButton = "Interact";
     [SerializeField] string promptMessage = "Press E to Open";
+    [SerializeField] bool isBossDoor;
+    [SerializeField] GameObject boss;
+    [SerializeField] Transform playerMovePos;
 
     Transform player;
 
     bool isNearDoor = false;
     bool isDoorActive = true;
+    bool isDoorLocked = false;
 
     // Start is called before the first frame update
     void Start()
@@ -36,14 +40,44 @@ public class doorFunction : MonoBehaviour
             if (!isNearDoor)
             {
                 isNearDoor = true;
-                gameUIManager.instance.UpdateUIPrompt(promptMessage, gameObject);
+                if (!isDoorLocked)
+                {
+                    gameUIManager.instance.UpdateUIPrompt(promptMessage, gameObject);
+
+                }
             }
             if (Input.GetButtonDown(doorButton))
             {
+                if (!isBossDoor)
+                {
+                    StartCoroutine(OpenDoor());
+                }
+                if (isBossDoor)
+                {
+                    if (!isDoorLocked)
+                    {
+                        gameManager.instance.playerScript.GetComponent<CharacterController>().enabled = false;
+                        door.GetComponent<BoxCollider>().enabled = false;
+                        gameManager.instance.playerScript.transform.position =
+                            Vector3.Lerp(gameManager.instance.playerScript.transform.position, playerMovePos.position, Time.time);
+                        gameManager.instance.playerScript.GetComponent<CharacterController>().enabled = true;
+                        door.GetComponent<BoxCollider>().enabled = true;
+                        isDoorLocked = true;
 
-                StartCoroutine(OpenDoor());
+
+                    }
+
+                }
+
             }
-        
+        }
+        if (boss.GetComponent<bossGolem>() != null)
+        {
+            if (boss.GetComponent<bossGolem>().GetCurrentHealth() <= 0)
+            {
+                Destroy(gameObject);
+
+            }
         }
 
         else if (isNearDoor)
@@ -54,6 +88,8 @@ public class doorFunction : MonoBehaviour
 
 
         }
+
+
 
     }
 
