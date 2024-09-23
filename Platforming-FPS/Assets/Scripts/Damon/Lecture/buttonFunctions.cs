@@ -87,7 +87,6 @@ public class buttonFunctions : MonoBehaviour
 
     public void loadMainMenu()
     {
-
         SceneManager.LoadScene("Main Menu");
     }
 
