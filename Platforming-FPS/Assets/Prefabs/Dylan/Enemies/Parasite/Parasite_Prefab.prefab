@@ -81,15 +81,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b3d08fc391fe6bd419a55006666bc9b2, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.9849
+      value: 3.1194687
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b3d08fc391fe6bd419a55006666bc9b2, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.9849
+      value: 3.1194687
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b3d08fc391fe6bd419a55006666bc9b2, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.9849
+      value: 3.1194687
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b3d08fc391fe6bd419a55006666bc9b2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -822,7 +822,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7388c45ab8bfe1f45b2bb83f724cdcf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 10
+  startingHealth: 30
   facePlayerSpeed: 2
   shootRate: 5
   swipeRate: 4
@@ -853,7 +853,9 @@ MonoBehaviour:
   type: 2
   rb: {fileID: 2698065138909304102}
   targetHitEffect: {fileID: 0}
-  damageAmount: 15
+  damageMissAud: []
+  damageHitAud: []
+  damageAmount: 1
   damageDelay: 0
   speed: 1
   destroyTime: 0

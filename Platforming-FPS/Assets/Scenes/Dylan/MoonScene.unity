@@ -2462,25 +2462,9 @@ PrefabInstance:
       propertyPath: targetPosition
       value: 
       objectReference: {fileID: 1777218321}
-    - target: {fileID: 7232686629627085432, guid: c9e48833a2b401545af1b7a59a0729ee, type: 3}
-      propertyPath: damageAmount
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8502790593154776004, guid: c9e48833a2b401545af1b7a59a0729ee, type: 3}
       propertyPath: m_Name
       value: Parasite_Prefab
-      objectReference: {fileID: 0}
-    - target: {fileID: 9129968877104898430, guid: c9e48833a2b401545af1b7a59a0729ee, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 3.1194687
-      objectReference: {fileID: 0}
-    - target: {fileID: 9129968877104898430, guid: c9e48833a2b401545af1b7a59a0729ee, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 3.1194687
-      objectReference: {fileID: 0}
-    - target: {fileID: 9129968877104898430, guid: c9e48833a2b401545af1b7a59a0729ee, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 3.1194687
       objectReference: {fileID: 0}
     - target: {fileID: 9129968877104898430, guid: c9e48833a2b401545af1b7a59a0729ee, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12259,6 +12243,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontalMove: 5
   verticalMove: 0
+  forwardMove: 0
   moveSpeed: 2
 --- !u!1 &2084794231
 GameObject:

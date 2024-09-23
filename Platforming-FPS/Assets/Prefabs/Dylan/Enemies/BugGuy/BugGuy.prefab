@@ -811,7 +811,7 @@ MonoBehaviour:
   animator: {fileID: 3972468809337407503}
   shootPos: {fileID: 3810211310466246075}
   headPos: {fileID: 5432453007753087508}
-  startingHealth: 3
+  startingHealth: 10
   maxExpGiven: 0
   minExpGiven: 0
   actualExpGiven: 0
@@ -822,7 +822,7 @@ MonoBehaviour:
   roamTimer: 1
   animSpeedTrans: 3
   deathDelay: 3
-  bullet: {fileID: 3288759639155870270, guid: 30e003f71a748684ea0f36bda696e5ac, type: 3}
+  bullet: {fileID: 3288759639155870270, guid: ac05ee416cbdd814691927ac98cb22ff, type: 3}
   shootRate: 0.8
   audSource: {fileID: 9203278959582708287}
   deathSound:
