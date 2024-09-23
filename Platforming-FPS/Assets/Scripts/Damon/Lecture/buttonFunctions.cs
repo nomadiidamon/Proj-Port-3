@@ -63,7 +63,6 @@ public class buttonFunctions : MonoBehaviour
         gameUIManager.instance.menuAreYouSure.SetActive(true);
     }
 
-
     public void openSettings()
     {
         gameUIManager.instance.menuPause.SetActive(false);
