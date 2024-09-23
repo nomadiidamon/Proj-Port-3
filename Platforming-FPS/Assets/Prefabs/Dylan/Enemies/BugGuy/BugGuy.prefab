@@ -812,8 +812,8 @@ MonoBehaviour:
   shootPos: {fileID: 3810211310466246075}
   headPos: {fileID: 5432453007753087508}
   startingHealth: 10
-  maxExpGiven: 0
-  minExpGiven: 0
+  maxExpGiven: 1000
+  minExpGiven: 250
   actualExpGiven: 0
   viewAngle: 90
   facePlayerSpeed: 5
@@ -858,7 +858,7 @@ MonoBehaviour:
   hpbar: {fileID: 4265317249500042952}
   animSpeedTrans: 3
   deathDelay: 1.2
-  bullet: {fileID: 3288759639155870270, guid: 30e003f71a748684ea0f36bda696e5ac, type: 3}
+  bullet: {fileID: 3288759639155870270, guid: ac05ee416cbdd814691927ac98cb22ff, type: 3}
   shootRate: 0.8
   audSource: {fileID: 9203278959582708287}
   deathSound:
