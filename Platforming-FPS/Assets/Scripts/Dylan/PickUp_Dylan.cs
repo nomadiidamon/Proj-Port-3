@@ -85,7 +85,8 @@ public class PickUp_Dylan : MonoBehaviour
 
                         if (gameManager.instance.playerScript.GetHealth() < gameManager.instance.playerScript.GetOriginalHpAmount())
                         {
-                            gameManager.instance.playerScript.SetHealth(gameManager.instance.playerScript.GetHealth() + 1);
+                            gameManager.instance.playerScript.SetHealth(gameManager.instance.playerScript.GetHealth() + 
+                                (int)(gameManager.instance.playerScript.HPOrig * 0.075f));
                             gameManager.instance.playerScript.updatePlayerUI();
                             Destroy(gameObject);
                         }
