@@ -11,6 +11,8 @@ public class AsyncLoader : MonoBehaviour
     [Header("Menu Screen")]
     [SerializeField] GameObject loadingScreen;
     [SerializeField] GameObject menuMain;
+    [SerializeField] GameObject creditMenu;
+
     public GameObject menuLevel;
 
 
@@ -58,13 +60,25 @@ public class AsyncLoader : MonoBehaviour
 
     public void back()
     {
-        menuLevel.SetActive(false);
+        if (menuLevel.activeSelf)
+        {
+            menuLevel.SetActive(false);
+        }
+        else if (creditMenu.activeSelf)
+        {
+            creditMenu.SetActive(false);
+        }
         menuMain.SetActive(true);
     }
 
-    
 
-   
+
+
+    public void OnCreditPress()
+    {
+        menuMain.SetActive(false);
+        creditMenu.SetActive(true);
+    }
 
 
 }
