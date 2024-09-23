@@ -80,7 +80,7 @@ public class playerController : MonoBehaviour, IDamage
     [Header("-----Creator Gun-----")]
     public GameObject objectHeld;           // object ready to shoot
     [SerializeField] Transform objectHeldContainer;
-    [Range(3, 10)][SerializeField] int maxObjectsCreated;
+    [Range(3, 30)][SerializeField] int maxObjectsCreated;
     [Range(1, 3)][SerializeField] int maxAlliesCreated;
     public List<GameObject> objectsCreated;
     public List<GameObject> alliesCreated;

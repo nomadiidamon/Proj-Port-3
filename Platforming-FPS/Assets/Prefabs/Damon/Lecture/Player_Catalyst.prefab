@@ -360,7 +360,7 @@ MonoBehaviour:
   lockVertMax: 90
   invertY: 0
   playerCamera: {fileID: 3836085253639056780}
-  playerTransform: {fileID: 984660246716668632}
+  playerTransform: {fileID: 6083180464367101227}
   minFOV: 30
   maxFOV: 100
   cameraDistance: 0
@@ -914,7 +914,7 @@ MonoBehaviour:
   audWeapPickupVol: 0
   objectHeld: {fileID: 0}
   objectHeldContainer: {fileID: 3536201500387809014}
-  maxObjectsCreated: 10
+  maxObjectsCreated: 20
   maxAlliesCreated: 2
   objectsCreated: []
   alliesCreated: []
