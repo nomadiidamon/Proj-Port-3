@@ -216,8 +216,8 @@ public class playerController : MonoBehaviour, IDamage
         }
         
 
-        JsonManager = FindObjectOfType<jsonManager>();
-        LoadGuns();
+        //JsonManager = FindObjectOfType<jsonManager>();
+        //LoadGuns();
         HPOrig = HP;
         StaminaOrig = Stamina;
         updatePlayerUI();
