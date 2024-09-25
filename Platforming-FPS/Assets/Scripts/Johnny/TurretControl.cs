@@ -7,6 +7,11 @@ public class TurretControl : MonoBehaviour, IDamage
 {
     [SerializeField] Renderer model;
     [SerializeField] Transform shootPos;
+    [SerializeField] ParticleSystem selfDestructSequence;
+    [SerializeField] ParticleSystem detonationEffect;
+    [SerializeField] float detonationSpeed;
+    [SerializeField] SphereCollider detonationRange;
+    [SerializeField] int detonationDamage;
 
     [SerializeField] int health;
     private int startingHealth;
@@ -27,6 +32,7 @@ public class TurretControl : MonoBehaviour, IDamage
 
     bool isShooting;
     bool playerInRange;
+    //bool detonating;
 
     float angleToPlayer;
     Vector3 playerDir;
@@ -42,7 +48,7 @@ public class TurretControl : MonoBehaviour, IDamage
         enemyManager.instance.updateEnemyCount(1);
         bullet.GetComponent<Damage>().SetDamageAmount(damage);
         actualExpGiven = Random.Range(minExpGiven, maxExpGiven);
-
+        //detonating = false;
     }
 
     // Update is called once per frame
@@ -53,6 +59,14 @@ public class TurretControl : MonoBehaviour, IDamage
             
         }
         healthBarFacePlayer();
+
+
+            if (selfDetonate())
+            {
+                Destroy(gameObject);
+                Time.timeScale = 1;
+            }
+        
     }
 
     void healthBarFacePlayer()
@@ -168,5 +182,50 @@ public class TurretControl : MonoBehaviour, IDamage
         {
             playerInRange = false;
         }
+    }
+
+    public bool selfDetonate()
+    {
+        if (detonationRange.bounds.Contains(gameManager.instance.playerScript.transform.position))
+        {
+            Time.timeScale = 0.15f;
+            Instantiate(selfDestructSequence, transform.position, transform.rotation);
+            //yield return new WaitForSeconds(detonationSpeed);
+
+
+            detonationRange.radius += 2.5f;
+
+
+            if (detonationRange.bounds.Contains(gameManager.instance.playerScript.transform.position))
+            {
+                Instantiate(detonationEffect, transform.position, transform.rotation);
+                gameManager.instance.playerScript.takeDamage(detonationDamage);
+            }
+            return true;
+        } 
+        else
+        {
+            return false;
+        }
+    }
+
+    IEnumerator detonate()
+    {
+        Instantiate(selfDestructSequence, transform.position, transform.rotation);
+        Time.timeScale = 0.45f;
+        yield return new WaitForSeconds(detonationSpeed);
+        Instantiate(detonationEffect, transform.position, transform.rotation);
+
+
+        detonationRange.radius += 2.5f;
+  
+
+        if (detonationRange.bounds.Contains(gameManager.instance.playerScript.transform.position))
+        {
+            gameManager.instance.playerScript.takeDamage(detonationDamage);
+        }
+        Destroy(gameObject);
+        Time.timeScale = 1;
+
     }
 }
