@@ -50,6 +50,9 @@ MonoBehaviour:
   doorDistance: 5
   doorButton: Interact
   promptMessage: Press E to Open
+  isBossDoor: 0
+  boss: {fileID: 0}
+  playerMovePos: {fileID: 0}
 --- !u!1 &6775078604220764995
 GameObject:
   m_ObjectHideFlags: 0

@@ -840,7 +840,7 @@ public class playerController : MonoBehaviour, IDamage
 
     
 
-    public void SaveGuns()
+    /*public void SaveGuns()
     {
         JsonManager.SaveGunList(gunList);
     }
@@ -858,7 +858,7 @@ public class playerController : MonoBehaviour, IDamage
         }
 
 
-    }
+    }*/
 
     
 
@@ -866,7 +866,7 @@ public class playerController : MonoBehaviour, IDamage
 
     private void OnApplicationQuit()
     {
-        SaveGuns();
+        //SaveGuns();
     }
 
 }

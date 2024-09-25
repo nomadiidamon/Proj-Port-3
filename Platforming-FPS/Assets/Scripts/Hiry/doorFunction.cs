@@ -35,16 +35,22 @@ public class doorFunction : MonoBehaviour
     {
         
         float distance = Vector3.Distance(player.position, door.transform.position);
+        
         if (distance <= doorDistance && isDoorActive) 
         {
-            if (!isNearDoor)
-            {
-                isNearDoor = true;
-                if (!isDoorLocked)
-                {
-                    gameUIManager.instance.UpdateUIPrompt(promptMessage, gameObject);
+          
 
-                }
+            if (isBossDoor && isDoorLocked) {
+                isNearDoor = false;
+
+            }
+            else
+            {
+
+                isNearDoor = true;
+                gameUIManager.instance.UpdateUIPrompt(promptMessage, gameObject);
+
+                
             }
             if (Input.GetButtonDown(doorButton))
             {
@@ -71,6 +77,16 @@ public class doorFunction : MonoBehaviour
 
             }
         }
+
+        else
+        {
+            isNearDoor = false;
+            gameUIManager.instance.ClearUIPrompt(gameObject);
+
+
+
+        }
+
         if (boss.GetComponent<bossGolem>() != null)
         {
             if (boss.GetComponent<bossGolem>().GetCurrentHealth() <= 0)
@@ -80,14 +96,7 @@ public class doorFunction : MonoBehaviour
             }
         }
 
-        else if (isNearDoor)
-        {
-            isNearDoor = false;
-            gameUIManager.instance.ClearUIPrompt(gameObject);
-
-
-
-        }
+        
 
 
 
