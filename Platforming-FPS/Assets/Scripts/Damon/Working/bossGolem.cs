@@ -14,15 +14,13 @@ public class bossGolem : MonoBehaviour, IDamage, IDeflect
     [SerializeField] Transform headPos;
     [SerializeField] Transform stompPosition;
     [SerializeField] ParticleSystem stompEffect;
-    [SerializeField] AudioClip[] deathSound;
-    [Range(0, 1)][SerializeField] float deathSoundVol;
-    [SerializeField] Image hpbar;
     [SerializeField] GameObject projectile;
+    [SerializeField] ParticleSystem bulletEffect;
+    [SerializeField] Image hpbar;
     [SerializeField] SphereCollider bossArea;
     [SerializeField] GameObject deathDrop;
     [SerializeField] GameObject shield;
     [SerializeField] GameObject particleHitBoxStart;
-
 
 
     [Header("-----Attributes-----")]
@@ -31,6 +29,12 @@ public class bossGolem : MonoBehaviour, IDamage, IDeflect
     [SerializeField] public int maxExpGiven;
     [SerializeField] public int minExpGiven;
     public int actualExpGiven;
+
+    [Header("-----Audio-----")]
+    [SerializeField] AudioClip[] deathSound;
+    [Range(0, 1)][SerializeField] float deathSoundVol;
+    [SerializeField] AudioClip[] stompSound;
+    [Range(0, 1)][SerializeField] float stompSoundVol;
 
     [Header("-----Factors-----")]
     [SerializeField] int viewAngle;
@@ -269,6 +273,8 @@ public class bossGolem : MonoBehaviour, IDamage, IDeflect
     public void createStompEffect()
     {
         Instantiate(stompEffect, stompPosition.transform.position, this.transform.rotation);
+        audioManager.instance.PlayAud(stompSound[Random.Range(0, stompSound.Length)], stompSoundVol);
+
     }
 
     public void turnOnStompHitBox()
@@ -330,7 +336,7 @@ public class bossGolem : MonoBehaviour, IDamage, IDeflect
             audioManager.instance.PlayAud(deathSound[Random.Range(0, deathSound.Length)], deathSoundVol);
 
             StartCoroutine(destroyAfterSound());
-            Instantiate(deathDrop, gameObject.transform.position + (Vector3.up * 1.5f), gameObject.transform.rotation);
+            Instantiate(deathDrop, gameObject.transform.position + (Vector3.up * 1.15f), gameObject.transform.rotation);
             gameUIManager.instance.updateExperienceCount(actualExpGiven);
 
         }
@@ -369,6 +375,8 @@ public class bossGolem : MonoBehaviour, IDamage, IDeflect
         direction.Normalize();
         Quaternion bulletRotation = Quaternion.LookRotation(direction);
         Instantiate(projectile, projectilePos.transform.position, bulletRotation);
+        bulletEffect = projectile.AddComponent<ParticleSystem>();
+
     }
 
     private void OnTriggerEnter(Collider other)
