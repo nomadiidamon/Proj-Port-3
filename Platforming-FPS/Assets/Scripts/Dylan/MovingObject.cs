@@ -17,6 +17,8 @@ public class Moving : MonoBehaviour
     void Start()
     {
         startingPosition = transform.position;
+        SphereCollider contactArea = this.AddComponent<SphereCollider>();
+        contactArea.isTrigger = true;
     }
     private void Update()
     {
@@ -26,5 +28,13 @@ public class Moving : MonoBehaviour
         float newZ = Mathf.Cos(timer) * forwardMove;
 
         transform.position = startingPosition + new Vector3(newX, newY, newZ);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        other.transform.parent = this.transform;
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        other.transform.parent = null;
     }
 }
