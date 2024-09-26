@@ -355,7 +355,9 @@ public class playerController : MonoBehaviour, IDamage
         else
         {
             if (Input.GetButton("Shoot") && !isShooting)
+            {
                 StartCoroutine(shoot());
+            }
 
         }
 

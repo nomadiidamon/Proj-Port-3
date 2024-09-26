@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dac4c15d63ca800489dada8a320fe87c, type: 3}
+  m_Name: Gun - Laser
+  m_EditorClassIdentifier: 
+  gunName: Laser
+  gunModel: {fileID: 1633769547079644342, guid: 7bf96c604994a2a449ec89b9295188e0, type: 3}
+  shootDamage: 50
+  shootRate: 1
+  shootDistance: 5000
+  ammoCur: 0
+  ammoMax: 0
+  gunScale: {x: 1, y: 1, z: 1}
+  bullet: {fileID: 3288759639155870270, guid: d7be977ce3814b44c8da58aafc707ecf, type: 3}
+  hitEffect: {fileID: 198856239026640498, guid: 8affc835a67da1c408dfd1a9cad820da, type: 3}
+  shootSound:
+  - {fileID: 8300000, guid: 18f6ee3bb20c6f64597927071eb629dc, type: 3}
+  shootVolume: 0.5
+  pickupSound:
+  - {fileID: 8300000, guid: cf58eab19a3fc784facdb4bd23251b0e, type: 3}
+  pickupVolume: 0.5
+  switchSound:
+  - {fileID: 8300000, guid: cf58eab19a3fc784facdb4bd23251b0e, type: 3}
+  switchVolume: 0.5
+  isCreator: 0
+  isShield: 0
+  isBlast: 0

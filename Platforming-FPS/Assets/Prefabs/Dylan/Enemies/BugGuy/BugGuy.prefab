@@ -853,7 +853,7 @@ MonoBehaviour:
   animator: {fileID: 3972468809337407503}
   shootPos: {fileID: 3810211310466246075}
   headPos: {fileID: 5432453007753087508}
-  startingHealth: 3
+  startingHealth: 10
   faceEnemySpeed: 5
   hpbar: {fileID: 4265317249500042952}
   animSpeedTrans: 3

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Audio;
@@ -36,6 +37,7 @@ public class parasiteAI : MonoBehaviour, IDamage
 
     bool isShooting;
     bool isSwiping;
+    bool isIdle = false;
     private bool isDead = false;
 
     Vector3 playerDir;
@@ -61,16 +63,16 @@ public class parasiteAI : MonoBehaviour, IDamage
         {
             // Debug.DrawRay(headPos.position, playerDir);
             // Debug.Log("Parasite sees: " + hit.collider.name);
-            if (hit.collider.CompareTag("Player"))
+            if (hit.collider.CompareTag("Player") && !isIdle)
             {
-                if (!isSwiping && hit.distance < 5)
-                {
-                    StartCoroutine(swipe());
-                }
-                else if (!isShooting && !isSwiping)
-                {
-                        StartCoroutine(shoot());
-                }
+                //if (!isSwiping && hit.distance < 5)          // SWIPE OFF
+                //{                                            // SWIPE OFF
+                //    StartCoroutine(swipe());                 // SWIPE OFF
+                //}                                            // SWIPE OFF
+                //else if (!isShooting && !isSwiping)          // SWIPE OFF
+                //{                                            // SWIPE OFF
+                        StartCoroutine(shoot());               // SWIPE OFF
+                //}                                            // SWIPE OFF
 
                 facePlayer();
             }
@@ -163,6 +165,33 @@ public class parasiteAI : MonoBehaviour, IDamage
         Quaternion bulletRotation = Quaternion.LookRotation(direction);
         //Debug.Log("Pew!");
         Instantiate(bullet, shootPos.transform.position, bulletRotation);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Destroy(this.GetComponent<SphereCollider>());
+            StartCoroutine(flyUp());
+        }
+    }
+    IEnumerator flyUp()
+    {
+        Vector3 flyUp = new Vector3(200, 150, 0);
+        float flyUpSpeed = 100;
+        float timer = 0f;
+
+        while (timer < flyUpSpeed)
+        {
+            timer += Time.deltaTime;
+
+            isIdle = true;
+            animator.ResetTrigger("Shoot");
+            animator.SetTrigger("Idle");
+            transform.position = Vector3.Lerp(transform.position, flyUp, timer / flyUpSpeed);
+            yield return null;
+            animator.ResetTrigger("Idle");
+            isIdle = false;
+        }
     }
 }
 
