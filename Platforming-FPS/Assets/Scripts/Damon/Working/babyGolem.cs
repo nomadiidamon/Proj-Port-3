@@ -12,12 +12,15 @@ public class babyGolem : MonoBehaviour, IDamage
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Renderer model;
     [SerializeField] Animator animator;
+    [SerializeField] GameObject projectile;
     [SerializeField] Transform projectilePos;
+    [SerializeField] Transform punchPos;
+    [SerializeField] Damage[] punchBlast;
+    [SerializeField] CapsuleCollider punchCollider;
     [SerializeField] Transform headPos;
     [SerializeField] AudioClip[] deathSound;
     [Range(0, 1)][SerializeField] float deathSoundVol;
     [SerializeField] Image hpbar;
-    [SerializeField] GameObject projectile;
 
 
     [Header("-----Attributes-----")]
@@ -28,6 +31,8 @@ public class babyGolem : MonoBehaviour, IDamage
     public int actualExpGiven;
 
     [Header("-----Factors-----")]
+    [SerializeField] int punchContactDamage;
+    [SerializeField] float blastRadius;
     [SerializeField] int viewAngle;
     [SerializeField] int facePlayerSpeed;
     [SerializeField] int roamDistance;
@@ -79,6 +84,7 @@ public class babyGolem : MonoBehaviour, IDamage
         rb.useGravity = false;
         isThrowing = false;
         actualExpGiven = Random.Range(minExpGiven, maxExpGiven);
+        //punchBlast = punchCollider.GetComponent<ShotGunBlast>();
     }
 
 
@@ -89,6 +95,8 @@ public class babyGolem : MonoBehaviour, IDamage
         {
             //isInMeleeRange = true;
             agent.isStopped = true;
+            ChangeAnimation("BabyGolem_Punch", 0.2f, 0.25f);
+
         }
         else if (distanceToPlayer > meleeRange)
         {
@@ -110,7 +118,7 @@ public class babyGolem : MonoBehaviour, IDamage
 
         }
 
-        Debug.DrawLine(headPos.transform.position, gameManager.instance.player.transform.position);
+        //Debug.DrawLine(headPos.transform.position, gameManager.instance.player.transform.position);
     }
 
     private void ChangeAnimation(string targetAnim, float crossFade = 0.2f, float switchThreshold = 0.8f)
@@ -265,6 +273,25 @@ public class babyGolem : MonoBehaviour, IDamage
         direction.Normalize();
         Quaternion bulletRotation = Quaternion.LookRotation(direction);
         Instantiate(projectile, projectilePos.transform.position, bulletRotation);
+    }
+
+    public void createShotgunBlast()
+    {
+        Vector3 direction = gameManager.instance.player.transform.position - punchPos.transform.position;
+        direction.Normalize();
+        Quaternion blastRotation = Quaternion.LookRotation(direction);
+
+        int shardAmount = Random.Range(2, punchBlast.Length);
+
+        for (int i = 0; i < shardAmount; i++)
+        {
+            Vector3 randomPoint = Random.insideUnitSphere * blastRadius;
+            Instantiate(punchBlast[i], punchPos.transform.position + randomPoint, blastRotation);
+        }
+        if (punchCollider.bounds.Contains(gameManager.instance.playerScript.transform.position))
+        {
+            gameManager.instance.playerScript.takeDamage(punchContactDamage);
+        }
     }
 
     private void OnTriggerEnter(Collider other)

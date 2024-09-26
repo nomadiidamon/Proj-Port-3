@@ -65,8 +65,10 @@ public class TurretControl : MonoBehaviour, IDamage
             {
                 Destroy(gameObject);
                 Time.timeScale = 1;
-            }
-        
+                enemyManager.instance.updateEnemyCount(-1);
+
+        }
+
     }
 
     void healthBarFacePlayer()

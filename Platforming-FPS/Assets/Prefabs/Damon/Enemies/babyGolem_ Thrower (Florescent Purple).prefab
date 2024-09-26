@@ -168,6 +168,38 @@ SkinnedMeshRenderer:
     m_Center: {x: -80.1039, y: -2.447403, z: 17.706985}
     m_Extent: {x: 241.08421, y: 215.05971, z: 397.3723}
   m_DirtyAABB: 0
+--- !u!1 &993891661375833358
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4570395330491769779}
+  m_Layer: 6
+  m_Name: Punch Holder (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4570395330491769779
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 993891661375833358}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.18041578, y: -0.09061097, z: -0.114881925, w: 0.97264695}
+  m_LocalPosition: {x: -67.8, y: 25.2, z: 19.9}
+  m_LocalScale: {x: 0.9942229, y: 1.0115507, z: 0.99439585}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 897061710810343321}
+  m_Father: {fileID: 8913798467690230557}
+  m_LocalEulerAnglesHint: {x: -21.825, y: -8.35, z: -11.86}
 --- !u!1 &1305235511363804689
 GameObject:
   m_ObjectHideFlags: 0
@@ -728,7 +760,8 @@ Transform:
   m_LocalPosition: {x: -41.42009, y: 4.5827152e-14, z: 7.504906e-15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 4570395330491769779}
   m_Father: {fileID: 2550828707096565028}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6268647680904189995
@@ -762,6 +795,113 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4696357660331973225}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6347748604550703680
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 897061710810343321}
+  - component: {fileID: 7159543210453680988}
+  - component: {fileID: 7009660267024526273}
+  - component: {fileID: 8770965881808726711}
+  m_Layer: 6
+  m_Name: Punch Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &897061710810343321
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6347748604550703680}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.000000042840824, y: 0.16430773, z: 0.00000006202024, w: 0.9864091}
+  m_LocalPosition: {x: -116, y: -0.2, z: 53.9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4570395330491769779}
+  m_LocalEulerAnglesHint: {x: 0, y: 18.914, z: 0}
+--- !u!33 &7159543210453680988
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6347748604550703680}
+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &7009660267024526273
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6347748604550703680}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &8770965881808726711
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6347748604550703680}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 128
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 134.2
+  m_Height: 340.2
+  m_Direction: 0
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6508281447015502684
 GameObject:
   m_ObjectHideFlags: 0
@@ -987,17 +1127,29 @@ MonoBehaviour:
   agent: {fileID: 7620491464327840459}
   model: {fileID: 2057921976566268687}
   animator: {fileID: 8501842928667130999}
+  projectile: {fileID: 4063915013422513786, guid: aae3bfcbb1a8d304aa1804aacd58cb08, type: 3}
   projectilePos: {fileID: 5032468674042046361}
+  punchPos: {fileID: 4570395330491769779}
+  punchBlast:
+  - {fileID: 8246968889227806630, guid: 0a6876b12402ec74288d2b71aba61833, type: 3}
+  - {fileID: 2959774564678188728, guid: ba3c8a0d98812da42b213bc246672a59, type: 3}
+  - {fileID: 5207977137074464060, guid: 7dd26b6c8288d19468841a7bd747ea59, type: 3}
+  - {fileID: 3215125435969653318, guid: 60047186673bf4f4ca3bb63ca6d34cc0, type: 3}
+  - {fileID: 2237041988830292189, guid: 164c86500d40fb446b42b1d61fcd2a31, type: 3}
+  - {fileID: 5436461295504094303, guid: b541868285cbcc04ba30814c986efbec, type: 3}
+  - {fileID: 8921798506184448494, guid: 025ea3f6886ada04f8e8938c34c8a282, type: 3}
+  punchCollider: {fileID: 8770965881808726711}
   headPos: {fileID: 5849997868074761960}
   deathSound:
   - {fileID: 8300000, guid: c447138f03a33ec4f9358e91980651bb, type: 3}
   deathSoundVol: 1
   hpbar: {fileID: 6327890882469031790}
-  projectile: {fileID: 4063915013422513786, guid: aae3bfcbb1a8d304aa1804aacd58cb08, type: 3}
   startingHealth: 10
   maxExpGiven: 200
   minExpGiven: 100
   actualExpGiven: 0
+  punchContactDamage: 5
+  blastRadius: 1.25
   viewAngle: 360
   facePlayerSpeed: 1000
   roamDistance: 12
@@ -1006,7 +1158,7 @@ MonoBehaviour:
   projectileDistance: 45
   meleeAttackRate: 0
   movementSpeed: 7
-  meleeRange: 15
+  meleeRange: 10
 --- !u!195 &7620491464327840459
 NavMeshAgent:
   m_ObjectHideFlags: 0
