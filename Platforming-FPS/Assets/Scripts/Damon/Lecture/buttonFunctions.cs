@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class buttonFunctions : MonoBehaviour
 {
 
+   
+
     public void resume()
     {
         Debug.Log("Resumed");
@@ -87,8 +89,17 @@ public class buttonFunctions : MonoBehaviour
 
     public void loadMainMenu()
     {
+
+        if (Time.timeScale == 0)
+        {
+            Time.timeScale = 1;
+        }
+
         SceneManager.LoadScene("Main Menu");
+
     }
+
+    
 
     public void increaseHealthStat()
     {
@@ -192,5 +203,7 @@ public class buttonFunctions : MonoBehaviour
 
         resume();
     }
+
+
 
 }
