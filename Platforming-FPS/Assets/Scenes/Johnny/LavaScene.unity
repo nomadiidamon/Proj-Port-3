@@ -5116,7 +5116,6 @@ GameObject:
   - component: {fileID: 870558977}
   - component: {fileID: 870558976}
   - component: {fileID: 870558975}
-  - component: {fileID: 870558974}
   - component: {fileID: 870558973}
   m_Layer: 0
   m_Name: LavaPool
@@ -5147,27 +5146,6 @@ MonoBehaviour:
   vertical: 1
   randomizeX: 0
   randomizeY: 1
---- !u!65 &870558974
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 870558972}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &870558975
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5936,7 +5914,7 @@ Transform:
   m_GameObject: {fileID: 948643818}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: 349.06094, y: -20.038206, z: -16.868462}
+  m_LocalPosition: {x: 349.06094, y: 67.8, z: -16.868462}
   m_LocalScale: {x: 27.726841, y: 1, z: 32.41301}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8335,11 +8313,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1177713034}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!82 &1420992626 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 2124916017426969712, guid: 9ddd8b6b53a72aa4e9efdfc4702c0973, type: 3}
-  m_PrefabInstance: {fileID: 361019200}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1428293477
 GameObject:
   m_ObjectHideFlags: 0
@@ -13177,27 +13150,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7649028709475985142}
   m_Mesh: {fileID: 4300000, guid: 36d13092bdf132d4fac52ab78c1f767d, type: 2}
---- !u!135 &6464614735925003715
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8753619233987015588}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 3.35
-  m_Center: {x: -0.06, y: 0.49, z: 0}
 --- !u!136 &6956704635208982965
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -13501,11 +13453,11 @@ GameObject:
   m_Component:
   - component: {fileID: 8753619233987178436}
   - component: {fileID: 8753619233977647106}
-  - component: {fileID: 6464614735925003715}
-  - component: {fileID: 8753619233987178439}
-  - component: {fileID: 8753619233987178437}
   - component: {fileID: 8753619233987178440}
+  - component: {fileID: 8753619233987178443}
+  - component: {fileID: 8753619233987178442}
   - component: {fileID: 8753619233987178441}
+  - component: {fileID: 8753619233987178444}
   m_Layer: 0
   m_Name: Golem
   m_TagString: Enemy
@@ -13836,28 +13788,6 @@ Transform:
   - {fileID: 2049141419}
   m_Father: {fileID: 227371163}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!195 &8753619233987178437
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8753619233987015588}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!4 &8753619233987178438
 Transform:
   m_ObjectHideFlags: 0
@@ -13874,47 +13804,6 @@ Transform:
   - {fileID: 8753619233987178472}
   m_Father: {fileID: 8753619233987178434}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8753619233987178439
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8753619233987015588}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbb9837944da01046a722314c5be60b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agent: {fileID: 8753619233987178437}
-  model: {fileID: 8753619233973354178}
-  animator: {fileID: 8753619233977647106}
-  shootPos: {fileID: 8753619233987178470}
-  headPos: {fileID: 8753619233987178478}
-  startingHealth: 20
-  maxExpGiven: 100
-  minExpGiven: 5
-  actualExpGiven: 50
-  viewAngle: 90
-  facePlayerSpeed: 25
-  hpbar: {fileID: 1428293478}
-  roamDistance: 500
-  roamTimer: 26
-  animSpeedTrans: 10
-  deathDelay: 2
-  bullet: {fileID: 3672504965784739243, guid: 0691bc8c83cd5ec40810e03e56dbb637, type: 3}
-  shootRate: 4
-  audSource: {fileID: 1420992626}
-  deathSound:
-  - {fileID: 8300000, guid: 09084bed31b0a0f41ae058f4a84fbf4f, type: 3}
-  - {fileID: 8300000, guid: 8e5745ff523fd904fb323cf6eec504a9, type: 3}
-  deathSoundVol: 0.582
-  shootSound:
-  - {fileID: 8300000, guid: c447138f03a33ec4f9358e91980651bb, type: 3}
-  shootSoundVol: 0.525
-  hurtSound:
-  - {fileID: 8300000, guid: cbe46940e2eaf644794b017c248e1f7f, type: 3}
-  hurtSoundVol: 0.56
 --- !u!54 &8753619233987178440
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13942,7 +13831,85 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!136 &8753619233987178441
+--- !u!135 &8753619233987178441
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8753619233987015588}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 4.82
+  m_Center: {x: 0, y: 0, z: 0.68}
+--- !u!114 &8753619233987178442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8753619233987015588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46450b82fe3f37d42bf633296df4510e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 8753619233987178443}
+  animator: {fileID: 8753619233977647106}
+  headPos: {fileID: 8753619233987178478}
+  hpbar: {fileID: 1428293478}
+  bossArea: {fileID: 8753619233987178441}
+  deathDrop: {fileID: 0}
+  emanager: {fileID: 0}
+  startingHealth: 50
+  maxExpGiven: 2000
+  minExpGiven: 200
+  actualExpGiven: 0
+  deathSound:
+  - {fileID: 8300000, guid: cbe46940e2eaf644794b017c248e1f7f, type: 3}
+  - {fileID: 8300000, guid: 527e7d73af7c6f749b10f47752d48c35, type: 3}
+  deathSoundVol: 0.358
+  viewAngle: 90
+  facePlayerSpeed: 200
+  roamDistance: 50
+  roamTimer: 5
+  meleeAttackRate: 2.5
+  movementSpeed: 20
+  meleeRange: 20
+  bossMeleeAmount: 5
+--- !u!195 &8753619233987178443
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8753619233987015588}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 5
+  m_Acceleration: 500
+  avoidancePriority: 50
+  m_AngularSpeed: 300
+  m_StoppingDistance: 15
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 0
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!136 &8753619233987178444
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -13961,10 +13928,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.58
-  m_Height: 1.38
+  m_Radius: 0.44
+  m_Height: 1.46
   m_Direction: 1
-  m_Center: {x: -0, y: 0.57, z: 0}
+  m_Center: {x: 0, y: 0.62, z: 0}
 --- !u!4 &8753619233987178464
 Transform:
   m_ObjectHideFlags: 0
