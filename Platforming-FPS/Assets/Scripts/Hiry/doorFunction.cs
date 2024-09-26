@@ -95,6 +95,10 @@ public class doorFunction : MonoBehaviour
 
             }
         }
+        if (gameManager.instance.playerScript.GetHealth() <= 0)
+        {
+            isDoorLocked = false;
+        }
 
         
 
