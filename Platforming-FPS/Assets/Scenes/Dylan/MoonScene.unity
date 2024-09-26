@@ -3049,6 +3049,10 @@ PrefabInstance:
       propertyPath: targetPosition
       value: 
       objectReference: {fileID: 974711735}
+    - target: {fileID: 3376836920606939091, guid: c9e48833a2b401545af1b7a59a0729ee, type: 3}
+      propertyPath: retreatPosition
+      value: 
+      objectReference: {fileID: 503629338}
     - target: {fileID: 8502790593154776004, guid: c9e48833a2b401545af1b7a59a0729ee, type: 3}
       propertyPath: m_Name
       value: Parasite_Prefab
@@ -3294,6 +3298,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4bc6a768a2150844fa7772b7d660034a, type: 3}
+--- !u!1 &503629337
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 503629338}
+  m_Layer: 0
+  m_Name: BossRetreatPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &503629338
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 503629337}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 559, y: 236.4, z: -15.983}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &515909092
 Mesh:
   m_ObjectHideFlags: 0
@@ -6753,15 +6788,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7520711046797952584, guid: 1ebbf3c1caa475c4fbdb10403893c80c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 72.791046
+      value: 57.34988
       objectReference: {fileID: 0}
     - target: {fileID: 7520711046797952584, guid: 1ebbf3c1caa475c4fbdb10403893c80c, type: 3}
       propertyPath: m_LocalScale.y
-      value: 72.791046
+      value: 57.34988
       objectReference: {fileID: 0}
     - target: {fileID: 7520711046797952584, guid: 1ebbf3c1caa475c4fbdb10403893c80c, type: 3}
       propertyPath: m_LocalScale.z
-      value: 72.791046
+      value: 57.34988
       objectReference: {fileID: 0}
     - target: {fileID: 7520711046797952584, guid: 1ebbf3c1caa475c4fbdb10403893c80c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8754,15 +8789,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7520711046797952584, guid: 1ebbf3c1caa475c4fbdb10403893c80c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 72.791046
+      value: 59.923775
       objectReference: {fileID: 0}
     - target: {fileID: 7520711046797952584, guid: 1ebbf3c1caa475c4fbdb10403893c80c, type: 3}
       propertyPath: m_LocalScale.y
-      value: 72.791046
+      value: 59.923775
       objectReference: {fileID: 0}
     - target: {fileID: 7520711046797952584, guid: 1ebbf3c1caa475c4fbdb10403893c80c, type: 3}
       propertyPath: m_LocalScale.z
-      value: 72.791046
+      value: 59.923775
       objectReference: {fileID: 0}
     - target: {fileID: 7520711046797952584, guid: 1ebbf3c1caa475c4fbdb10403893c80c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11966,6 +12001,7 @@ SceneRoots:
   - {fileID: 1423964355}
   - {fileID: 1655682355}
   - {fileID: 554135577}
+  - {fileID: 503629338}
   - {fileID: 430152041}
   - {fileID: 2551730797952883025}
   - {fileID: 1340361989}

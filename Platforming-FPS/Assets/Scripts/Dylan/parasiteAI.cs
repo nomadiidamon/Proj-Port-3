@@ -28,6 +28,7 @@ public class parasiteAI : MonoBehaviour, IDamage
 
     [SerializeField] int animSpeedTrans;
     [SerializeField] Transform targetPosition;
+    [SerializeField] Transform retreatPosition;
 
     //lecture shoot angle
     //[SerializeField] int shootAngle;
@@ -37,7 +38,6 @@ public class parasiteAI : MonoBehaviour, IDamage
 
     bool isShooting;
     bool isSwiping;
-    bool isIdle = false;
     private bool isDead = false;
 
     Vector3 playerDir;
@@ -63,7 +63,7 @@ public class parasiteAI : MonoBehaviour, IDamage
         {
             // Debug.DrawRay(headPos.position, playerDir);
             // Debug.Log("Parasite sees: " + hit.collider.name);
-            if (hit.collider.CompareTag("Player") && !isIdle)
+            if (hit.collider.CompareTag("Player"))
             {
                 //if (!isSwiping && hit.distance < 5)          // SWIPE OFF
                 //{                                            // SWIPE OFF
@@ -176,21 +176,17 @@ public class parasiteAI : MonoBehaviour, IDamage
     }
     IEnumerator flyUp()
     {
-        Vector3 flyUp = new Vector3(200, 150, 0);
-        float flyUpSpeed = 100;
+        float flyUpSpeed = 100  ;
         float timer = 0f;
 
         while (timer < flyUpSpeed)
         {
             timer += Time.deltaTime;
 
-            isIdle = true;
-            animator.ResetTrigger("Shoot");
-            animator.SetTrigger("Idle");
-            transform.position = Vector3.Lerp(transform.position, flyUp, timer / flyUpSpeed);
+            //animator.SetTrigger("Idle");
+            transform.position = Vector3.Lerp(transform.position, retreatPosition.position, timer / flyUpSpeed);
             yield return null;
-            animator.ResetTrigger("Idle");
-            isIdle = false;
+            //animator.ResetTrigger("Idle");
         }
     }
 }
