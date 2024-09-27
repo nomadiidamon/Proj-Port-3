@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class LavaDroplet : MonoBehaviour
 {
@@ -23,9 +24,10 @@ public class LavaDroplet : MonoBehaviour
         if (collision.collider.CompareTag("Ground"))
         {
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, Vector3.down, out hit))
+            if (Physics.Raycast(transform.position, Vector3.down, out hit, 2f))
             {
-                Instantiate(lavaPuddlePrefab, hit.point, Quaternion.identity);
+                Quaternion randomRot = Quaternion.Euler(0, Random.Range(0, 360), 0);
+                Instantiate(lavaPuddlePrefab, hit.point, randomRot);
             }
 
             Destroy(gameObject);

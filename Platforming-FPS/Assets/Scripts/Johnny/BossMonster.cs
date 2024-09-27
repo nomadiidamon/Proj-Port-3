@@ -483,7 +483,9 @@ public class bossMonster : MonoBehaviour, IDamage
             yield return new WaitForSeconds(1f);
             //animator.SetBool("Land", true);
             animator.Play("Land");
+
             SpawnLavaDroplets();
+            
            // yield return new WaitForSeconds(1f);
 
 
@@ -499,10 +501,16 @@ public class bossMonster : MonoBehaviour, IDamage
 
         for (int i = 0; i < numberOfDroplets; ++i)
         {
-            Vector2 randomPos = Random.insideUnitSphere * spawnRadius;
+            Vector2 randomPos = Random.insideUnitCircle * spawnRadius;
             Vector3 spawnDropletPos = new Vector3(playerPos.x + randomPos.x, ceilingHeight, playerPos.z + randomPos.y);
 
-            Instantiate(lavaDroplet, spawnDropletPos, Quaternion.identity);
+            RaycastHit hit;
+            if (!Physics.Raycast(spawnDropletPos, Vector3.down, out hit, ceilingHeight))
+            {
+                Instantiate(lavaDroplet, spawnDropletPos, Quaternion.identity);
+            }
+
+            
             
         }
 
