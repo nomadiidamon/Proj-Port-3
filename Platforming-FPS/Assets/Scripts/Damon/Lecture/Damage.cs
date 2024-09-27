@@ -43,7 +43,7 @@ public class Damage : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.name);
+        //Debug.Log(other.name);
         if (other.isTrigger || other.transform == transform.parent) //!isDamageable) 
         {
             return;
@@ -83,7 +83,7 @@ public class Damage : MonoBehaviour
                { 
                     RaycastHit hit;
                 Physics.Raycast(gameManager.instance.playerScript.GetShootPosition().position, gameManager.instance.playerScript.GetShootPosition().forward, out hit, 100, gameManager.instance.player.layer);
-                    Debug.Log(hit.point);
+                    Debug.Log(hit.collider.name);
                     if (other.CompareTag("Ground"))
                     {
                         GameObject groundObject = gameManager.instance.playerScript.objectHeld;
@@ -102,7 +102,7 @@ public class Damage : MonoBehaviour
 
                         gameManager.instance.playerScript.enableGameObject(newGroundObject);
                     }
-                    else
+                    else if (other)
                     {
                         GameObject wallObject = gameManager.instance.playerScript.objectHeld;
 

@@ -14,7 +14,14 @@ public class gameUIManager : MonoBehaviour
     [SerializeField] public GameObject menuWin;
     [SerializeField] public GameObject menuLose;
     [SerializeField] public GameObject menuAreYouSure;
+
+    [Header("-----Creator Gun-----")]
     [SerializeField] public GameObject CreatorGunPrompt;
+    [SerializeField] public TMP_Text currentObjectsCreated;
+    [SerializeField] public TMP_Text maxObjects;
+    [SerializeField] public TMP_Text currentAlliesCreated;
+    [SerializeField] public TMP_Text maxAllies;
+
     [SerializeField] public GameObject UpgradeMenu;
 
     public GameObject menuSettings;

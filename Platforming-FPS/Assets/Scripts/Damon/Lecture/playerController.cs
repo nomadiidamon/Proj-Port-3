@@ -824,11 +824,17 @@ public class playerController : MonoBehaviour, IDamage
         {
             if (alliesCreated.Count < maxAlliesCreated)
             alliesCreated.Add(createdObject);
+            
+            gameUIManager.instance.maxAllies.text = maxAlliesCreated.ToString();
+            gameUIManager.instance.currentAlliesCreated.text = alliesCreated.Count.ToString();
         }
         else
         {           
             if (objectsCreated.Count < maxObjectsCreated)
-            objectsCreated.Add(createdObject);              
+            objectsCreated.Add(createdObject);
+
+            gameUIManager.instance.maxObjects.text = maxObjectsCreated.ToString();
+            gameUIManager.instance.currentObjectsCreated.text = objectsCreated.Count.ToString();
         }
     }
     public void clearObjectsCreated()
@@ -837,7 +843,19 @@ public class playerController : MonoBehaviour, IDamage
         {
             Destroy(objectCreated);
         }
+        foreach (GameObject allyCreated in alliesCreated)
+        {
+            Destroy(allyCreated);
+        }
+
         objectsCreated.Clear();
+        alliesCreated.Clear();
+
+        gameUIManager.instance.maxAllies.text = maxAlliesCreated.ToString();
+        gameUIManager.instance.currentAlliesCreated.text = alliesCreated.Count.ToString();
+
+        gameUIManager.instance.maxObjects.text = maxObjectsCreated.ToString();
+        gameUIManager.instance.currentObjectsCreated.text = objectsCreated.Count.ToString();
     }
 
     

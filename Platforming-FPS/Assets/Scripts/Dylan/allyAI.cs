@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Audio;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class allyAI : MonoBehaviour, IDamage
@@ -64,7 +65,7 @@ public class allyAI : MonoBehaviour, IDamage
         float agentSpeed = agent.velocity.normalized.magnitude;
         animator.SetFloat("Speed", Mathf.Lerp(animator.GetFloat("Speed"), agentSpeed, Time.deltaTime * animSpeedTrans));
 
-        Debug.Log(canSeeEnemy());
+        //Debug.Log(canSeeEnemy());
 
         if (canSeeEnemy())
         {
@@ -159,6 +160,7 @@ public class allyAI : MonoBehaviour, IDamage
         this.enabled = false;
         gameManager.instance.playerScript.alliesCreated.Remove(gameObject);
         Destroy(gameObject);
+        gameUIManager.instance.currentAlliesCreated.text = gameManager.instance.playerScript.alliesCreated.Count.ToString();
     }
 
     IEnumerator flashRed()
