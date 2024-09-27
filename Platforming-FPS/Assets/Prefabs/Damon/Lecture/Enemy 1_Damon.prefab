@@ -577,8 +577,8 @@ MonoBehaviour:
   shootPos: {fileID: 4680150978469414437}
   headPos: {fileID: 7103974935042376568}
   startingHealth: 8
-  maxExpGiven: 0
-  minExpGiven: 0
+  maxExpGiven: 100
+  minExpGiven: 20
   actualExpGiven: 0
   viewAngle: 90
   facePlayerSpeed: 5
