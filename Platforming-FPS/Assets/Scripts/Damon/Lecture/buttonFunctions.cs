@@ -93,6 +93,7 @@ public class buttonFunctions : MonoBehaviour
         if (Time.timeScale == 0)
         {
             Time.timeScale = 1;
+            gameUIManager.instance.isPaused = false;
         }
 
         SceneManager.LoadScene("Main Menu");
