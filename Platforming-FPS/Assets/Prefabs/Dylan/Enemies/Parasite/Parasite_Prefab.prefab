@@ -194,6 +194,7 @@ GameObject:
   - component: {fileID: 6585797901906243435}
   - component: {fileID: 4669826542783614982}
   - component: {fileID: 5006056612201952004}
+  - component: {fileID: 9176714597892535368}
   m_Layer: 0
   m_Name: Boss Health Canvas
   m_TagString: Untagged
@@ -284,6 +285,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &9176714597892535368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8054418938723570990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33462944c41ab7645b1480a3e9a0466a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8736582158502119061
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -350,7 +363,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b3d08fc391fe6bd419a55006666bc9b2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -42.41
+      value: 139.97
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b3d08fc391fe6bd419a55006666bc9b2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1086,7 +1099,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHealth: 400
   facePlayerSpeed: 2
-  shootRate: 436.43
+  shootRate: 1
   swipeRate: 4
   model: {fileID: 1928488916760947462}
   animator: {fileID: 6806094472746919993}
@@ -1097,6 +1110,7 @@ MonoBehaviour:
   hpbar: {fileID: 275152124463580069}
   animSpeedTrans: 2
   targetPosition: {fileID: 0}
+  retreatPosition: {fileID: 0}
   deathSound:
   - {fileID: 8300000, guid: 09084bed31b0a0f41ae058f4a84fbf4f, type: 3}
   deathSoundVol: 0

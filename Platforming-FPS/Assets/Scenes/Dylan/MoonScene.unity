@@ -3281,10 +3281,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3376836920606939091, guid: c9e48833a2b401545af1b7a59a0729ee, type: 3}
-      propertyPath: shootRate
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3376836920606939091, guid: c9e48833a2b401545af1b7a59a0729ee, type: 3}
       propertyPath: targetPosition
       value: 
       objectReference: {fileID: 974711735}
