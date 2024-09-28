@@ -17,6 +17,9 @@ public class flyingEnemyAI : MonoBehaviour, IDamage
     [SerializeField] float shootRate;
     [SerializeField] GameObject bullet;
     [SerializeField] LayerMask detectionLayerMask;
+    [SerializeField] public int maxExpGiven;
+    [SerializeField] public int minExpGiven;
+    public int actualExpGiven;
 
     [SerializeField] AudioClip[] deathSound;
     [Range(0, 1)][SerializeField] float deathSoundVol;
@@ -39,6 +42,7 @@ public class flyingEnemyAI : MonoBehaviour, IDamage
         colorOrig = model.material.color;
         enemyManager.instance.updateEnemyCount(1);
         updateHPBar();
+        actualExpGiven = Random.Range(minExpGiven, maxExpGiven);
     }
 
     // Update is called once per frame
@@ -107,6 +111,8 @@ public class flyingEnemyAI : MonoBehaviour, IDamage
             this.enabled = false;
             playDeathAudio(deathSound[Random.Range(0, deathSound.Length)], deathSoundVol);
             StartCoroutine(destroyAfterSound());
+            gameUIManager.instance.updateExperienceCount(actualExpGiven);
+
         }
     }
 

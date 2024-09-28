@@ -248,6 +248,9 @@ MonoBehaviour:
   detectionLayerMask:
     serializedVersion: 2
     m_Bits: 8
+  maxExpGiven: 100
+  minExpGiven: 20
+  actualExpGiven: 0
   deathSound:
   - {fileID: 8300000, guid: 8d3d81402c729974f9048686304914c5, type: 3}
   deathSoundVol: 1
@@ -34247,7 +34250,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 3653
+  m_VersionIndex: 3659
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -35539,7 +35542,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2414
+  m_VersionIndex: 2420
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
