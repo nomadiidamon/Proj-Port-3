@@ -84,38 +84,41 @@ public class Damage : MonoBehaviour
                     RaycastHit hit;
                 Physics.Raycast(gameManager.instance.playerScript.GetShootPosition().position, gameManager.instance.playerScript.GetShootPosition().forward, out hit, 100, gameManager.instance.player.layer);
                     Debug.Log(hit.collider.name);
-                    if (other.CompareTag("Ground"))
-                    {
-                        GameObject groundObject = gameManager.instance.playerScript.objectHeld;
+                        if (hit.collider == null || other.CompareTag("Enemy")) { return; }
 
-                        GameObject newGroundObject = Instantiate(groundObject, hit.point, Quaternion.identity);
+                        else if (other.CompareTag("Ground"))
+                        {
+                            GameObject groundObject = gameManager.instance.playerScript.objectHeld;
 
-                        Vector3 directionToPlayer = gameManager.instance.playerScript.GetPlayerCenter().position - newGroundObject.transform.position;
+                            GameObject newGroundObject = Instantiate(groundObject, hit.point, Quaternion.identity);
 
-                        directionToPlayer.y = 0;
+                            Vector3 directionToPlayer = gameManager.instance.playerScript.GetPlayerCenter().position - newGroundObject.transform.position;
 
-                        newGroundObject.transform.localScale = gameManager.instance.playerScript.GetObjectHeldOriginalSize();
+                            directionToPlayer.y = 0;
 
-                        newGroundObject.transform.rotation = Quaternion.LookRotation(directionToPlayer);
+                            newGroundObject.transform.localScale = gameManager.instance.playerScript.GetObjectHeldOriginalSize();
 
-                        gameManager.instance.playerScript.addToCreatedLists(newGroundObject);                   // add object to list to enforce max created objects
+                            newGroundObject.transform.rotation = Quaternion.LookRotation(directionToPlayer);
 
-                        gameManager.instance.playerScript.enableGameObject(newGroundObject);
-                    }
-                    else if (other)
-                    {
-                        GameObject wallObject = gameManager.instance.playerScript.objectHeld;
+                            gameManager.instance.playerScript.addToCreatedLists(newGroundObject);                   // add object to list to enforce max created objects
 
-                        GameObject newWallObject = Instantiate(gameManager.instance.playerScript.objectHeld, hit.point, this.transform.rotation);
+                            gameManager.instance.playerScript.enableGameObject(newGroundObject);
+                        }
 
-                        newWallObject.transform.localScale = gameManager.instance.playerScript.GetObjectHeldOriginalSize();
+                        else
+                        {
+                            GameObject wallObject = gameManager.instance.playerScript.objectHeld;
 
-                        newWallObject.transform.rotation = Quaternion.LookRotation(hit.normal);
+                            GameObject newWallObject = Instantiate(gameManager.instance.playerScript.objectHeld, hit.point, this.transform.rotation);
 
-                        gameManager.instance.playerScript.addToCreatedLists(newWallObject);                       // add object to list to enforce max created objects
+                            newWallObject.transform.localScale = gameManager.instance.playerScript.GetObjectHeldOriginalSize();
 
-                        gameManager.instance.playerScript.enableGameObject(newWallObject);
-                    }
+                            newWallObject.transform.rotation = Quaternion.LookRotation(hit.normal);
+
+                            gameManager.instance.playerScript.addToCreatedLists(newWallObject);                       // add object to list to enforce max created objects
+
+                            gameManager.instance.playerScript.enableGameObject(newWallObject);
+                        }
                     audioManager.instance.PlayPasteObjectSound();
                 }
             }
