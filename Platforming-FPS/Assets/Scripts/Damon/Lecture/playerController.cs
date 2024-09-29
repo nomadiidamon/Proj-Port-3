@@ -57,6 +57,8 @@ public class playerController : MonoBehaviour, IDamage
     public List<gunStats> gunList = new List<gunStats>();
     [SerializeField] GameObject gunModel;
     [SerializeField] GameObject muzzleFlash;
+    [SerializeField] LineRenderer laserLineRenderer;
+    [SerializeField] GameObject lavaBlobPrefab;
     [SerializeField] GameObject deflectionFlash;
     [SerializeField] GameObject bullet;
     [SerializeField] Transform shootPos;
@@ -65,6 +67,11 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] float shootRate;
     [SerializeField] float deflectionSpeed;
     [SerializeField] float blastForce;
+    [SerializeField] float laserRange = 100f;
+    [SerializeField] int laserDamage = 7;
+    public LayerMask hitLayers;
+    [SerializeField] GameObject impactEffectPrefab;
+
 
 
     [Header("-----Sounds-----")]
@@ -296,6 +303,11 @@ public class playerController : MonoBehaviour, IDamage
             movement();
             selectGun();
             Dodge();
+
+            if (Input.GetMouseButtonDown(1) && gunList[selectedGun].isLaser)
+            {
+                LobLavaBlob();
+            }
         }
         //sprint();
 
@@ -485,9 +497,115 @@ public class playerController : MonoBehaviour, IDamage
 
         }
 
-        
+        else if (gunList[selectedGun].isLaser)
+        {
+            isShooting = true;
 
+            float chargeTime = 0f;
+            while (Input.GetMouseButton(0) && chargeTime < 2f)
+            {
+                chargeTime += Time.deltaTime;
+                yield return null;
+            }
+
+            if (chargeTime >= 2f)
+            {
+                ActivateLaser();
+                yield return new WaitForSeconds(3f);
+                DeactivateLaser();
+            }
+
+            isShooting = false;
+
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            isShooting = true;
+            LobLavaBlob();
+            yield return new WaitForSeconds(shootRate);
+            isShooting = false;
+        }
     }
+
+    void ActivateLaser()
+    {
+        laserLineRenderer.enabled = true;
+        StartCoroutine(FireLaserBeam());
+    }
+
+    void DeactivateLaser()
+    {
+        laserLineRenderer.enabled = false;
+    }
+
+    void LobLavaBlob()
+    {
+        // Instantiate the lava blob at the shoot position
+        GameObject lavaBlob = Instantiate(lavaBlobPrefab, shootPos.position, shootPos.rotation);
+
+        // Get the Rigidbody component from the instantiated lava blob
+        Rigidbody rb = lavaBlob.GetComponent<Rigidbody>();
+
+        if (rb != null)
+        {
+            // Calculate the lob force
+            Vector3 lobDirection = shootPos.forward; // Forward direction
+            lobDirection.y = 1.0f; // Adjust the y direction for the lob effect
+
+            // Apply force for lob effect (adjust the force multiplier as needed)
+            float lobForce = 3f; // Set this to control how far it lobs
+            rb.AddForce(lobDirection.normalized * lobForce, ForceMode.Impulse);
+        }
+    }
+
+    // Coroutine to handle the beam while active
+    IEnumerator FireLaserBeam()
+    {
+        while (laserLineRenderer.enabled)
+        {
+            // Set start position of the laser (e.g., the gun muzzle or shootPos)
+            laserLineRenderer.SetPosition(0, shootPos.position);
+
+            // Cast a ray from the weapon's position forward
+            Ray ray = new Ray(shootPos.position, shootPos.forward);
+            RaycastHit hit;
+
+            // Set the default endpoint of the beam to its maximum range
+            Vector3 endPosition = shootPos.position + shootPos.forward * laserRange;
+
+            // Check if the ray hits any object within the laser range
+            if (Physics.Raycast(ray, out hit, laserRange, hitLayers))
+            {
+                // If something is hit, set the end position to the hit point
+                endPosition = hit.point;
+
+                // Apply damage to the object hit (assuming it has an IDamage interface or similar)
+                IDamage damageable = hit.collider.GetComponent<IDamage>();
+                if (damageable != null)
+                {
+                    damageable.takeDamage(laserDamage);
+                }
+
+                // Optionally, handle visual effects like sparks or impact effects
+                SpawnImpactEffect(hit.point); // Method for visual feedback on impact
+            }
+
+            // Set the end position of the laser
+            laserLineRenderer.SetPosition(1, endPosition);
+
+            // Continue rendering the beam in each frame
+            yield return null;
+        }
+    }
+
+    void SpawnImpactEffect(Vector3 pos)
+    {
+        Instantiate(impactEffectPrefab, pos, Quaternion.identity);
+    }
+
+
+
 
     IEnumerator Deflecting(BoxCollider coll)
     {
