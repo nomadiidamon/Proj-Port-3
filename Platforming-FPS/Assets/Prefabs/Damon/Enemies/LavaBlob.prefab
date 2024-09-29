@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bd65ec4b9ad47349b1b757980895315, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 3
+  type: 0
   rb: {fileID: 4946214743969323235}
   targetHitEffect: {fileID: 198220379293217532, guid: d8f0099df63275647a8bcf646df1ca00, type: 3}
   damageMissAud: []
@@ -171,6 +171,3 @@ MonoBehaviour:
   damageRadius: 5
   damageAmount: 10
   impactEffectPrefab: {fileID: 1025285306637258, guid: d8f0099df63275647a8bcf646df1ca00, type: 3}
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 64

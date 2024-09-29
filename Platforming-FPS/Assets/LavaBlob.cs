@@ -35,7 +35,7 @@ public class LavaBlob : MonoBehaviour
         foreach (Collider collider in hitColliders)
         {
             // Only process the box collider (for example, if you know that only the feet have this component)
-            if (collider is BoxCollider && collider.CompareTag("Enemy"))
+            if (collider is BoxCollider || collider is CapsuleCollider || collider is SphereCollider)
             {
                 Debug.Log($"Collider hit: {collider.name} - Tag: {collider.tag}");
 

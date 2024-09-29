@@ -22,7 +22,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: bGUN03h
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
-  m_Parent: {fileID: 2100000, guid: da70aae0f526129428c783ca2be9cedd, type: 2}
+  m_Parent: {fileID: 2100000, guid: 74e6048e33febd0408562b45d14f26e1, type: 2}
   m_ModifiedSerializedProperties: 2
   m_ValidKeywords:
   - _EMISSION
@@ -50,7 +50,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 510adea5bb5e2f84ea39ce907b22e8ee, type: 3}
+        m_Texture: {fileID: 2800000, guid: 9122cad85f842ce4fbe5ee04781672a3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
