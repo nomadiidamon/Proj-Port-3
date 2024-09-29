@@ -1009,6 +1009,7 @@ GameObject:
   - component: {fileID: 4307701180194081890}
   - component: {fileID: 1613613614546714798}
   - component: {fileID: 54689184611506976}
+  - component: {fileID: 987616669665166560}
   m_Layer: 6
   m_Name: Enemy Health Canvas (1)
   m_TagString: Untagged
@@ -1099,6 +1100,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &987616669665166560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5341419502962070366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33462944c41ab7645b1480a3e9a0466a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6151728784311080695
 GameObject:
   m_ObjectHideFlags: 0
