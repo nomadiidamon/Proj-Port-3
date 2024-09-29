@@ -314,6 +314,7 @@ public class playerController : MonoBehaviour, IDamage
 
     void movement()
     {
+
         if (controller.isGrounded)
         {
             jumpCount = 0;
