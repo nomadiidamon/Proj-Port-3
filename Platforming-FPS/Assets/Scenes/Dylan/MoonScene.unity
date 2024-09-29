@@ -10846,9 +10846,9 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8c76a25c41aa1084b9b691eb79c16c25, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -11419,6 +11419,22 @@ PrefabInstance:
     - target: {fileID: 6267006595757427889, guid: 89c27f129871ce846af830d1864f4b65, type: 3}
       propertyPath: m_Name
       value: Player_Catalyst
+      objectReference: {fileID: 0}
+    - target: {fileID: 7696987937344138000, guid: 89c27f129871ce846af830d1864f4b65, type: 3}
+      propertyPath: audHurtVol
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7696987937344138000, guid: 89c27f129871ce846af830d1864f4b65, type: 3}
+      propertyPath: audJumpVol
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7696987937344138000, guid: 89c27f129871ce846af830d1864f4b65, type: 3}
+      propertyPath: audStepsVol
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 7696987937344138000, guid: 89c27f129871ce846af830d1864f4b65, type: 3}
+      propertyPath: audWeapPickupVol
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

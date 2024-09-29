@@ -24,13 +24,13 @@ MonoBehaviour:
   hitEffect: {fileID: 577812841044345583, guid: fcb74f28d107e284e80af037bfec14ca, type: 3}
   shootSound:
   - {fileID: 8300000, guid: 3e5a1a5aeabf4014db92f050f64248b5, type: 3}
-  shootVolume: 0.5
+  shootVolume: 0.2
   pickupSound:
   - {fileID: 8300000, guid: cf58eab19a3fc784facdb4bd23251b0e, type: 3}
-  pickupVolume: 0.5
+  pickupVolume: 0.2
   switchSound:
   - {fileID: 8300000, guid: ac3bc9959d69edf4e85a56ad9830a4da, type: 3}
-  switchVolume: 0.5
+  switchVolume: 0.2
   isCreator: 1
   isShield: 0
   isBlast: 0
