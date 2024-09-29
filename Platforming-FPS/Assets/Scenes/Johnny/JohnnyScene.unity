@@ -1460,7 +1460,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -1789,7 +1790,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -4089,16 +4091,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f5341f73166b7b4ca464a825cb58a89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuActive: {fileID: 0}
-  menuPause: {fileID: 492759288}
-  menuWin: {fileID: 1517194008}
-  menuLose: {fileID: 1101948701}
-  flashDamageScreen: {fileID: 300952626}
-  playersHealthPool: {fileID: 1525342361}
-  enemyCountText: {fileID: 540535704}
+  playerSpawnPosition: {fileID: 0}
   player: {fileID: 1358964204}
+  worldGravity: 0
   playerScript: {fileID: 0}
-  isPaused: 0
+  respawns: 0
+  currentDoor: {fileID: 0}
 --- !u!1001 &1180803407
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4938,7 +4936,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5000,18 +4998,63 @@ MonoBehaviour:
   ignoreMask:
     serializedVersion: 2
     m_Bits: 0
+  shield: {fileID: 0}
+  playerCenter: {fileID: 0}
+  camController: {fileID: 0}
   HP: 0
+  Stamina: 0
+  staminaRechargeDelay: 0
   speed: 0
-  sprintMod: 0
+  baseDamage: 0
+  upgradePercentage: 0
+  currentExperience: 0
   jumpMax: 0
   jumpSpeed: 0
   gravity: 0
+  fallDeathLevel: -50
+  footStepRate: 0.3
+  numberOfPointsToUpgradeHealth: 150
+  numberOfPointsToUpgradeStamina: 100
+  numberOfPointsToUpgradeSpeed: 300
+  numberOfPointsToUpgradeDamage: 500
+  justUpgradedDamage: 0
+  dodgeSpeed: 20
+  dodgeDuration: 0.2
+  dodgeCooldown: 1
+  dodgeCost: 1
+  gunList: []
+  gunModel: {fileID: 0}
+  muzzleFlash: {fileID: 0}
+  deflectionFlash: {fileID: 0}
   bullet: {fileID: 3121373984394139885, guid: 05d87cf04c06b884fba89a9bd6d956c3, type: 3}
   shootPos: {fileID: 1074683011}
   shootDamage: 0
   shootDist: 0
   shootRate: 0
+  deflectionSpeed: 0
+  blastForce: 0
+  audJump: []
+  audJumpVol: 0
+  audHurt: []
+  audHurtVol: 0
+  audSteps: []
+  audStepsVol: 0
+  audWeapPickup: {fileID: 0}
+  audWeapPickupVol: 0
+  objectHeld: {fileID: 0}
+  objectHeldContainer: {fileID: 0}
+  maxObjectsCreated: 0
+  maxAlliesCreated: 0
+  objectsCreated: []
+  alliesCreated: []
+  allyHeldAggroRange: 0
   HPOrig: 0
+  StaminaOrig: 0
+  selectedGun: 0
+  isCreator: 0
+  isSwimming: 0
+  isDeflecting: 0
+  isHoldingShield: 0
 --- !u!143 &1358964210
 CharacterController:
   m_ObjectHideFlags: 0
@@ -6992,6 +7035,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door
       objectReference: {fileID: 0}
+    - target: {fileID: 8018456893256362336, guid: 10cd713575f6bb04da4dddd6a1e78251, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

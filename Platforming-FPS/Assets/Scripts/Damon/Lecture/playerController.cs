@@ -278,6 +278,11 @@ public class playerController : MonoBehaviour, IDamage
         updatePlayerUI();
         controller.enabled = false;
         transform.position = gameManager.instance.playerSpawnPosition.transform.position;
+
+        // Reset camera and player rotation
+        cameraController cameraController = Camera.main.GetComponent<cameraController>();
+        cameraController.ResetCameraRotation(gameManager.instance.playerSpawnPosition.transform.rotation.eulerAngles.y);
+
         controller.enabled = true;
     }
 

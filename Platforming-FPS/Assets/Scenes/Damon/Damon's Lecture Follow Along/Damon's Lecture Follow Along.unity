@@ -2514,8 +2514,8 @@ MonoBehaviour:
   enemiesOriginal: 0
   enemiesRemaining: 0
   enemyCountText: {fileID: 1020008272}
-  player: {fileID: 0}
-  playerPosition: {x: 0, y: 0, z: 0}
+  playerPosition: {fileID: 0}
+  bossDefeated: 0
 --- !u!4 &1283924623 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3667706651628202367, guid: 2566969a6c42ea242a7ddfa167d6a50f, type: 3}
@@ -3603,6 +3603,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audPlayer: {fileID: 1610070458}
+  audCopyObject: {fileID: 0}
+  audCopyEnemy: {fileID: 0}
+  audPasteObject: {fileID: 0}
 --- !u!1 &1622780634 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6267006595757427889, guid: 89c27f129871ce846af830d1864f4b65, type: 3}
@@ -4063,7 +4066,7 @@ PrefabInstance:
     - target: {fileID: 5295986001868421888, guid: 2ef6cd1caaadb7c4cac7ed46953181d8, type: 3}
       propertyPath: hpFrame
       value: 
-      objectReference: {fileID: 2059330571}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4390,11 +4393,6 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 3667706651628202367, guid: 2566969a6c42ea242a7ddfa167d6a50f, type: 3}
   m_PrefabInstance: {fileID: 254551264}
-  m_PrefabAsset: {fileID: 0}
---- !u!223 &2059330571 stripped
-Canvas:
-  m_CorrespondingSourceObject: {fileID: 240685543523392431, guid: 2ef6cd1caaadb7c4cac7ed46953181d8, type: 3}
-  m_PrefabInstance: {fileID: 1812330323}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2080571285
 PrefabInstance:
@@ -5360,6 +5358,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1970243635}
     m_Modifications:
+    - target: {fileID: 1765064408548452792, guid: da28065c098e628429a43469b5138015, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
     - target: {fileID: 4934888756747425461, guid: da28065c098e628429a43469b5138015, type: 3}
       propertyPath: m_Icon
       value: 
