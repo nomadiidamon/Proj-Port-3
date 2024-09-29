@@ -118,7 +118,8 @@ GameObject:
   - component: {fileID: 8319688689932731662}
   - component: {fileID: 5106941549298921754}
   - component: {fileID: 6795573666550196748}
-  m_Layer: 3
+  - component: {fileID: 6819082502204448060}
+  m_Layer: 11
   m_Name: Deflection Flash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -252,6 +253,29 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &6819082502204448060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5407094676096073254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!1 &5594909959243809031
 GameObject:
   m_ObjectHideFlags: 0
@@ -319,6 +343,7 @@ GameObject:
   - component: {fileID: 3347666789609629953}
   - component: {fileID: 1806714812691160945}
   - component: {fileID: 686961977477410502}
+  - component: {fileID: 561419189999742997}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -335,7 +360,7 @@ Transform:
   m_GameObject: {fileID: 5601992686401530309}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0.00000044703484, y: 1, z: -0.2099829}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -377,7 +402,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.24705882, g: 0.0039215684, b: 0.012299863, a: 1}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -503,6 +528,50 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   priority: 0
+--- !u!114 &561419189999742997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5601992686401530309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
 --- !u!1 &5810606773978635880
 GameObject:
   m_ObjectHideFlags: 0
@@ -515,7 +584,8 @@ GameObject:
   - component: {fileID: 4335996385286344334}
   - component: {fileID: 1639678593318652252}
   - component: {fileID: 2020749635006735015}
-  m_Layer: 3
+  - component: {fileID: 6336531224963147363}
+  m_Layer: 11
   m_Name: Deflection Flash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -649,6 +719,29 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &6336531224963147363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5810606773978635880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!1 &6103854982074539529
 GameObject:
   m_ObjectHideFlags: 0
@@ -661,7 +754,8 @@ GameObject:
   - component: {fileID: 521310214626388824}
   - component: {fileID: 6484093142764482837}
   - component: {fileID: 1646422755764138285}
-  m_Layer: 3
+  - component: {fileID: 3869089513812035266}
+  m_Layer: 11
   m_Name: ShootPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -795,6 +889,29 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &3869089513812035266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6103854982074539529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!1 &6267006595757427889
 GameObject:
   m_ObjectHideFlags: 0
@@ -833,6 +950,7 @@ Transform:
   - {fileID: 4830564121183331150}
   - {fileID: 6718281247922782724}
   - {fileID: 984660246716668632}
+  - {fileID: 2239719478176523164}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!114 &7696987937344138000
@@ -890,7 +1008,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 7387f813351958543bd24df759310f4b, type: 3}
   - {fileID: 8300000, guid: 6e1e7ec32c538cf4bbf0f2104e193a9a, type: 3}
   - {fileID: 8300000, guid: ac76eed785842bc409eaf52a88e10407, type: 3}
-  audJumpVol: 0
+  audJumpVol: 0.199
   audHurt:
   - {fileID: 8300000, guid: ecd69211efdf55f4cb1fbafd4235d1c7, type: 3}
   - {fileID: 8300000, guid: 7563aebac5c7041468ba8a5c601d44d9, type: 3}
@@ -898,7 +1016,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: adc9ff753b3fe214787cda01ff5aad31, type: 3}
   - {fileID: 8300000, guid: d0be188c5f5a66b49ac3207f4918d270, type: 3}
   - {fileID: 8300000, guid: a2727a321ee8c5641b3f46101c0bd47c, type: 3}
-  audHurtVol: 0
+  audHurtVol: 0.602
   audSteps:
   - {fileID: 8300000, guid: 13d64ec197df1614e9c7d90284058b95, type: 3}
   - {fileID: 8300000, guid: 19940d50526875646b028ddfd628cda7, type: 3}
@@ -909,9 +1027,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d6124bd8da126804fa4e20cc807dfe7b, type: 3}
   - {fileID: 8300000, guid: bcc89b972c0d92d4695426346381346d, type: 3}
   - {fileID: 8300000, guid: ce0af7f393f223547b2ccb72cfbadb8e, type: 3}
-  audStepsVol: 0
+  audStepsVol: 0.318
   audWeapPickup: {fileID: 8300000, guid: cf58eab19a3fc784facdb4bd23251b0e, type: 3}
-  audWeapPickupVol: 0
+  audWeapPickupVol: 0.517
   objectHeld: {fileID: 0}
   objectHeldContainer: {fileID: 3536201500387809014}
   maxObjectsCreated: 20
@@ -1051,7 +1169,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!1 &6888947675050280122
 GameObject:
   m_ObjectHideFlags: 0
@@ -1064,7 +1182,8 @@ GameObject:
   - component: {fileID: 6309896326395140827}
   - component: {fileID: 4878058691738478958}
   - component: {fileID: 2869589020594116577}
-  m_Layer: 3
+  - component: {fileID: 8620360297158865506}
+  m_Layer: 11
   m_Name: Muzzle Flash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1198,6 +1317,82 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &8620360297158865506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6888947675050280122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
+--- !u!1 &6996080425930807906
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2239719478176523164}
+  - component: {fileID: 7845834175836794665}
+  m_Layer: 3
+  m_Name: PlayerFeet
+  m_TagString: PlayerFeet
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2239719478176523164
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6996080425930807906}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6083180464367101227}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7845834175836794665
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6996080425930807906}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.06, y: 0.19, z: 1}
+  m_Center: {x: 0, y: -0.93, z: 0}
 --- !u!1 &7912685596475692159
 GameObject:
   m_ObjectHideFlags: 0
@@ -1209,7 +1404,7 @@ GameObject:
   - component: {fileID: 4048485641374682720}
   - component: {fileID: 2682768566366869624}
   - component: {fileID: 6084257739461296014}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: Gun Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1225,7 +1420,7 @@ Transform:
   m_GameObject: {fileID: 7912685596475692159}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.22, y: -0.5, z: 0.94}
+  m_LocalPosition: {x: 0.22, y: -0.543, z: 0.906}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1326,7 +1521,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1459121249875409650}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: FlashLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1359,7 +1554,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5932842579378363382}
   - component: {fileID: 5089850415019465544}
-  m_Layer: 3
+  - component: {fileID: 1541000231858870182}
+  m_Layer: 11
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1443,3 +1639,26 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &1541000231858870182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9126969218367532919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
