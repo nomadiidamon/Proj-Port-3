@@ -104,8 +104,6 @@ public class parasiteAI : MonoBehaviour, IDamage
         {
             isDead = true;
 
-            enemyManager.instance.updateEnemyCount(-1);
-
             animator.enabled = false;
             this.enabled = false;
 
@@ -119,6 +117,8 @@ public class parasiteAI : MonoBehaviour, IDamage
     {
         yield return new WaitForSeconds(deathSound[0].length);
         Destroy(gameObject);
+        enemyManager.instance.bossDefeated = true;
+        enemyManager.instance.updateEnemyCount(-1);
     }
 
     IEnumerator flashRed()

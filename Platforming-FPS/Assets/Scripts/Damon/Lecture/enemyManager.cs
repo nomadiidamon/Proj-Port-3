@@ -16,6 +16,7 @@ public class enemyManager : MonoBehaviour
     [SerializeField] TMP_Text enemyCountText;
     
     public Transform playerPosition;
+    public bool bossDefeated = false;
 
     void Awake()
     {
@@ -44,7 +45,7 @@ public class enemyManager : MonoBehaviour
 
     public void youWin()
     {
-        if (enemiesRemaining <= 0)
+        if (enemiesRemaining <= 0 || bossDefeated)
         {
             Debug.Log("You Win");
 
