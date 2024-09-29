@@ -20,7 +20,7 @@ public class Moving : MonoBehaviour
         SphereCollider contactArea = this.AddComponent<SphereCollider>();
         contactArea.isTrigger = true;
     }
-    private void Update()
+    private void FixedUpdate()
     {
         timer += Time.deltaTime * moveSpeed;
         float newX = Mathf.Cos(timer) * horizontalMove;
