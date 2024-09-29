@@ -51,7 +51,7 @@ public class enemyManager : MonoBehaviour
 
             // you win!
 
-
+            
 
             gameUIManager.instance.statePause();
             gameUIManager.instance.menuActive = gameUIManager.instance.menuWin;

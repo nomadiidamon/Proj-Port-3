@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
+
 public class bossMonster : MonoBehaviour, IDamage
 {
     [Header("-----Components-----")]
@@ -201,9 +202,12 @@ public class bossMonster : MonoBehaviour, IDamage
             patrolCoroutine = null; 
         }
 
-     
-        agent.isStopped = false; 
-        agent.SetDestination(gameManager.instance.player.transform.position); 
+        if (agent != null)
+        {
+            agent.speed = movementSpeed;
+            agent.isStopped = false;
+            agent.SetDestination(gameManager.instance.player.transform.position);
+        }
     }
 
    
@@ -277,6 +281,11 @@ public class bossMonster : MonoBehaviour, IDamage
             isInMeleeRange = false;
             agent.isStopped = false;
             agent.SetDestination(gameManager.instance.player.transform.position);
+
+            if (agent != null)
+            {
+                agent.speed = movementSpeed;
+            }
         }
     }
 
@@ -389,6 +398,7 @@ public class bossMonster : MonoBehaviour, IDamage
         if (HP <= 0)
         {
             isDead = true;
+            enemyManager.instance.bossDefeated = true;
             enemyManager.instance.updateEnemyCount(-1);
             StartCoroutine(Die());
         }
@@ -522,7 +532,7 @@ public class bossMonster : MonoBehaviour, IDamage
         agent.isStopped = true;
         agent.enabled = false;
 
-        animator.SetBool("Die", true);
+        //animator.SetBool("Die", true);
         animator.Play("Die");
         animator.applyRootMotion = false;
 
@@ -536,7 +546,7 @@ public class bossMonster : MonoBehaviour, IDamage
             rb.isKinematic = true;
         }
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         Destroy(gameObject);
     }
 
@@ -558,7 +568,14 @@ public class bossMonster : MonoBehaviour, IDamage
         if (other.CompareTag("Player"))
         {
             playerInRange = false;
-            agent.stoppingDistance = 0;
+            agent.stoppingDistance = stoppingDistanceOriginal;
+
+            if (agent != null)
+            {
+                agent.speed = movementSpeed;
+                agent.isStopped = false;
+                agent.SetDestination(gameManager.instance.player.transform.position);
+            }
         }
     }
 

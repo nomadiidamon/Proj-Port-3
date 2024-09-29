@@ -9,6 +9,7 @@ public class LevelTeleport : MonoBehaviour
     [SerializeField] enemyManager enemyManager;
     [SerializeField] GameObject spawnPrefab;
     [SerializeField] Transform spawnTeleLocation;
+    public AsyncLoader loader;
 
     private bool hasSpawned = false;
 

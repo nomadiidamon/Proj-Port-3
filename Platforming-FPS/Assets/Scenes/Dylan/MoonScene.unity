@@ -1941,6 +1941,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2805844546290756960, guid: afa65a9642c06ad4fa4cb036aebdf082, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4844300160806748181, guid: afa65a9642c06ad4fa4cb036aebdf082, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5434323599189753745, guid: afa65a9642c06ad4fa4cb036aebdf082, type: 3}
       propertyPath: m_Name
       value: Spawn Portals

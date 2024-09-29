@@ -211,7 +211,7 @@ public class playerController : MonoBehaviour, IDamage
     
     void Awake()
     {
-        
+        //DontDestroyOnLoad(this.gameObject);   
     }
     void Start()
     {

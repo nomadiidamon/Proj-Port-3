@@ -9,7 +9,7 @@ using static gunStats;
 public class gameManager : MonoBehaviour
 {
     public static gameManager instance;
-    public QuestTracker questTracker;
+    //public QuestTracker questTracker;
 
     public GameObject playerSpawnPosition;
 
@@ -41,33 +41,35 @@ public class gameManager : MonoBehaviour
         playerSpawnPosition = GameObject.FindWithTag("Player Spawn Position");
         worldGravity = instance.playerScript.GetGravity();                          // setting resting gravity of the world
 
-        questTracker = new QuestTracker();
+        DontDestroyOnLoad(this.gameObject);
 
-        Quest questTest = new Quest(1337);
-        questTracker.AddQuest(questTest);
+        //questTracker = new QuestTracker();
+
+        //Quest questTest = new Quest(1337);
+        //questTracker.AddQuest(questTest);
     }
 
     
 
-    public void CompleteQuest(int questId)
-    {
-        questTracker.CompleteQuest(questId);
-    }
+    //public void CompleteQuest(int questId)
+    //{
+    //    questTracker.CompleteQuest(questId);
+    //}
 
-    public void AbandonQuest(int questId)
-    {
-        questTracker.AbandonQuest(questId);
-    }
+    //public void AbandonQuest(int questId)
+    //{
+    //    questTracker.AbandonQuest(questId);
+    //}
 
-    public int GetCompleteQuestCount()
-    {
-        return questTracker.GetCompletedQuestCount();
-    }
+    //public int GetCompleteQuestCount()
+    //{
+    //    return questTracker.GetCompletedQuestCount();
+    //}
 
-    public bool IsQuestComplete(int questId)
-    {
-        return questTracker.IsQuestCompleted(questId); 
-    }
+    //public bool IsQuestComplete(int questId)
+    //{
+    //    return questTracker.IsQuestCompleted(questId); 
+    //}
 
     void Update()
     {
