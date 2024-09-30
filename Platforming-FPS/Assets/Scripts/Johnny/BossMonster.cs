@@ -398,7 +398,7 @@ public class bossMonster : MonoBehaviour, IDamage
         if (HP <= 0)
         {
             isDead = true;
-            enemyManager.instance.bossDefeated = true;
+            //enemyManager.instance.bossDefeated = true;
             enemyManager.instance.updateEnemyCount(-1);
             StartCoroutine(Die());
         }

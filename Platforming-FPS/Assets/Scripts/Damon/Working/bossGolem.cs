@@ -325,7 +325,7 @@ public class bossGolem : MonoBehaviour, IDamage, IDeflect
 
         if (HP <= 0)
         {
-            enemyManager.instance.bossDefeated = true;
+            //enemyManager.instance.bossDefeated = true;
             isDead = true;
 
             enemyManager.instance.updateEnemyCount(-1);

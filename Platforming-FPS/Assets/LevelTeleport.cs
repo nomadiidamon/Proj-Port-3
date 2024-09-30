@@ -28,7 +28,7 @@ public class LevelTeleport : MonoBehaviour
     {
         if (enemyManager != null && !hasSpawned)
         {
-            if (enemyManager.enemiesRemaining <= 0 || enemyManager.bossDefeated)
+            if (enemyManager.enemiesRemaining <= 0)
             {
                 Instantiate(spawnPrefab, spawnTeleLocation.position, spawnTeleLocation.rotation);
                 hasSpawned = true;
