@@ -75,8 +75,8 @@ public class cameraController : MonoBehaviour
             // camera collison
             HandleCameraCollision();
         }
-    
-        
+
+
 
     }
 
@@ -106,7 +106,7 @@ public class cameraController : MonoBehaviour
     public void SetInvertY(bool toggle)
     {
         invertY = toggle;
-        
+
     }
 
     public void SetFOV(float fov)
@@ -123,5 +123,12 @@ public class cameraController : MonoBehaviour
 
         originalCamPos = playerCamera.transform.localPosition;
         originalCamRot = playerCamera.transform.localRotation;
+    }
+
+    public void ResetCameraRotation(float yRotation)
+    {
+        rotX = 0; // Reset vertical rotation
+        transform.localRotation = Quaternion.Euler(0, 0, 0); // Reset the camera's local rotation
+        transform.parent.rotation = Quaternion.Euler(0, yRotation, 0); // Reset the player (parent) rotation
     }
 }

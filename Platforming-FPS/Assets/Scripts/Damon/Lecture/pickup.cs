@@ -16,9 +16,8 @@ public class pickup : MonoBehaviour
         {
             audioManager.instance.PlayAud(gun.pickupSound[Random.Range(0, gun.pickupSound.Length)], gun.pickupVolume);
             gameManager.instance.playerScript.getGunStats(gun);
+            //DontDestroyOnLoad(gun);
             Destroy(gameObject);
         }
     }
-
-
 }

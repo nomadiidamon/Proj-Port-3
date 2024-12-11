@@ -30,6 +30,7 @@ public class gunStats : ScriptableObject
     public bool isCreator;
     public bool isShield;
     public bool isBlast;
+    public bool isLaser;
 
     public void increaseDamage(int amount)
     {

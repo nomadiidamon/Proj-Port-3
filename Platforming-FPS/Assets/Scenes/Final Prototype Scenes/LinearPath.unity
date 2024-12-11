@@ -1560,7 +1560,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3427,6 +3427,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1765064408548452792, guid: da28065c098e628429a43469b5138015, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
     - target: {fileID: 4934888756747425461, guid: da28065c098e628429a43469b5138015, type: 3}
       propertyPath: m_Name
       value: Player Spawn Position
@@ -3794,7 +3798,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5998,6 +6002,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollSpeedX: 0.3
+  MinScrollSpeedX: 0.1
+  MaxScrollSpeedX: 2
+  scrollSpeedY: 0.1
+  MinScrollSpeedY: 0.1
+  MaxScrollSpeedY: 2
+  horizontal: 0
+  vertical: 0
+  randomizeX: 0
+  randomizeY: 0
 --- !u!4 &711674894
 Transform:
   m_ObjectHideFlags: 0
@@ -7290,7 +7303,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7692,7 +7705,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -13073,6 +13086,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollSpeedX: -0.3
+  MinScrollSpeedX: 0.1
+  MaxScrollSpeedX: 2
+  scrollSpeedY: 0.1
+  MinScrollSpeedY: 0.1
+  MaxScrollSpeedY: 2
+  horizontal: 0
+  vertical: 0
+  randomizeX: 0
+  randomizeY: 0
 --- !u!4 &1473658363
 Transform:
   m_ObjectHideFlags: 0
@@ -13553,7 +13575,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15476,6 +15498,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollSpeedX: -0.3
+  MinScrollSpeedX: 0.1
+  MaxScrollSpeedX: 2
+  scrollSpeedY: 0.1
+  MinScrollSpeedY: 0.1
+  MaxScrollSpeedY: 2
+  horizontal: 0
+  vertical: 0
+  randomizeX: 0
+  randomizeY: 0
 --- !u!4 &1795350097
 Transform:
   m_ObjectHideFlags: 0
@@ -19711,6 +19742,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollSpeedX: -0.3
+  MinScrollSpeedX: 0.1
+  MaxScrollSpeedX: 2
+  scrollSpeedY: 0.1
+  MinScrollSpeedY: 0.1
+  MaxScrollSpeedY: 2
+  horizontal: 0
+  vertical: 0
+  randomizeX: 0
+  randomizeY: 0
 --- !u!23 &394620114693814360
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -19796,6 +19836,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollSpeedX: -0.6
+  MinScrollSpeedX: 0.1
+  MaxScrollSpeedX: 2
+  scrollSpeedY: 0.1
+  MinScrollSpeedY: 0.1
+  MaxScrollSpeedY: 2
+  horizontal: 0
+  vertical: 0
+  randomizeX: 0
+  randomizeY: 0
 --- !u!33 &547659935238385586
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -20441,6 +20490,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollSpeedX: -0.3
+  MinScrollSpeedX: 0.1
+  MaxScrollSpeedX: 2
+  scrollSpeedY: 0.1
+  MinScrollSpeedY: 0.1
+  MaxScrollSpeedY: 2
+  horizontal: 0
+  vertical: 0
+  randomizeX: 0
+  randomizeY: 0
 --- !u!1 &2638134970733694960
 GameObject:
   m_ObjectHideFlags: 0
@@ -20494,6 +20552,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollSpeedX: -0.6
+  MinScrollSpeedX: 0.1
+  MaxScrollSpeedX: 2
+  scrollSpeedY: 0.1
+  MinScrollSpeedY: 0.1
+  MaxScrollSpeedY: 2
+  horizontal: 0
+  vertical: 0
+  randomizeX: 0
+  randomizeY: 0
 --- !u!33 &2872021934997949814
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -21451,6 +21518,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollSpeedX: -0.6
+  MinScrollSpeedX: 0.1
+  MaxScrollSpeedX: 2
+  scrollSpeedY: 0.1
+  MinScrollSpeedY: 0.1
+  MaxScrollSpeedY: 2
+  horizontal: 0
+  vertical: 0
+  randomizeX: 0
+  randomizeY: 0
 --- !u!65 &5388287710736471133
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21735,6 +21811,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollSpeedX: -0.6
+  MinScrollSpeedX: 0.1
+  MaxScrollSpeedX: 2
+  scrollSpeedY: 0.1
+  MinScrollSpeedY: 0.1
+  MaxScrollSpeedY: 2
+  horizontal: 0
+  vertical: 0
+  randomizeX: 0
+  randomizeY: 0
 --- !u!23 &5813475225794482951
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -22375,6 +22460,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollSpeedX: -0.6
+  MinScrollSpeedX: 0.1
+  MaxScrollSpeedX: 2
+  scrollSpeedY: 0.1
+  MinScrollSpeedY: 0.1
+  MaxScrollSpeedY: 2
+  horizontal: 0
+  vertical: 0
+  randomizeX: 0
+  randomizeY: 0
 --- !u!4 &7763658818085833128
 Transform:
   m_ObjectHideFlags: 0
@@ -22403,6 +22497,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollSpeedX: 0.3
+  MinScrollSpeedX: 0.1
+  MaxScrollSpeedX: 2
+  scrollSpeedY: 0.1
+  MinScrollSpeedY: 0.1
+  MaxScrollSpeedY: 2
+  horizontal: 0
+  vertical: 0
+  randomizeX: 0
+  randomizeY: 0
 --- !u!23 &7981699465012459192
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -23670,6 +23773,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollSpeedX: -0.3
+  MinScrollSpeedX: 0.1
+  MaxScrollSpeedX: 2
+  scrollSpeedY: 0.1
+  MinScrollSpeedY: 0.1
+  MaxScrollSpeedY: 2
+  horizontal: 0
+  vertical: 0
+  randomizeX: 0
+  randomizeY: 0
 --- !u!1001 &8382294126674338161
 PrefabInstance:
   m_ObjectHideFlags: 0
